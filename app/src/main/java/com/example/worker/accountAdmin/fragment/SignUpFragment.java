@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.NavHostController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.worker.R;
@@ -21,6 +20,7 @@ public class SignUpFragment extends Fragment {
     private FragmentSignupBinding binding;
     private NavController navController;
     private Button bt_signUp;
+
 
     @Nullable
     @Override
@@ -38,11 +38,15 @@ public class SignUpFragment extends Fragment {
         bt_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //전화번호, 비밀번호 입력
+
+                //데이터베이서에서 중복 확인 후 페이지 이동
+
                 navController.navigate(R.id.action_navigation_signUp_to_navigation_logIn);
             }
+
         });
-
-
     }
 
 
