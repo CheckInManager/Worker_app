@@ -1,24 +1,32 @@
 package com.example.worker.accountAdmin.model;
 
+import android.media.Image;
+
 public class User {
 
     public int phoneNumber;
-    private int PhoneNumber;
     public String password;
-    private String Password;
+
+    public String name;
+    public Image image;
+    public String Career;
+
+    public String accidentRecord;
+    public String memo;
+
 
     public User(int phoneNumber, String password) {
-        PhoneNumber = phoneNumber;
-        Password = password;
+        phoneNumber = this.phoneNumber;
+        password = this.password;
     }
 
 
     public int getPhoneNumber() {
-        return PhoneNumber;
+        return phoneNumber;
     }
 
     public void setPhoneNumber(int phoneNumber) {
-        PhoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getPassword() {
@@ -26,6 +34,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
+
 }

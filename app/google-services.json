@@ -1,8 +1,9 @@
 {
   "project_info": {
     "project_number": "177719631278",
+    "firebase_url" : "https://checkinmanager-b0690-default-rtdb.firebaseio.com/",
     "project_id": "checkinmanager-b0690",
-    "storage_bucket": "checkinmanager-b0690.appspot.com"
+    "storage_bucket": " 1checkinmanager-b0690.appspot.com"
   },
   "client": [
     {

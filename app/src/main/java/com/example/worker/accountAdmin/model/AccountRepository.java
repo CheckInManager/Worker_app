@@ -9,10 +9,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 
 public class AccountRepository {
 
     private DatabaseReference accountDatabase = FirebaseDatabase.getInstance().getReference();
+    //private FirebaseStorage accountStorage = FirebaseStorage.getInstance();
+
     private FirebaseAuth accountAuth = FirebaseAuth.getInstance();
 
     private static final AccountRepository INSTANCE = new AccountRepository();
