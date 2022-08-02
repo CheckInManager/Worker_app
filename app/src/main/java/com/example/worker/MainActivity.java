@@ -8,7 +8,12 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 
+import com.example.worker.accountAdmin.model.AccountRepository;
+import com.example.worker.accountAdmin.model.User;
+import com.example.worker.accountAdmin.viewModel.SignUpViewModel;
 import com.example.worker.databinding.ActivityMainBinding;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -17,7 +17,7 @@ public class SignUpViewModel extends ViewModel {
     private User user = new User(getPhoneNumber(), getPassword());
 
     public void addUserRecord(){
-        accountRepository.writeAccountMap(getUser());
+        accountRepository.writeAccountInfo(getUser());
     }
 
     public User getUser() {
@@ -33,7 +33,11 @@ public class SignUpViewModel extends ViewModel {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = Integer.parseInt(String.valueOf(phoneNumber));
+        try{
+            this.phoneNumber = Integer.parseInt(String.valueOf(phoneNumber));
+        }
+        catch(NumberFormatException e ) {}
+
     }
 
     public String getPassword() {
