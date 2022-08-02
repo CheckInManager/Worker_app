@@ -38,8 +38,8 @@
         android:layout_marginTop="56dp"
         android:text="회원가입"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/signUp_et_RePassword"
-        app:layout_constraintTop_toBottomOf="@+id/signUp_et_RePassword" />
+        app:layout_constraintStart_toStartOf="@+id/signUp_et_confirmPassword"
+        app:layout_constraintTop_toBottomOf="@+id/signUp_et_confirmPassword" />
 
     <EditText
         android:id="@+id/signUp_et_tel"
@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@+id/signUp_et_tel" />
 
     <EditText
-        android:id="@+id/signUp_et_RePassword"
+        android:id="@+id/signUp_et_confirmPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

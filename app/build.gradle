@@ -32,6 +32,9 @@ android {
     }
 }
 
+    apply plugin: 'com.android.application'
+    apply plugin: 'com.google.gms.google-services'
+
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.4.2'
@@ -46,4 +49,5 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.4.2"
 
     implementation platform('com.google.firebase:firebase-bom:30.3.0')
+    implementation 'com.google.firebase:firebase-auth'
 }

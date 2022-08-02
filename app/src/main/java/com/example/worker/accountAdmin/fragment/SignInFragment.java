@@ -14,11 +14,11 @@ import androidx.navigation.NavHostController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.worker.R;
-import com.example.worker.databinding.FragmentLoginBinding;
+import com.example.worker.databinding.FragmentSigninBinding;
 
-public class LogInFragment extends Fragment {
+public class SignInFragment extends Fragment {
 
-    private FragmentLoginBinding binding;
+    private FragmentSigninBinding binding;
     private NavController navController;
     private Button bt_signUp;
 
@@ -26,7 +26,7 @@ public class LogInFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        binding = FragmentLoginBinding.inflate(inflater,container, false);
+        binding = FragmentSigninBinding.inflate(inflater,container, false);
 
         bt_signUp = binding.LogInBtLogIn;
 
@@ -36,7 +36,8 @@ public class LogInFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        navController = NavHostFragment.findNavController(LogInFragment.this);
+
+        navController = NavHostFragment.findNavController(SignInFragment.this);
         bt_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

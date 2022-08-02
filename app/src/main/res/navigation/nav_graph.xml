@@ -8,9 +8,9 @@
 
     <fragment
         android:id="@+id/navigation_logIn"
-        android:name="com.example.worker.accountAdmin.fragment.LogInFragment"
+        android:name="com.example.worker.accountAdmin.fragment.SignInFragment"
         android:label="logIn"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_signin" >
         <action
             android:id="@+id/action_navigation_logIn_to_navigation_signUp"
             app:destination="@id/navigation_signUp" />
