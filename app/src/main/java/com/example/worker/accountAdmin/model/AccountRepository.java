@@ -14,8 +14,6 @@ import com.google.firebase.storage.FirebaseStorage;
 public class AccountRepository {
 
     private DatabaseReference accountDatabase = FirebaseDatabase.getInstance().getReference();
-    //private FirebaseStorage accountStorage = FirebaseStorage.getInstance();
-
     private FirebaseAuth accountAuth = FirebaseAuth.getInstance();
 
     private static final AccountRepository INSTANCE = new AccountRepository();
@@ -37,13 +35,13 @@ public class AccountRepository {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Log.v("회원가입 데이터 작성","성공" + phoneNumber);
+                        Log.v("sign up - user data add","성공" + phoneNumber);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.v("회원가입 데이터 작성","실패");
+                        Log.v("sign up - user data add","실패");
                     }
                 });
 
