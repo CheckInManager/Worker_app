@@ -73,7 +73,7 @@ public class AccountRepository {
                     //검색한 phoneNumber 등록되어 있는 상태
                     checkingSignIn(checkSignIn);
 
-                    //database에서 해당 phonenumber에서 맞는 password 찾기
+                    //database에서 해당 phonenumber에서 맞는 password 찾기.
 
                     //phoneNumber와 password 일치 상태
 //                    if(signInRecord.password == ){
