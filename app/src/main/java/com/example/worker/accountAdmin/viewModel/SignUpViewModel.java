@@ -1,5 +1,7 @@
 package com.example.worker.accountAdmin.viewModel;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import com.example.worker.accountAdmin.model.AccountRepository;
@@ -17,6 +19,7 @@ public class SignUpViewModel extends ViewModel {
     private User user = new User(getPhoneNumber(), getPassword());
 
     public void addUserRecord(){
+        setUser(user);
         accountRepository.writeAccountInfo(getUser());
     }
 
@@ -26,6 +29,8 @@ public class SignUpViewModel extends ViewModel {
 
     public void setUser(User user) {
         this.user = user;
+        this.user.phoneNumber = getPhoneNumber();
+        this.user.password = getPassword();
     }
 
     public int getPhoneNumber() {

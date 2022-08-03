@@ -7,19 +7,10 @@ public class User {
     public int phoneNumber;
     public String password;
 
-    public String name;
-    public Image image;
-    public String Career;
-
-    public String accidentRecord;
-    public String memo;
-
-
     public User(int phoneNumber, String password) {
-        phoneNumber = this.phoneNumber;
-        password = this.password;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
     }
-
 
     public int getPhoneNumber() {
         return phoneNumber;
