@@ -1,11 +1,13 @@
 package com.example.worker.accountAdmin.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +30,9 @@ public class SignInFragment extends Fragment {
     private Button bt_signIn;
     private Button bt_findPassword;
 
+    private Context context;
+    private boolean signInSuccess = false;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,6 +45,8 @@ public class SignInFragment extends Fragment {
         bt_signUp = binding.SignInBtSignUp;
         bt_signIn = binding.SignInBtSignIn;
         bt_findPassword = binding.SignInBtFindPassword;
+
+        context = container.getContext();
 
         return binding.getRoot();
     }
@@ -60,13 +67,13 @@ public class SignInFragment extends Fragment {
         bt_signIn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                //Success sign in
                 if(true){
-                    //Success sign in
                     navController.navigate(R.id.action_navigation_logIn_to_navigation_inputInformation);
                 }
+                //Failed sign in
                 else{
-                    //Failed sign in
-                    Toast()
+                    Toast.makeText(context, "전화번호가 등록되어 있지 않거나 비밀번호가 맞지 않습니다.", Toast.LENGTH_LONG).show();
                 }
 
             }

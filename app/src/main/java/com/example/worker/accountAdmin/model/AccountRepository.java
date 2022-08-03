@@ -30,11 +30,12 @@ public class AccountRepository {
 
     private AccountRepository() {}
 
-    //write firebase
+
     public void writeAccountInfo(User user) {
         writeAccount(user);
     }
 
+    //write firebase
     private void writeAccount(User user) {
 
         //phoneNumber 등록 여부 확인
@@ -43,6 +44,7 @@ public class AccountRepository {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.hasChild(String.valueOf(user.phoneNumber))){
                     Log.v("이미 등록된 번호", "");
+                    //fragment 에 toast 띄우기
                 }
                 else{
                     databaseReference.child("users").child(String.valueOf(user.phoneNumber)).setValue(user);

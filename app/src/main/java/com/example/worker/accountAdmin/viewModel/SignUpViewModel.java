@@ -16,6 +16,7 @@ public class SignUpViewModel extends ViewModel {
     private String password;
     private String confirmPassword;
 
+
     private User user = new User(getPhoneNumber(), getPassword());
 
     public void addUserRecord(){
