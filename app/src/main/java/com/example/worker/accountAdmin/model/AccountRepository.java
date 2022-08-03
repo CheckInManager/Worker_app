@@ -37,7 +37,6 @@ public class AccountRepository {
 
     private void writeAccount(User user) {
 
-
         //phoneNumber 등록 여부 확인
         databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

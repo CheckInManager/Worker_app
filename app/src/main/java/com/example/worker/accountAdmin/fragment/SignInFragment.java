@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +21,12 @@ public class SignInFragment extends Fragment {
 
     private FragmentSigninBinding binding;
     private NavController navController;
+
+    private EditText et_phoneNumber;
+    private EditText et_password;
     private Button bt_signUp;
+    private Button bt_signIn;
+    private Button bt_findPassword;
 
     @Nullable
     @Override
@@ -28,7 +34,12 @@ public class SignInFragment extends Fragment {
 
         binding = FragmentSigninBinding.inflate(inflater,container, false);
 
-        bt_signUp = binding.LogInBtLogIn;
+        et_phoneNumber = binding.SignInEtPhoneNumber;
+        et_password = binding.SignInEtPasswrod;
+
+        bt_signUp = binding.SignInBtSignUp;
+        bt_signIn = binding.SignInBtSignIn;
+        bt_findPassword = binding.SignInBtFindPassword;
 
         return binding.getRoot();
     }
@@ -36,8 +47,8 @@ public class SignInFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-
         navController = NavHostFragment.findNavController(SignInFragment.this);
+        //sign up
         bt_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,5 +56,23 @@ public class SignInFragment extends Fragment {
             }
         });
 
+        //sign in
+        bt_signIn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                if(true){
+                    //Success sign in
+                    navController.navigate(R.id.action_navigation_logIn_to_navigation_inputInformation);
+                }
+                else{
+                    //Failed sign in
+                    Toast()
+                }
+
+            }
+        });
+
+
+        //find password
     }
 }

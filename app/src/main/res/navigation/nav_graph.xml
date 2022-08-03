@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_navigation_logIn_to_navigation_signUp"
             app:destination="@id/navigation_signUp" />
+        <action
+            android:id="@+id/action_navigation_logIn_to_navigation_inputInformation"
+            app:destination="@id/navigation_inputInformation" />
     </fragment>
 
     <fragment
@@ -25,6 +28,15 @@
             android:id="@+id/action_navigation_signUp_to_navigation_logIn"
             app:destination="@id/navigation_logIn" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_inputInformation"
+        android:name="com.example.worker.accountAdmin.fragment.InputInformationFragment"
+        android:label="inputInformation"
+        tools:layout="@layout/fragment_inputinformation" >
+
+    </fragment>
+
 
 
 

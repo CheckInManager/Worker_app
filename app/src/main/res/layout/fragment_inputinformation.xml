@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".accountAdmin.fragment.InputInformationFragment">
+
+    <EditText
+        android:id="@+id/InputInformation_et_name"
+        android:layout_width="210dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/InputInformation_tv_name"
+        app:layout_constraintStart_toEndOf="@+id/InputInformation_tv_name" />
+
+    <EditText
+        android:id="@+id/InputInformation_et_career"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/InputInformation_tv_career"
+        app:layout_constraintEnd_toEndOf="@+id/InputInformation_et_phoneNumber"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/InputInformation_tv_career"
+        app:layout_constraintTop_toBottomOf="@+id/InputInformation_et_phoneNumber"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/InputInformation_tv_career"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="경력"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/InputInformation_tv_phoneNumber"
+        app:layout_constraintTop_toBottomOf="@+id/InputInformation_tv_phoneNumber" />
+
+    <Button
+        android:id="@+id/InputInformation_bt_complete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="완료"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/InputInformation_et_career"
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toStartOf="@+id/InputInformation_tv_career"
+        app:layout_constraintTop_toBottomOf="@+id/InputInformation_et_career"
+        app:layout_constraintVertical_bias="0.156" />
+
+    <TextView
+        android:id="@+id/InputInformation_tv_phoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="전화번호"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/InputInformation_tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/InputInformation_tv_name" />
+
+    <TextView
+        android:id="@+id/InputInformation_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="8dp"
+        android:text="이름"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/InputInformation_bt_picture"
+        app:layout_constraintTop_toBottomOf="@+id/InputInformation_bt_picture" />
+
+    <EditText
+        android:id="@+id/InputInformation_et_phoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/InputInformation_tv_phoneNumber"
+        app:layout_constraintEnd_toEndOf="@+id/InputInformation_et_name"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/InputInformation_tv_phoneNumber"
+        app:layout_constraintTop_toBottomOf="@+id/InputInformation_et_name"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/InputInformation_bt_picture"
+        android:layout_width="166dp"
+        android:layout_height="179dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.068"
+        tools:srcCompat="@tools:sample/avatars" />
+</androidx.constraintlayout.widget.ConstraintLayout>
