@@ -2,6 +2,7 @@ package com.example.worker.accountAdmin.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +77,8 @@ public class SignInFragment extends Fragment {
                 signInViewModel.addSignInRecord();
 
                 //Success sign in
-                if(true){
+                if(signInSuccess == true){
+                    Log.v("sign in fragment", "로그인 성공");
                     navController.navigate(R.id.action_navigation_logIn_to_navigation_inputInformation);
                 }
                 //Failed sign in
