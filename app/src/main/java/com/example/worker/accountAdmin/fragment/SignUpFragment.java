@@ -55,11 +55,10 @@ public class SignUpFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         navController = NavHostFragment.findNavController(SignUpFragment.this);
 
+        overlap = signUpViewModel.getPhoneNumberOverlap();
         bt_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 if(overlap == false) {
                     //전화번호, 비밀번호 입력
                     signUpViewModel.setPhoneNumber(et_phoneNumber.getText().toString());

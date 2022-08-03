@@ -12,17 +12,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavHostController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.worker.R;
+import com.example.worker.accountAdmin.viewModel.SignInViewModel;
 import com.example.worker.databinding.FragmentSigninBinding;
 
 public class SignInFragment extends Fragment {
 
     private FragmentSigninBinding binding;
     private NavController navController;
+    private SignInViewModel signInViewModel;
 
     private EditText et_phoneNumber;
     private EditText et_password;
@@ -37,6 +40,7 @@ public class SignInFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        signInViewModel = new ViewModelProvider(this).get(SignInViewModel.class);
         binding = FragmentSigninBinding.inflate(inflater,container, false);
 
         et_phoneNumber = binding.SignInEtPhoneNumber;
@@ -67,6 +71,10 @@ public class SignInFragment extends Fragment {
         bt_signIn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                signInViewModel.setInputPhoneNumber(Integer.parseInt(et_phoneNumber.getText().toString()));
+                signInViewModel.setInputPassword(String.valueOf(et_password));
+                signInViewModel.addSignInRecord();
+
                 //Success sign in
                 if(true){
                     navController.navigate(R.id.action_navigation_logIn_to_navigation_inputInformation);
