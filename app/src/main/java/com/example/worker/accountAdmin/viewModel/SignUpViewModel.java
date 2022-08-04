@@ -27,7 +27,7 @@ public class SignUpViewModel extends ViewModel {
 
     public void addUserRecord() {
         setUser(user);
-        accountRepository.writeAccountInfo(getUser());
+        accountRepository.writeAccount(getUser());
     }
 
     public User getUser() {
@@ -69,7 +69,7 @@ public class SignUpViewModel extends ViewModel {
     }
 
     public void setPhoneNumberOverlap(boolean phoneNumberOverlap) {
-        this.phoneNumberOverlap = accountRepository.isPhoneNumberOverlap();
+        //this.phoneNumberOverlap = accountRepository.isPhoneNumberOverlap();
         Log.v("이미 등록된 번호 view model", "" + phoneNumberOverlap);
     }
 }
