@@ -42,7 +42,7 @@ public class SignInFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         signInViewModel = new ViewModelProvider(this).get(SignInViewModel.class);
-        binding = FragmentSigninBinding.inflate(inflater,container, false);
+        binding = FragmentSigninBinding.inflate(inflater, container, false);
 
         et_phoneNumber = binding.SignInEtPhoneNumber;
         et_password = binding.SignInEtPasswrod;
@@ -69,21 +69,29 @@ public class SignInFragment extends Fragment {
         });
 
         //sign in
-        bt_signIn.setOnClickListener(new View.OnClickListener(){
+        bt_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signInViewModel.setInputPhoneNumber(Integer.parseInt(et_phoneNumber.getText().toString()));
-                signInViewModel.setInputPassword(String.valueOf(et_password));
-                signInViewModel.addSignInRecord();
+                try{
+                    int inputPhoneNumber = Integer.parseInt(et_phoneNumber.getText().toString());
+                    String inputPassword = String.valueOf(et_password);
 
-                //Success sign in
-                if(signInSuccess == true){
-                    Log.v("sign in fragment", "로그인 성공");
-                    navController.navigate(R.id.action_navigation_logIn_to_navigation_inputInformation);
+                    signInViewModel.setInputPhoneNumber(inputPhoneNumber);
+                    signInViewModel.setInputPassword(inputPassword);
+                    signInViewModel.addSignInRecord();
+
+                    //Success sign in
+                    if (signInSuccess == false) {
+                        //Log.v("sign in fragment", "로그인 성공");
+                        navController.navigate(R.id.action_navigation_logIn_to_navigation_inputInformation);
+                    }
+                    //Failed sign in
+                    else {
+                        Toast.makeText(context, "전화번호가 등록되어 있지 않거나 비밀번호가 맞지 않습니다.", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                //Failed sign in
-                else{
-                    Toast.makeText(context, "전화번호가 등록되어 있지 않거나 비밀번호가 맞지 않습니다.", Toast.LENGTH_LONG).show();
+                catch(NumberFormatException e){
+                    Toast.makeText(context, "전화번호와 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
 
             }

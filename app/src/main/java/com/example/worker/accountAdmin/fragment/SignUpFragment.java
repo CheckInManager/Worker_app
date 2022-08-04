@@ -32,7 +32,7 @@ public class SignUpFragment extends Fragment {
     private EditText et_password;
     private EditText et_confirmPassword;
 
-    public boolean overlap = false;
+    public boolean check = false;
     private Context context;
 
     @Nullable
@@ -55,11 +55,11 @@ public class SignUpFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         navController = NavHostFragment.findNavController(SignUpFragment.this);
 
-        overlap = signUpViewModel.getPhoneNumberOverlap();
+        check = signUpViewModel.getPhoneNumberOverlap();
         bt_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(overlap == false) {
+                if(check == false) {
                     //전화번호, 비밀번호 입력
                     signUpViewModel.setPhoneNumber(et_phoneNumber.getText().toString());
                     signUpViewModel.setPassword(et_password.getText().toString());
@@ -70,7 +70,7 @@ public class SignUpFragment extends Fragment {
                     navController.navigate(R.id.action_navigation_signUp_to_navigation_logIn);
                 }
                 else{
-                    Toast.makeText(context, "이미 등록된 전화번호입니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "이미 등록된 전화번호입니다.", Toast.LENGTH_SHORT).show();
                 }
             }
 

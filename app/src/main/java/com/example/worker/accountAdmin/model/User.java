@@ -41,8 +41,7 @@ public class User {
         this.password = password;
     }
 
-    public User(int phoneNumber, String name, Image image, String career, String accidentRecord) {
-        this.phoneNumber = phoneNumber;
+    public User( String name, Image image, String career, String accidentRecord) {
         this.name = name;
         this.image = image;
         this.career = career;
