@@ -79,14 +79,17 @@ public class SignInFragment extends Fragment {
                     signInViewModel.setInputPhoneNumber(inputPhoneNumber);
                     signInViewModel.setInputPassword(inputPassword);
                     signInViewModel.addSignInRecord();
+                    //test 용
+                    signInViewModel.setCheckSignIn(signInSuccess);
 
                     //Success sign in
-                    if (signInSuccess == false) {
-                        //Log.v("sign in fragment", "로그인 성공");
+                    if (signInViewModel.getCheckSignIn() == true) {
+                        Log.v("sign in fragment", "로그인 성공");
                         navController.navigate(R.id.action_navigation_logIn_to_navigation_inputInformation);
                     }
                     //Failed sign in
                     else {
+                        //edit text blank
                         Toast.makeText(context, "전화번호가 등록되어 있지 않거나 비밀번호가 맞지 않습니다.", Toast.LENGTH_SHORT).show();
                     }
                 }
