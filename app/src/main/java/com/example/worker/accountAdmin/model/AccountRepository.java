@@ -2,6 +2,7 @@ package com.example.worker.accountAdmin.model;
 
 import android.util.Log;
 
+import androidx.activity.ComponentActivity;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,13 +33,13 @@ public class AccountRepository {
 
     CollectionReference usersRef = accountStore.collection("users");
     //private boolean checkSignUp = false;
-    //private boolean checkSignIn = false;
+    private boolean checkSignIn = false;
 
     //sign up
     public void writeAccount(User user) {
         Map<String, Object> users = new HashMap<>();
         //user account
-        users.put("phoneNUmber", user.phoneNumber);
+        users.put("phoneNumber", user.phoneNumber);
         users.put("password", user.password);
 
         //user information
@@ -56,43 +57,55 @@ public class AccountRepository {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Log.v("account Repository", ": 데이터 입력 성공, 전화번호 : " + user.phoneNumber);
+                        Log.v("account Repository", ": 데이터 입력 통신 성공, 전화번호 : " + user.phoneNumber);
                     }
 
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.v("account Repository", ": 데이터 입력 실패");
+                        Log.v("account Repository", ": 데이터 입력 통신 실패");
                     }
                 });
     }
 
 
+    public void setSignInRecord(SignInRecord signInRecord) {
+        searchAccount(signInRecord);
+    }
+
+    public boolean getCheckSignIn() {
+        return checkSignIn;
+    }
+
     //sign in
-    public void searchAccount(SignInRecord signInRecord){
-
-        boolean checkSignIn = false;
-
+    private void searchAccount(SignInRecord signInRecord) {
+        String[] passwordInDB = {""};
         accountStore.collection("users")
-                .whereEqualTo(String.valueOf(signInRecord.phoneNumber), signInRecord.password)
+                .whereEqualTo("phoneNumber", signInRecord.getPhoneNumber())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()){
-                                checkAccount(checkSignIn);
-                                Log.v("document1122", ""+ documentSnapshot.getData());
+                        if (task.isSuccessful()) {
+
+                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                passwordInDB[0] = String.valueOf(documentSnapshot.getData().get("password"));
                             }
-                        }     
-                        else{
-                            Log.v("document", "실패");
+
+                            //비밀번호 일치시 check sign in
+                            if(passwordInDB[0] == signInRecord.getPassword()){
+                                checkAccount(checkSignIn);
+
+                                Log.v("확인","" + checkSignIn);
+                            }
+
+                        } else {
+                            Log.v("account Repostiory", " :로그인 전화번호 검색 통신 실패" + task.getException());
                         }
                     }
                 });
     }
-
 
 
     public boolean checkAccount(boolean checkSignIn) {

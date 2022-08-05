@@ -41,11 +41,14 @@ public class SignInViewModel extends ViewModel {
     }
 
     public void setCheckSignIn(boolean check) {
-        accountRepository.searchAccount(getSignInRecord());
-        //checkingSignIn = accountRepository.checkAccount(check);
-
+        accountRepository.setSignInRecord(getSignInRecord());
     }
 
-    public boolean getCheckSignIn() {return checkingSignIn;}
+    public boolean getCheckingSignIn(){
+        Log.v("확인2" ,"" +  accountRepository.getCheckSignIn() );
+        return  accountRepository.getCheckSignIn();
+    }
+
+
 
 }

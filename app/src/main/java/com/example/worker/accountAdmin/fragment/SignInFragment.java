@@ -73,17 +73,15 @@ public class SignInFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 try{
-                    int inputPhoneNumber = Integer.parseInt(et_phoneNumber.getText().toString());
-                    String inputPassword = String.valueOf(et_password);
 
-                    signInViewModel.setInputPhoneNumber(inputPhoneNumber);
-                    signInViewModel.setInputPassword(inputPassword);
+                    signInViewModel.setInputPhoneNumber(Integer.parseInt(et_phoneNumber.getText().toString()));
+                    signInViewModel.setInputPassword(String.valueOf(et_password.getText()));
                     signInViewModel.addSignInRecord();
-                    //test 용
+
                     signInViewModel.setCheckSignIn(signInSuccess);
 
                     //Success sign in
-                    if (signInViewModel.getCheckSignIn() == true) {
+                    if (signInViewModel.getCheckingSignIn()== true) {
                         Log.v("sign in fragment", "로그인 성공");
                         navController.navigate(R.id.action_navigation_logIn_to_navigation_inputInformation);
                     }
