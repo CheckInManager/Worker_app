@@ -78,8 +78,8 @@ public class SignInFragment extends Fragment {
                     signInViewModel.setInputPassword(String.valueOf(et_password.getText()));
                     signInViewModel.addSignInRecord();
 
-                    signInViewModel.setCheckSignIn(signInSuccess);
-
+                    signInViewModel.setSingleRecord();
+                    signInSuccess = signInViewModel.getCheckingSignIn();
                     //Success sign in
                     if (signInViewModel.getCheckingSignIn()== true) {
                         Log.v("sign in fragment", "로그인 성공");
@@ -98,7 +98,5 @@ public class SignInFragment extends Fragment {
             }
         });
 
-
-        //find password
     }
 }

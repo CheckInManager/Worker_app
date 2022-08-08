@@ -60,12 +60,12 @@ public class SignUpViewModel extends ViewModel {
 
     public boolean getPhoneNumberOverlap() {
         setPhoneNumberOverlap(phoneNumberOverlap);
-        Log.v("전화번호 중복 (sign up view model)", "" + phoneNumberOverlap);
+        //Log.v("전화번호 중복 (sign up view model)", "" + phoneNumberOverlap);
         return phoneNumberOverlap;
     }
 
     public void setPhoneNumberOverlap(boolean phoneNumberOverlap) {
         //this.phoneNumberOverlap = accountRepository.isPhoneNumberOverlap();
-        Log.v("이미 등록된 번호 view model", "" + phoneNumberOverlap);
+        //Log.v("이미 등록된 번호 view model", "" + phoneNumberOverlap);
     }
 }

@@ -11,7 +11,7 @@ public class SignInViewModel extends ViewModel {
 
     private AccountRepository accountRepository = AccountRepository.getInstance();
 
-    private boolean checkingSignIn;
+    private boolean checkingSignIn = false;
     private int inputPhoneNumber;
     private String inputPassword;
 
@@ -40,13 +40,17 @@ public class SignInViewModel extends ViewModel {
         this.inputPassword = inputPassword;
     }
 
-    public void setCheckSignIn(boolean check) {
+    public void setSingleRecord() {
         accountRepository.setSignInRecord(getSignInRecord());
     }
 
+    public void setCheckingSingIn(){
+        this.checkingSignIn =  accountRepository.getCheckSignIn();
+    }
+
     public boolean getCheckingSignIn(){
-        Log.v("확인2" ,"" +  accountRepository.getCheckSignIn() );
-        return  accountRepository.getCheckSignIn();
+        setCheckingSingIn();
+        return checkingSignIn;
     }
 
 

@@ -2,27 +2,29 @@ package com.example.worker.accountAdmin.model;
 
 import android.util.Log;
 
-import androidx.activity.ComponentActivity;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class AccountRepository {
 
     private FirebaseFirestore accountStore = FirebaseFirestore.getInstance();
     private static final AccountRepository INSTANCE = new AccountRepository();
+
 
     public static AccountRepository getInstance() {
         return INSTANCE;
@@ -78,6 +80,7 @@ public class AccountRepository {
         return checkSignIn;
     }
 
+
     //sign in
     private void searchAccount(SignInRecord signInRecord) {
         String[] passwordInDB = {""};
@@ -88,28 +91,29 @@ public class AccountRepository {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-
                             for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                 passwordInDB[0] = String.valueOf(documentSnapshot.getData().get("password"));
                             }
-
-                            //비밀번호 일치시 check sign in
-                            if(passwordInDB[0] == signInRecord.getPassword()){
-                                checkAccount(checkSignIn);
-
-                                Log.v("확인","" + checkSignIn);
+                            if (passwordInDB[0].equals(signInRecord.getPassword())) {
+                                checkSignIn = checkAccount();
+                                Log.v("됨", "" + checkSignIn);
                             }
-
+                            else {
+                                // 로그인 실패
+                                Log.v("로그인 실패", "");
+                            }
                         } else {
                             Log.v("account Repostiory", " :로그인 전화번호 검색 통신 실패" + task.getException());
                         }
+
                     }
                 });
+
     }
 
 
-    public boolean checkAccount(boolean checkSignIn) {
-        return checkSignIn = true;
+    public boolean checkAccount() {
+        return true;
     }
 
 }
