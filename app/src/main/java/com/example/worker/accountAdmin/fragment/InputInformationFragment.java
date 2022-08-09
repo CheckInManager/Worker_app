@@ -39,6 +39,7 @@ public class InputInformationFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         inputInformationViewModel = new ViewModelProvider(this).get(InputInformationViewModel.class);
         binding = FragmentInputinformationBinding.inflate(inflater, container, false);
+        navController = NavHostFragment.findNavController(InputInformationFragment.this);
 
         imbBt_face = binding.InputInformationBtPicture;
         et_name = binding.InputInformationEtName;
@@ -52,7 +53,6 @@ public class InputInformationFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        navController = NavHostFragment.findNavController(InputInformationFragment.this);
 
         bt_complete.setOnClickListener(new View.OnClickListener() {
             @Override

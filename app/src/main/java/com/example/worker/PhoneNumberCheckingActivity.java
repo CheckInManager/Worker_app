@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 
 import com.example.worker.accountAdmin.fragment.InputInformationFragment;
 import com.example.worker.accountAdmin.fragment.SignInFragment;
-import com.example.worker.accountAdmin.model.SignInRecord;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -31,11 +30,11 @@ public class PhoneNumberCheckingActivity extends Activity {
     private FirebaseAuth accountAuth = FirebaseAuth.getInstance();
     private String verificationID;
 
-    public void sendVerification(SignInRecord signInRecord){
+    public void sendVerification(String phoneNumber, String password){
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(accountAuth)
 
-                        .setPhoneNumber("+91" + String.valueOf(signInRecord.phoneNumber))
+                        .setPhoneNumber("+91" + String.valueOf(phoneNumber))
                         .setTimeout(60L, TimeUnit.SECONDS)
                         .setActivity(this)
                         .setCallbacks(mCallbacks)

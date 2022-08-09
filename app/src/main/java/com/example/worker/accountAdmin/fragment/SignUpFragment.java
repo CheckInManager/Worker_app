@@ -2,6 +2,7 @@ package com.example.worker.accountAdmin.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -40,6 +42,7 @@ public class SignUpFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
         binding = FragmentSignupBinding.inflate(inflater, container, false);
+        navController = NavHostFragment.findNavController(SignUpFragment.this);
 
         bt_signUp = binding.signUpBtSignUp;
         et_phoneNumber = binding.signUpEtTel;
@@ -53,28 +56,38 @@ public class SignUpFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        navController = NavHostFragment.findNavController(SignUpFragment.this);
 
-//        check = signUpViewModel.getPhoneNumberOverlap();
-//        bt_signUp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(check == false) {
-//                    //전화번호, 비밀번호 입력
-//                    signUpViewModel.setPhoneNumber(et_phoneNumber.getText().toString());
-//                    signUpViewModel.setPassword(et_password.getText().toString());
-//                    signUpViewModel.setConfirmPassword(et_confirmPassword.getText().toString());
-//
-//                    signUpViewModel.addUserRecord();
-//
-//                    navController.navigate(R.id.action_navigation_signUp_to_navigation_logIn);
-//                }
-//                else{
-//                    Toast.makeText(context, "이미 등록된 전화번호입니다.", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//        });
+        bt_signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String phoneNumber = String.valueOf(et_phoneNumber.getText());
+                String password = String.valueOf(et_password.getText());
+                String confirmPassword = String.valueOf(et_confirmPassword.getText());
+
+                if(password.equals(confirmPassword)){
+                    signUpViewModel.trySignUp(phoneNumber, password);
+                }
+                else{
+                    Toast.makeText(context, "비밀번호가 동일하지 않습니다. ", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        signUpViewModel.getSignUpComplete().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean signUp) {
+                if(signUp){
+                    navController.navigate(R.id.action_navigation_signUp_to_navigation_signIn);
+                }
+                else
+                {
+                    Log.v("signup fragment ", "가입 실패");
+                    //callback 에서 failed 반환
+                }
+            }
+        });
+
+
     }
 
 

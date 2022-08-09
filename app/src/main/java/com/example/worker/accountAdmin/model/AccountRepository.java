@@ -19,8 +19,6 @@ public class AccountRepository
     private static final AccountRepository INSTANCE = new AccountRepository();
     private FirebaseFirestore accountStore = FirebaseFirestore.getInstance();
     private CollectionReference usersRef = accountStore.collection("users");
-    //private boolean checkSignUp = false;
-    private boolean checkSignIn = false;
 
     private AccountRepository()
     {
@@ -31,44 +29,25 @@ public class AccountRepository
         return INSTANCE;
     }
 
-    //sign up
-    //Create
-    //Add
-
-    public void createAccount(User user)
-    {
-        //1. user 등록 시 전화번호, 비밀번호, 비밀번호 확인 후 공백시 블로킹
-        //2. account store 에서 document (id?)로 같은 거 검색 후에 중복 체크
-
-        accountStore.collection("users")
-                .document(String.valueOf(user.phoneNumber))
+    //회원 가입
+    public void trySignUp(User user, SingleCallback<Result<User>> callback){
+        usersRef.document(user.getPhoneNumber())
                 .set(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>()
-                {
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(Void unused)
-                    {
-                        Log.v("account Repository", ": 데이터 입력 통신 성공, 전화번호 : " + user.phoneNumber);
+                    public void onSuccess(Void unused) {
+                        Log.v("accountRepository",  "trySignUp" + user.getPhoneNumber()  + " " + user.getPassword() + "완료");
                     }
-
                 })
-                .addOnFailureListener(new OnFailureListener()
-                {
+                .addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onFailure(@NonNull Exception e)
-                    {
-                        Log.v("account Repository", ": 데이터 입력 통신 실패");
+                    public void onFailure(@NonNull Exception e) {
+                        Log.v("accountRepository", "trySignUp 연결 실패");
                     }
                 });
     }
 
-    //sign in
-    //검색하고 패스워드 검색하서
-    //입력한 정보랑 같으면 true
-
-    //SOLID
-    //S - Single Responsibility Principle
-    //
+    //로그인
     public void trySignIn(String phoneNumber, String password, SingleCallback<Result<User>> callback)
     {
         usersRef.whereEqualTo("phoneNumber", phoneNumber)

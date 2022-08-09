@@ -35,7 +35,6 @@ public class SignInFragment extends Fragment
     private Button bt_findPassword;
 
     private Context context;
-    private boolean signInSuccess = false;
 
     @Nullable
     @Override
@@ -66,7 +65,7 @@ public class SignInFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                navController.navigate(R.id.action_navigation_logIn_to_navigation_signUp);
+                navController.navigate(R.id.action_navigation_signIn_to_navigation_signUp);
             }
         });
 
@@ -89,7 +88,7 @@ public class SignInFragment extends Fragment
             {
                 if(isLoggedIn)
                 {
-                    navController.navigate(R.id.action_navigation_logIn_to_navigation_inputInformation);
+                    navController.navigate(R.id.action_navigation_signIn_to_navigation_inputInformation);
                 }
                 else
                 {

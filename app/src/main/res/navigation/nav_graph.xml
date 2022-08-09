@@ -9,16 +9,16 @@
     <fragment
         android:id="@+id/navigation_signIn"
         android:name="com.example.worker.accountAdmin.fragment.SignInFragment"
-        android:label="logIn"
+        android:label="signIn"
         tools:layout="@layout/fragment_signin" >
         <action
-            android:id="@+id/action_navigation_logIn_to_navigation_signUp"
+            android:id="@+id/action_navigation_signIn_to_navigation_signUp"
             app:destination="@id/navigation_signUp" />
         <action
-            android:id="@+id/action_navigation_logIn_to_navigation_inputInformation"
+            android:id="@+id/action_navigation_signIn_to_navigation_inputInformation"
             app:destination="@id/navigation_inputInformation" />
         <action
-            android:id="@+id/action_navigation_logIn_to_navigation_scanQrCode"
+            android:id="@+id/action_navigation_signIn_to_navigation_scanQrCode"
             app:destination="@id/navigation_scanQrCode" />
     </fragment>
 
@@ -28,7 +28,7 @@
         android:label="signUp"
         tools:layout="@layout/fragment_signup" >
         <action
-            android:id="@+id/action_navigation_signUp_to_navigation_logIn"
+            android:id="@+id/action_navigation_signUp_to_navigation_signIn"
             app:destination="@id/navigation_signIn" />
     </fragment>
 

@@ -22,13 +22,14 @@ public class ScanQrCodeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentScanqrcodeBinding.inflate(inflater, container, false);
+        navController = NavHostFragment.findNavController(ScanQrCodeFragment.this);
 
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-       navController = NavHostFragment.findNavController(ScanQrCodeFragment.this);
+
 
 
     }
