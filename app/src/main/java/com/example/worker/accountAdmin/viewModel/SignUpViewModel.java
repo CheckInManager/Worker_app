@@ -19,10 +19,6 @@ public class SignUpViewModel extends ViewModel {
 
     private User user = new User();
 
-    public LiveData<Boolean> getSignUpComplete() {
-        return signUpComplete;
-    }
-
     public void setUserAccount(String phoneNumber, String password) {
         user.phoneNumber = phoneNumber;
         user.password = password;
@@ -30,12 +26,12 @@ public class SignUpViewModel extends ViewModel {
 
     public void trySignUp(String phoneNumber, String password) {
         setUserAccount(phoneNumber, password);
-        accountRepository.trySignUp(user, new SingleCallback<Result<User>>() {
+        accountRepository.trySignUp(user, new SingleCallback<Result<User>>()
+        {
             @Override
             public void onComplete(Result<User> result) {
                 if (result instanceof Result.Success)
                 {
-                    /////////////
                     signUpComplete.postValue(true);
                 } else {
                     Log.v("오류", "");
@@ -44,4 +40,7 @@ public class SignUpViewModel extends ViewModel {
         });
     }
 
+    public LiveData<Boolean> getSignUpComplete() {
+        return signUpComplete;
+    }
 }

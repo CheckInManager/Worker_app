@@ -14,6 +14,7 @@ public class SignInViewModel extends ViewModel
     private AccountRepository accountRepository = AccountRepository.getInstance();
 
     private MutableLiveData<Boolean> loggedIn = new MutableLiveData<>(false);
+
     private int inputPhoneNumber;
     private String inputPassword;
 

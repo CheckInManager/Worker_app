@@ -60,15 +60,16 @@ public class SignUpFragment extends Fragment {
         bt_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String phoneNumber = String.valueOf(et_phoneNumber.getText());
-                String password = String.valueOf(et_password.getText());
-                String confirmPassword = String.valueOf(et_confirmPassword.getText());
+                String phoneNumber = et_phoneNumber.getText().toString();
+                String password = et_password.getText().toString();
+                String confirmPassword = et_confirmPassword.getText().toString();
 
                 if(password.equals(confirmPassword)){
                     signUpViewModel.trySignUp(phoneNumber, password);
                 }
                 else{
-                    Toast.makeText(context, "비밀번호가 동일하지 않습니다. ", Toast.LENGTH_SHORT).show();
+                    Log.v("signup fragment ", "비밀번호가 동일하지 않습니다.");
+                    //Toast.makeText(context, "비밀번호가 동일하지 않습니다. ", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -77,12 +78,13 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onChanged(Boolean signUp) {
                 if(signUp){
+
+                    //왜 안 넘어감
                     navController.navigate(R.id.action_navigation_signUp_to_navigation_signIn);
                 }
                 else
                 {
-                    Log.v("signup fragment ", "가입 실패");
-                    //callback 에서 failed 반환
+
                 }
             }
         });
