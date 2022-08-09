@@ -55,26 +55,26 @@ public class SignUpFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         navController = NavHostFragment.findNavController(SignUpFragment.this);
 
-        check = signUpViewModel.getPhoneNumberOverlap();
-        bt_signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(check == false) {
-                    //전화번호, 비밀번호 입력
-                    signUpViewModel.setPhoneNumber(et_phoneNumber.getText().toString());
-                    signUpViewModel.setPassword(et_password.getText().toString());
-                    signUpViewModel.setConfirmPassword(et_confirmPassword.getText().toString());
-
-                    signUpViewModel.addUserRecord();
-
-                    navController.navigate(R.id.action_navigation_signUp_to_navigation_logIn);
-                }
-                else{
-                    Toast.makeText(context, "이미 등록된 전화번호입니다.", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-        });
+//        check = signUpViewModel.getPhoneNumberOverlap();
+//        bt_signUp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(check == false) {
+//                    //전화번호, 비밀번호 입력
+//                    signUpViewModel.setPhoneNumber(et_phoneNumber.getText().toString());
+//                    signUpViewModel.setPassword(et_password.getText().toString());
+//                    signUpViewModel.setConfirmPassword(et_confirmPassword.getText().toString());
+//
+//                    signUpViewModel.addUserRecord();
+//
+//                    navController.navigate(R.id.action_navigation_signUp_to_navigation_logIn);
+//                }
+//                else{
+//                    Toast.makeText(context, "이미 등록된 전화번호입니다.", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//        });
     }
 
 

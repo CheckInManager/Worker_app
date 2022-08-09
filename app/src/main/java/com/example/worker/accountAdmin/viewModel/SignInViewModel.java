@@ -1,58 +1,45 @@
 package com.example.worker.accountAdmin.viewModel;
 
-import android.util.Log;
-
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.worker.accountAdmin.model.AccountRepository;
+import com.example.worker.accountAdmin.model.Result;
 import com.example.worker.accountAdmin.model.SignInRecord;
+import com.example.worker.accountAdmin.model.SingleCallback;
+import com.example.worker.accountAdmin.model.User;
 
-public class SignInViewModel extends ViewModel {
-
+public class SignInViewModel extends ViewModel
+{
     private AccountRepository accountRepository = AccountRepository.getInstance();
 
-    private boolean checkingSignIn = false;
+    private MutableLiveData<Boolean> loggedIn = new MutableLiveData<>(false);
     private int inputPhoneNumber;
     private String inputPassword;
 
-    SignInRecord signInRecord = new SignInRecord(getInputPhoneNumber(), getInputPassword());
-
-    public void addSignInRecord() {
-        this.signInRecord.phoneNumber = getInputPhoneNumber();
-        this.signInRecord.password = getInputPassword();
+    public void trySignIn(String phoneNumber, String password)
+    {
+        accountRepository.trySignIn(phoneNumber, password, new SingleCallback<Result<User>>()
+        {
+            @Override
+            public void onComplete(Result<User> result)
+            {
+                if(result instanceof Result.Success)
+                {
+                    User loggedInUser = ((Result.Success<User>)result).getData();
+                    loggedIn.postValue(true);
+                }
+                else
+                {
+                    String errorMessage = ((Result.Error)result).getError().getMessage();
+                }
+            }
+        });
     }
 
-    public SignInRecord getSignInRecord() {
-        return signInRecord;
+    public LiveData<Boolean> isLoggedIn()
+    {
+        return loggedIn;
     }
-
-    public int getInputPhoneNumber() {
-        return inputPhoneNumber;
-    }
-
-    public void setInputPhoneNumber(int inputPhoneNumber) {
-        this.inputPhoneNumber = inputPhoneNumber;
-    }
-
-    public String getInputPassword() {return inputPassword;}
-
-    public void setInputPassword(String inputPassword) {
-        this.inputPassword = inputPassword;
-    }
-
-    public void setSingleRecord() {
-        accountRepository.setSignInRecord(getSignInRecord());
-    }
-
-    public void setCheckingSingIn(){
-        this.checkingSignIn =  accountRepository.getCheckSignIn();
-    }
-
-    public boolean getCheckingSignIn(){
-        setCheckingSingIn();
-        return checkingSignIn;
-    }
-
-
-
 }

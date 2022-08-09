@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_logIn"
+    app:startDestination="@+id/navigation_signIn"
     >
 
     <fragment
-        android:id="@+id/navigation_logIn"
+        android:id="@+id/navigation_signIn"
         android:name="com.example.worker.accountAdmin.fragment.SignInFragment"
         android:label="logIn"
         tools:layout="@layout/fragment_signin" >
@@ -29,7 +29,7 @@
         tools:layout="@layout/fragment_signup" >
         <action
             android:id="@+id/action_navigation_signUp_to_navigation_logIn"
-            app:destination="@id/navigation_logIn" />
+            app:destination="@id/navigation_signIn" />
     </fragment>
 
     <fragment
