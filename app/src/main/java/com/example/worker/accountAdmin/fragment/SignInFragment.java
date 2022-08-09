@@ -81,7 +81,7 @@ public class SignInFragment extends Fragment {
                     signInViewModel.setSingleRecord();
                     signInSuccess = signInViewModel.getCheckingSignIn();
                     //Success sign in
-                    if (signInViewModel.getCheckingSignIn()== true) {
+                    if (signInViewModel.getCheckingSignIn() == true) {
                         Log.v("sign in fragment", "로그인 성공");
                         navController.navigate(R.id.action_navigation_logIn_to_navigation_inputInformation);
                     }
