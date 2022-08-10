@@ -26,12 +26,14 @@ public class SignUpViewModel extends ViewModel {
 
     public void trySignUp(String phoneNumber, String password) {
         setUserAccount(phoneNumber, password);
+
         accountRepository.trySignUp(user, new SingleCallback<Result<User>>()
         {
             @Override
             public void onComplete(Result<User> result) {
                 if (result instanceof Result.Success)
                 {
+                    User SignUser = ((Result.Success<User>)result).getData();
                     signUpComplete.postValue(true);
                 } else {
                     Log.v("오류", "");

@@ -78,8 +78,6 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onChanged(Boolean signUp) {
                 if(signUp){
-
-                    //왜 안 넘어감
                     navController.navigate(R.id.action_navigation_signUp_to_navigation_signIn);
                 }
                 else

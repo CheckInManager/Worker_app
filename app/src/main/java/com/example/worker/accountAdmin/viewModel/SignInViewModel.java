@@ -15,9 +15,6 @@ public class SignInViewModel extends ViewModel
 
     private MutableLiveData<Boolean> loggedIn = new MutableLiveData<>(false);
 
-    private int inputPhoneNumber;
-    private String inputPassword;
-
     public void trySignIn(String phoneNumber, String password)
     {
         accountRepository.trySignIn(phoneNumber, password, new SingleCallback<Result<User>>()

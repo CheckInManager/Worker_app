@@ -33,23 +33,17 @@ public class AccountRepository
     public void trySignUp(User user, SingleCallback<Result<User>> callback){
         usersRef.document(user.getPhoneNumber())
                 .set(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onSuccess(Void unused) {
+                    public void onComplete(@NonNull Task<Void> task) {
+                        callback.onComplete(new Result.Success<User>(user));
                         Log.v("accountRepository",  "trySignUp" + user.getPhoneNumber()  + " " + user.getPassword() + "완료");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.v("accountRepository", "trySignUp 연결 실패");
                     }
                 });
     }
 
     //로그인
-    public void trySignIn(String phoneNumber, String password, SingleCallback<Result<User>> callback)
-    {
+    public void trySignIn(String phoneNumber, String password, SingleCallback<Result<User>> callback){
         usersRef.whereEqualTo("phoneNumber", phoneNumber)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
