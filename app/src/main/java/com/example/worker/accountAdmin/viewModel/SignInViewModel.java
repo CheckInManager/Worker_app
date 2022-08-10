@@ -39,4 +39,5 @@ public class SignInViewModel extends ViewModel
     {
         return loggedIn;
     }
+
 }
