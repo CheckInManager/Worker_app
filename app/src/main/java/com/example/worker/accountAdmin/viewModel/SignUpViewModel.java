@@ -17,16 +17,14 @@ public class SignUpViewModel extends ViewModel {
 
     private MutableLiveData<Boolean> signUpComplete = new MutableLiveData<>(false);
 
-    private User user = new User();
+    private User user =new User();
 
     public void setUserAccount(String phoneNumber, String password) {
         user.phoneNumber = phoneNumber;
         user.password = password;
     }
 
-    public void trySignUp(String phoneNumber, String password) {
-        setUserAccount(phoneNumber, password);
-
+    public void trySignUp(User user) {
         accountRepository.trySignUp(user, new SingleCallback<Result<User>>()
         {
             @Override
@@ -44,5 +42,9 @@ public class SignUpViewModel extends ViewModel {
 
     public LiveData<Boolean> getSignUpComplete() {
         return signUpComplete;
+    }
+
+    public User getUser() {
+        return user;
     }
 }

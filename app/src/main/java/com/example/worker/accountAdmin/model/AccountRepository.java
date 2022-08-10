@@ -69,6 +69,9 @@ public class AccountRepository {
 
     //user information 입력
     public void addUserInformation(User user, SingleCallback<Result<User>> callback) {
+        //phone number 가 비어있음..
+        Log.v("addUserInformation", " : 확인" + user.getPhoneNumber());
+        Log.v("addUserInformation", " : 확인" + user.getCareer());
         usersRef.whereEqualTo("phoneNumber", user.getPhoneNumber())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -81,32 +84,6 @@ public class AccountRepository {
                         }
                     }
                 });
-
-//        usersRef.whereEqualTo("phoneNumber", user.getPhoneNumber())
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            usersRef.document()
-//                                    .update("name", user.getName(), "career", user.getCareer())
-//                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                        @Override
-//                                        public void onComplete(@NonNull Task<Void> task) {
-//                                            if (task.isSuccessful()) {
-//                                                callback.onComplete(new Result.Success<User>(user));
-//                                            } else {
-//                                                callback.onComplete(new Result.Error(new Exception("Network call failed: user Information Add")));
-//                                            }
-//
-//                                        }
-//                                    });
-//                        } else {
-//                            callback.onComplete(new Result.Error(new Exception("Not found phoneNumber")));
-//                        }
-//                    }
-//                });
-
 
     }
 

@@ -2,6 +2,7 @@ package com.example.worker.accountAdmin.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,6 @@ public class InputInformationFragment extends Fragment {
         bt_complete = binding.InputInformationBtComplete;
 
         context = container.getContext();
-
         return binding.getRoot();
     }
 
@@ -59,13 +59,15 @@ public class InputInformationFragment extends Fragment {
 
         bt_complete.setOnClickListener(new View.OnClickListener() {
 
-            String name = et_name.getText().toString();
-            String career = et_career.getText().toString();
-
             @Override
             public void onClick(View view) {
-                inputInformationViewModel.tryInputted(name, career);
-                //navController.navigate(R.id.action_navigation_inputInformation_to_navigation_scanQrCode);
+
+                String name = et_name.getText().toString();
+                String career = et_career.getText().toString();
+
+                inputInformationViewModel.setUserAccount(name, career);
+                inputInformationViewModel.tryInputted(inputInformationViewModel.getUser());
+
 
 
             }
@@ -74,7 +76,7 @@ public class InputInformationFragment extends Fragment {
         inputInformationViewModel.getInputted().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-
+                //navController.navigate(R.id.action_navigation_inputInformation_to_navigation_scanQrCode);
             }
         });
     }

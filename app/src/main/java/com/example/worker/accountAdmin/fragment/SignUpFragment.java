@@ -65,7 +65,9 @@ public class SignUpFragment extends Fragment {
                 String confirmPassword = et_confirmPassword.getText().toString();
 
                 if(password.equals(confirmPassword)){
-                    signUpViewModel.trySignUp(phoneNumber, password);
+                    signUpViewModel.setUserAccount(phoneNumber, password);
+
+                    signUpViewModel.trySignUp(signUpViewModel.getUser());
                 }
                 else{
                     Log.v("signup fragment ", "비밀번호가 동일하지 않습니다.");

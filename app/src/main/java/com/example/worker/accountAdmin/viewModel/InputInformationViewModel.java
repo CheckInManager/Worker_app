@@ -18,19 +18,16 @@ public class InputInformationViewModel extends ViewModel {
     private MutableLiveData<Boolean> inputted = new MutableLiveData<>(false);
 
     //sign up view model 에 있는 user 랑 똑갍이 연결해야함.. .
-//    private User user = new User();
-    User user;
+    //private User user = signUpViewModel.getUser();
+    private User user  =new User();
 
     public void setUserAccount(String name, String career) {
-        user.name = "name";
-        user.career = "career";
+        user.name = name;
+        user.career = career;
     }
 
     //user information 입력
-    public void tryInputted(String name, String career) {
-        setUserAccount(name, career);
-        Log.v("InputInformationViewModel", " : 확인" + name);
-        Log.v("InputInformationViewModel", " : 확인" + career);
+    public void tryInputted(User user) {
         accountRepository.addUserInformation(user, new SingleCallback<Result<User>>() {
                     @Override
                     public void onComplete(Result<User> result) {
@@ -51,5 +48,7 @@ public class InputInformationViewModel extends ViewModel {
         return inputted;
     }
 
-
+    public User getUser() {
+        return user;
+    }
 }
