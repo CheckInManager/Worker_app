@@ -7,12 +7,12 @@ public class User
 
     //release 1
     public String phoneNumber;
-    public String password;
+    public String password ;
 
     //release 2
-    private String name;
-    private String imageUrl;
-    private String career;
+    public String name;
+    public String imageUrl;
+    public String career;
 
     //release 3
     private String accidentRecord;
@@ -22,10 +22,12 @@ public class User
     {
     }
 
-    public User(String phoneNumber, String password)
+    public User(String phoneNumber, String password, String name, String career)
     {
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.name = name;
+        this.career = career;
     }
 
     public String getPhoneNumber()
@@ -97,6 +99,7 @@ public class User
     {
         this.memo = memo;
     }
+
 
     @NonNull
     @Override

@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -54,14 +55,29 @@ public class InputInformationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        //로그인(sign in에서) 한 전화번호 받아오기 vs user object에서 전화번호 받아오기
+
         bt_complete.setOnClickListener(new View.OnClickListener() {
+
+            String name = et_name.getText().toString();
+            String career = et_career.getText().toString();
+
             @Override
             public void onClick(View view) {
-                if(imbBt_face != null && et_name != null){
-                    Toast.makeText(context, "이름 또는 전화번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                }
-                navController.navigate(R.id.action_navigation_inputInformation_to_navigation_scanQrCode);
+                inputInformationViewModel.tryInputted(name, career);
+                //navController.navigate(R.id.action_navigation_inputInformation_to_navigation_scanQrCode);
+
+
+            }
+        });
+
+        inputInformationViewModel.getInputted().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+
             }
         });
     }
+
+
 }
