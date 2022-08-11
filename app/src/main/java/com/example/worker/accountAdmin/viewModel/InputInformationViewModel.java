@@ -22,7 +22,7 @@ public class InputInformationViewModel extends ViewModel {
 
     private User user = new User();
 
-    public void setUserAccount(String name, String career) {
+    public void setUserInformation(String name, String career) {
         user.name = name;
         user.career = career;
     }
@@ -46,11 +46,16 @@ public class InputInformationViewModel extends ViewModel {
 
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public LiveData<Boolean> getInputted() {
         return inputted;
     }
 
-    public User getUser() {
-        return user;
-    }
 }

@@ -21,11 +21,13 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.worker.R;
 import com.example.worker.accountAdmin.viewModel.InputInformationViewModel;
+import com.example.worker.accountAdmin.viewModel.SignInViewModel;
 import com.example.worker.databinding.FragmentInputinformationBinding;
 
 public class InputInformationFragment extends Fragment {
 
     private FragmentInputinformationBinding binding;
+    private SignInViewModel signInViewModel;
     private InputInformationViewModel inputInformationViewModel;
     private NavController navController;
 
@@ -40,6 +42,7 @@ public class InputInformationFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         inputInformationViewModel = new ViewModelProvider(this).get(InputInformationViewModel.class);
+        signInViewModel = new ViewModelProvider(this).get(SignInViewModel.class);
         binding = FragmentInputinformationBinding.inflate(inflater, container, false);
         navController = NavHostFragment.findNavController(InputInformationFragment.this);
 
@@ -65,8 +68,13 @@ public class InputInformationFragment extends Fragment {
                 String name = et_name.getText().toString();
                 String career = et_career.getText().toString();
 
-                inputInformationViewModel.setUserAccount(name, career);
+                inputInformationViewModel.setUser(signInViewModel.getSignUser());
+                inputInformationViewModel.setUserInformation(name, career);
                 inputInformationViewModel.tryInputted(inputInformationViewModel.getUser());
+
+                //signInViewModel.getSignUser();
+
+                //inputInformationViewModel.tryInputted(inputInformationViewModel.getUser());
 
 
 

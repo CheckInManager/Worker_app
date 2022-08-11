@@ -1,5 +1,7 @@
 package com.example.worker.accountAdmin.viewModel;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -15,6 +17,8 @@ public class SignInViewModel extends ViewModel
 
     private MutableLiveData<Boolean> loggedIn = new MutableLiveData<>(false);
 
+    private User user = new User();
+
     public void trySignIn(String phoneNumber, String password)
     {
         accountRepository.trySignIn(phoneNumber, password, new SingleCallback<Result<User>>()
@@ -25,6 +29,11 @@ public class SignInViewModel extends ViewModel
                 if(result instanceof Result.Success)
                 {
                     User loggedInUser = ((Result.Success<User>)result).getData();
+
+                    //오류 남
+                    setSignUser(loggedInUser);
+                    //inputInformationViewModel.sendSignInUser(loggedInUser);
+
                     loggedIn.postValue(true);
                 }
                 else
@@ -35,9 +44,18 @@ public class SignInViewModel extends ViewModel
         });
     }
 
+
     public LiveData<Boolean> isLoggedIn()
     {
         return loggedIn;
+    }
+
+    public void setSignUser(User user){
+        this.user = user;
+    }
+
+    public User getSignUser(){
+        return user;
     }
 
 }
