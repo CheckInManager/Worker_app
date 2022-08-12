@@ -76,9 +76,6 @@ public class AccountRepository {
 
     //user information 입력
     public void addUserInformation(User user, SingleCallback<Result<User>> callback) {
-        //phone number 가 비어있음..
-        Log.v("addUserInformation repository", " : 확인" + this.tmpUser.getPhoneNumber());
-        Log.v("addUserInformation repository", " : 확인" + user.getCareer());
         usersRef.whereEqualTo("phoneNumber", this.tmpUser.getPhoneNumber())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

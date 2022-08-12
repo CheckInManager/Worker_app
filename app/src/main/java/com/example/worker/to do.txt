@@ -1,0 +1,15 @@
+
+당장의 목표
+- 1. image button 클릭 후 device에서 image를 받아오고
+  2. image 를 url 로 변형시킨 후 firebase에 업로드
+  3. image 버튼에 선택한 image 불러오기
+
+
+
+후에 수정해야 할 부분
+1. 로그인 후에서 로그인 한 데이터를 못 받아와서 repository 에 user을 만들고나서 로그인 하면 데이터 넣고 여기서 빼옴
+(한 fragment에서 두개의 viewmodel을 못 사용해서..)
+그렇기 때문에..
+ㄴ account repository 에서 tmpUser 을 속성을 하나하나씩 채워줘야함(password, name, phonenumber..etc)
+ㄴ 유저 정보 업데이트는 inputInformationViewModel에서 tmpUser속성을 하나씩 받아와서
+    업데이트 할 user을 set 해줌..

@@ -30,10 +30,10 @@ public class InputInformationFragment extends Fragment {
     private InputInformationViewModel inputInformationViewModel;
     private NavController navController;
 
-    private ImageButton imbBt_face;
     private EditText et_phoneNumber;
     private EditText et_name;
     private EditText et_career;
+    private ImageButton bt_img;
     private Button bt_complete;
 
     private Context context;
@@ -49,7 +49,7 @@ public class InputInformationFragment extends Fragment {
         binding = FragmentInputinformationBinding.inflate(inflater, container, false);
         navController = NavHostFragment.findNavController(InputInformationFragment.this);
 
-        imbBt_face = binding.InputInformationBtPicture;
+        bt_img = binding.InputInformationBtPicture;
         et_phoneNumber = binding.InputInformationEtPhoneNumber;
         et_name = binding.InputInformationEtName;
         et_career = binding.InputInformationEtCareer;
@@ -67,6 +67,16 @@ public class InputInformationFragment extends Fragment {
 
 
         et_phoneNumber.setText(inputInformationViewModel.returnPhoneNumber());
+
+        bt_img.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                
+
+            }
+        });
+
 
         bt_complete.setOnClickListener(new View.OnClickListener() {
 
