@@ -29,12 +29,10 @@ public class SignInViewModel extends ViewModel
                 if(result instanceof Result.Success)
                 {
                     User loggedInUser = ((Result.Success<User>)result).getData();
-
-                    //오류 남
-                    setSignUser(loggedInUser);
-                    //inputInformationViewModel.sendSignInUser(loggedInUser);
-
+                    setSignInUser(loggedInUser);
+                    getSignInUser();
                     loggedIn.postValue(true);
+
                 }
                 else
                 {
@@ -50,12 +48,14 @@ public class SignInViewModel extends ViewModel
         return loggedIn;
     }
 
-    public void setSignUser(User user){
-        this.user = user;
+    public void setSignInUser(User loggedInUser){
+        this.user = loggedInUser;
     }
 
-    public User getSignUser(){
+    public User getSignInUser()
+    {
         return user;
+
     }
 
 }

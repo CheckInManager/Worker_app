@@ -32,6 +32,7 @@ public class InputInformationFragment extends Fragment {
     private NavController navController;
 
     private ImageButton imbBt_face;
+    private EditText et_phoneNumber;
     private EditText et_name;
     private EditText et_career;
     private Button bt_complete;
@@ -42,23 +43,26 @@ public class InputInformationFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         inputInformationViewModel = new ViewModelProvider(this).get(InputInformationViewModel.class);
-        signInViewModel = new ViewModelProvider(this).get(SignInViewModel.class);
+
         binding = FragmentInputinformationBinding.inflate(inflater, container, false);
         navController = NavHostFragment.findNavController(InputInformationFragment.this);
 
         imbBt_face = binding.InputInformationBtPicture;
+        et_phoneNumber = binding.InputInformationEtPhoneNumber;
         et_name = binding.InputInformationEtName;
         et_career = binding.InputInformationEtCareer;
         bt_complete = binding.InputInformationBtComplete;
 
         context = container.getContext();
+
+
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        //로그인(sign in에서) 한 전화번호 받아오기 vs user object에서 전화번호 받아오기
+        et_phoneNumber.setText(inputInformationViewModel.returnPhoneNumber());
 
         bt_complete.setOnClickListener(new View.OnClickListener() {
 
@@ -68,14 +72,11 @@ public class InputInformationFragment extends Fragment {
                 String name = et_name.getText().toString();
                 String career = et_career.getText().toString();
 
-                inputInformationViewModel.setUser(signInViewModel.getSignUser());
-                inputInformationViewModel.setUserInformation(name, career);
-                inputInformationViewModel.tryInputted(inputInformationViewModel.getUser());
+                //sign in viewmodel에서 getsignInUser 호출
+                //Log.v("", "" +signInViewModel.getSignInUser().phoneNumber);
+                inputInformationViewModel.setUser(name, career);
 
-                //signInViewModel.getSignUser();
-
-                //inputInformationViewModel.tryInputted(inputInformationViewModel.getUser());
-
+               //inputInformationViewModel.tryInputted(inputInformationViewModel.getUser());
 
 
             }

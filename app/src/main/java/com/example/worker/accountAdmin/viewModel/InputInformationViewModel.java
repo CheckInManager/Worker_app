@@ -16,17 +16,9 @@ public class InputInformationViewModel extends ViewModel {
     private AccountRepository accountRepository = AccountRepository.getInstance();
 
     private MutableLiveData<Boolean> inputted = new MutableLiveData<>(false);
-
-
-    //sign up view model 에 있는 user 랑 똑갍이 연결해야함.. .
+    private SignInViewModel signInViewModel= new SignInViewModel();
 
     private User user = new User();
-
-    public void setUserInformation(String name, String career) {
-        user.name = name;
-        user.career = career;
-    }
-
     //user information 입력
     public void tryInputted(User user) {
 
@@ -46,12 +38,23 @@ public class InputInformationViewModel extends ViewModel {
 
     }
 
-    public User getUser() {
-        return user;
+    public String returnPhoneNumber(){
+        //get loggedIn User
+        Log.v("returnPhoneNumber", " : " + signInViewModel.getSignInUser().getPhoneNumber());
+        user = signInViewModel.getSignInUser();
+        return user.phoneNumber;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(String name, String career){
+        //this.user = signInViewModel.getSignInUser();
+       // Log.v("ignInViewModel.getS", " : 오류" + user.getPhoneNumber());
+        this.user.name = name;
+        this.user.career = career;
+
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public LiveData<Boolean> getInputted() {

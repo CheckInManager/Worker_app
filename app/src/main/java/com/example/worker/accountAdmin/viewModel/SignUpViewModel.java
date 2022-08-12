@@ -20,8 +20,8 @@ public class SignUpViewModel extends ViewModel {
     private User user =new User();
 
     public void setUserAccount(String phoneNumber, String password) {
-        user.phoneNumber = phoneNumber;
-        user.password = password;
+        user.setPhoneNumber(phoneNumber);
+        user.setPassword(password);
     }
 
     public void trySignUp(User user) {
