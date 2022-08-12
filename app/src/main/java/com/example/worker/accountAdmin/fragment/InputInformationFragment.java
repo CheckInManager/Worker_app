@@ -72,7 +72,7 @@ public class InputInformationFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                //galler intent
+                //galler intent.
 
             }
         });
