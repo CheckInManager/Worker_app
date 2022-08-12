@@ -38,6 +38,7 @@ public class AccountRepository {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             callback.onComplete(new Result.Success<User>(user));
+                            //tmpUser.password = user.password;
                             Log.v("accountRepository", "trySignUp" + user.getPhoneNumber() + " " + user.getPassword() + "완료");
                         } else {
                             callback.onComplete(new Result.Error(new Exception("Network call failed: Sign Up")));
@@ -59,7 +60,8 @@ public class AccountRepository {
                                 User foundUser = documentSnapshot.toObject(User.class);
                                 if (foundUser.password.equals(password)) {
                                     callback.onComplete(new Result.Success<User>(foundUser));
-                                    tmpUser.phoneNumber = password;
+                                    tmpUser.phoneNumber = phoneNumber;
+                                    tmpUser.password = password;
                                 }
                                 else {
                                     callback.onComplete(new Result.Error(new Exception("Password is incorrect")));

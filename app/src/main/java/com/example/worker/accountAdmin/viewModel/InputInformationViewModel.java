@@ -42,6 +42,10 @@ public class InputInformationViewModel extends ViewModel {
     }
 
     public void setUserInformation (String name, String career){
+        //이거 나중에 빼야함.. ㄱ-
+        this.user.phoneNumber = accountRepository.getUser().getPhoneNumber();
+        this.user.password = accountRepository.getUser().getPassword();
+
         this.user.name = name;
         this.user.career = career;
 
