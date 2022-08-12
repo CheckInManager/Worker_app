@@ -20,6 +20,8 @@ public class AccountRepository {
     private FirebaseFirestore accountStore = FirebaseFirestore.getInstance();
     private CollectionReference usersRef = accountStore.collection("users");
 
+    private User tmpUser = new User();
+
     private AccountRepository() {
     }
 
@@ -55,10 +57,13 @@ public class AccountRepository {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                 User foundUser = documentSnapshot.toObject(User.class);
-                                if (foundUser.password.equals(password))
+                                if (foundUser.password.equals(password)) {
                                     callback.onComplete(new Result.Success<User>(foundUser));
-                                else
+                                    tmpUser.phoneNumber = password;
+                                }
+                                else {
                                     callback.onComplete(new Result.Error(new Exception("Password is incorrect")));
+                                }
                             }
                         } else {
                             callback.onComplete(new Result.Error(new Exception("Network call failed: Sign In")));
@@ -70,14 +75,16 @@ public class AccountRepository {
     //user information 입력
     public void addUserInformation(User user, SingleCallback<Result<User>> callback) {
         //phone number 가 비어있음..
-        Log.v("addUserInformation repository", " : 확인" + user.getPhoneNumber());
+        Log.v("addUserInformation repository", " : 확인" + this.tmpUser.getPhoneNumber());
         Log.v("addUserInformation repository", " : 확인" + user.getCareer());
-        usersRef.whereEqualTo("phoneNumber", user.getPhoneNumber())
+        usersRef.whereEqualTo("phoneNumber", this.tmpUser.getPhoneNumber())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
+                            tmpUser.name = user.name;
+                            tmpUser.career = user.career;
                             for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
                                 usersRef.document(documentSnapshot.getId()).set(user);
                             }
@@ -87,5 +94,8 @@ public class AccountRepository {
 
     }
 
+    public User getUser(){
+        return tmpUser;
+    }
 
 }

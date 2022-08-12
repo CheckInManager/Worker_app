@@ -18,6 +18,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.worker.R;
+import com.example.worker.accountAdmin.viewModel.InputInformationViewModel;
 import com.example.worker.accountAdmin.viewModel.SignInViewModel;
 import com.example.worker.databinding.FragmentSigninBinding;
 
@@ -43,6 +44,7 @@ public class SignInFragment extends Fragment
         signInViewModel = new ViewModelProvider(this).get(SignInViewModel.class);
         binding = FragmentSigninBinding.inflate(inflater, container, false);
         navController = NavHostFragment.findNavController(SignInFragment.this);
+
 
         et_phoneNumber = binding.SignInEtPhoneNumber;
         et_password = binding.SignInEtPassword;
@@ -88,6 +90,7 @@ public class SignInFragment extends Fragment
             {
                 if(isLoggedIn)
                 {
+                    signInViewModel.getUser();
                     navController.navigate(R.id.action_navigation_signIn_to_navigation_inputInformation);
                 }
                 else

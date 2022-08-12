@@ -16,7 +16,6 @@ public class InputInformationViewModel extends ViewModel {
     private AccountRepository accountRepository = AccountRepository.getInstance();
 
     private MutableLiveData<Boolean> inputted = new MutableLiveData<>(false);
-    private SignInViewModel signInViewModel= new SignInViewModel();
 
     private User user = new User();
     //user information 입력
@@ -39,19 +38,15 @@ public class InputInformationViewModel extends ViewModel {
     }
 
     public String returnPhoneNumber(){
-        //get loggedIn User
-        Log.v("returnPhoneNumber", " : " + signInViewModel.getSignInUser().getPhoneNumber());
-        user = signInViewModel.getSignInUser();
-        return user.phoneNumber;
+        return accountRepository.getUser().getPhoneNumber();
     }
 
-    public void setUser(String name, String career){
-        //this.user = signInViewModel.getSignInUser();
-       // Log.v("ignInViewModel.getS", " : 오류" + user.getPhoneNumber());
+    public void setUserInformation (String name, String career){
         this.user.name = name;
         this.user.career = career;
 
     }
+
 
     public User getUser() {
         return user;

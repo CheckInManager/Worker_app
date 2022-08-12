@@ -27,7 +27,6 @@ import com.example.worker.databinding.FragmentInputinformationBinding;
 public class InputInformationFragment extends Fragment {
 
     private FragmentInputinformationBinding binding;
-    private SignInViewModel signInViewModel;
     private InputInformationViewModel inputInformationViewModel;
     private NavController navController;
 
@@ -38,6 +37,9 @@ public class InputInformationFragment extends Fragment {
     private Button bt_complete;
 
     private Context context;
+
+    // sign in data 를 못 받아와서 repository 에 user을 만들고나서 로그인 하면 데이터 넣고 여기서 빼옴
+    // 그렇기 때문에.. ㄴrepository - addUserInformation 에서 user문서를 통채로 업데이트를 못하고 유저 하나하나씩에서 빼와서 업데이트 해야함
 
     @Nullable
     @Override
@@ -62,6 +64,7 @@ public class InputInformationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+
         et_phoneNumber.setText(inputInformationViewModel.returnPhoneNumber());
 
         bt_complete.setOnClickListener(new View.OnClickListener() {
@@ -72,13 +75,8 @@ public class InputInformationFragment extends Fragment {
                 String name = et_name.getText().toString();
                 String career = et_career.getText().toString();
 
-                //sign in viewmodel에서 getsignInUser 호출
-                //Log.v("", "" +signInViewModel.getSignInUser().phoneNumber);
-                inputInformationViewModel.setUser(name, career);
-
-               //inputInformationViewModel.tryInputted(inputInformationViewModel.getUser());
-
-
+                inputInformationViewModel.setUserInformation(name, career);
+                inputInformationViewModel.tryInputted(inputInformationViewModel.getUser());
             }
         });
 

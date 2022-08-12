@@ -1,5 +1,6 @@
 package com.example.worker.accountAdmin.viewModel;
 
+import android.app.PictureInPictureUiState;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -29,10 +30,9 @@ public class SignInViewModel extends ViewModel
                 if(result instanceof Result.Success)
                 {
                     User loggedInUser = ((Result.Success<User>)result).getData();
-                    setSignInUser(loggedInUser);
-                    getSignInUser();
                     loggedIn.postValue(true);
-
+                    setUser(loggedInUser);
+                    Log.v("", "" +loggedInUser);
                 }
                 else
                 {
@@ -48,14 +48,11 @@ public class SignInViewModel extends ViewModel
         return loggedIn;
     }
 
-    public void setSignInUser(User loggedInUser){
-        this.user = loggedInUser;
+    public void setUser(User user){
+        this.user = user;
     }
-
-    public User getSignInUser()
-    {
+    public User getUser(){
         return user;
-
     }
 
 }
