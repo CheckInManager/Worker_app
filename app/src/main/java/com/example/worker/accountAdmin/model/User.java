@@ -14,18 +14,19 @@ public class User
     private String career;
 
     //release 3
-    private String memo;
+    private String worksite;
 
     public User()
     {
     }
 
-    public User(String phoneNumber, String password, String name, String career)
+    public User(String phoneNumber, String password, String name, String career, String worksite)
     {
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.name = name;
         this.career = career;
+        this.worksite = worksite;
     }
 
     public String getPhoneNumber()
@@ -68,14 +69,14 @@ public class User
         this.career = career;
     }
 
-    public String getMemo()
+    public String getworksite()
     {
-        return memo;
+        return worksite;
     }
 
-    public void setMemo(String memo)
+    public void setworksite(String worksite)
     {
-        this.memo = memo;
+        this.worksite = worksite;
     }
 
 
@@ -86,7 +87,8 @@ public class User
         return "User{ " +
                "phoneNumber=" + phoneNumber + "\"" + "," +
                "name=" + name + "\"" + "," +
-               "career=" + career + "\""
+               "career=" + career + "\""+
+                "worksite=" + worksite
                + "}";
 
     }

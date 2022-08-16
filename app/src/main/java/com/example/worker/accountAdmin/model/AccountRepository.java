@@ -38,7 +38,7 @@ public class AccountRepository
         return INSTANCE;
     }
 
-    //회원 가입
+    //sign up
     public void trySignUp(User user, SingleCallback<Result<User>> callback)
     {
         usersRef.document(user.getPhoneNumber())
@@ -63,7 +63,7 @@ public class AccountRepository
                 });
     }
 
-    //로그인
+    //sign in
     public void trySignIn(String phoneNumber, String password, SingleCallback<Result<User>> callback)
     {
         usersRef.whereEqualTo("phoneNumber", phoneNumber)
@@ -97,7 +97,7 @@ public class AccountRepository
                 });
     }
 
-    //user information 입력
+    //user information add
     public void addUserInformation(User user, SingleCallback<Result<User>> callback)
     {
         usersRef.document(user.getPhoneNumber()).set(user).addOnCompleteListener(new OnCompleteListener<Void>()
@@ -117,11 +117,7 @@ public class AccountRepository
         });
     }
 
-    public User getCurrUser()
-    {
-        return currUser;
-    }
-
+    //user image add
     public void uploadUserImage(String phoneNumber, Bitmap currUserBitmap)
     {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -144,4 +140,31 @@ public class AccountRepository
             }
         });
     }
+
+    //user information add
+    public void addUserWorkSite(User user, SingleCallback<Result<User>> callback)
+    {
+        usersRef.document(user.getPhoneNumber()).set(user).addOnCompleteListener(new OnCompleteListener<Void>()
+        {
+            @Override
+            public void onComplete(@NonNull Task<Void> task)
+            {
+                if (task.isSuccessful())
+                {
+                    callback.onComplete(new Result.Success<User>(user));
+                }
+                else
+                {
+                    callback.onComplete(new Result.Error(task.getException()));
+                }
+            }
+        });
+    }
+
+
+    public User getCurrUser()
+    {
+        return currUser;
+    }
+
 }

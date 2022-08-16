@@ -26,7 +26,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.worker.PhotoPick;
 import com.example.worker.accountAdmin.model.User;
 import com.example.worker.accountAdmin.viewModel.InputInformationViewModel;
 import com.example.worker.databinding.FragmentInputinformationBinding;

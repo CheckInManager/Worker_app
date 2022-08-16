@@ -34,6 +34,7 @@ public class SignUpViewModel extends ViewModel {
                     User SignUser = ((Result.Success<User>)result).getData();
                     signUpComplete.postValue(true);
                 } else {
+                    String errorMessage = ((Result.Error) result).getError().getMessage();
                     Log.v("오류", "");
                 }
             }
