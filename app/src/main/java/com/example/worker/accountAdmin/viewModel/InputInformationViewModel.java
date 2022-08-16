@@ -1,5 +1,6 @@
 package com.example.worker.accountAdmin.viewModel;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -15,18 +16,24 @@ public class InputInformationViewModel extends ViewModel {
 
     private AccountRepository accountRepository = AccountRepository.getInstance();
 
-    private MutableLiveData<Boolean> inputted = new MutableLiveData<>(false);
+    private MutableLiveData<Boolean> updateSuccessful = new MutableLiveData<>(false);
+    private User user = accountRepository.getCurrUser();
+    private Bitmap currUserBitmap;
 
-    private User user = new User();
     //user information 입력
-    public void tryInputted(User user) {
-
+    public void updateUserInformation(String name, String career) {
+        user.setName(name);
+        user.setCareer(career);
         accountRepository.addUserInformation(user, new SingleCallback<Result<User>>() {
                     @Override
                     public void onComplete(Result<User> result) {
                         if(result instanceof Result.Success){
-                            User inputtedInfoUser = ((Result.Success<User>)result).getData();
-                            inputted.postValue(true);
+                            if(currUserBitmap != null)
+                            {
+                                accountRepository.uploadUserImage(user.getPhoneNumber(), currUserBitmap);
+                            }
+                            user = ((Result.Success<User>)result).getData();
+                            updateSuccessful.postValue(true);
                         }
                         else{
                             Log.v("InputInformationViewModel", " : 오류");
@@ -34,33 +41,19 @@ public class InputInformationViewModel extends ViewModel {
                     }
                 }
         );
-
     }
 
-    public String returnPhoneNumber(){
-        return accountRepository.getUser().getPhoneNumber();
-    }
-
-
-    public void setUserInformation (String name, String career){
-        //이거 나중에 빼야함.. ㄱ-
-        this.user.phoneNumber = accountRepository.getUser().getPhoneNumber();
-        this.user.password = accountRepository.getUser().getPassword();
-
-        this.user.name = name;
-        this.user.career = career;
-
-    }
-
-
-
-
-    public User getUser() {
+    public User getCurrUser() {
         return user;
     }
 
-    public LiveData<Boolean> getInputted() {
-        return inputted;
+    public void setCurrUserBitmap(Bitmap bm)
+    {
+        currUserBitmap = bm;
+    }
+
+    public LiveData<Boolean> isUpdateSuccessful() {
+        return updateSuccessful;
     }
 
 }

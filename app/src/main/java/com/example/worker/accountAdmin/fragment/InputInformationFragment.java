@@ -3,8 +3,7 @@ package com.example.worker.accountAdmin.fragment;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -15,6 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -24,10 +27,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.worker.PhotoPick;
+import com.example.worker.accountAdmin.model.User;
 import com.example.worker.accountAdmin.viewModel.InputInformationViewModel;
 import com.example.worker.databinding.FragmentInputinformationBinding;
-
-import java.io.File;
 
 public class InputInformationFragment extends Fragment {
 
@@ -62,7 +64,6 @@ public class InputInformationFragment extends Fragment {
 
         context = container.getContext();
 
-
         return binding.getRoot();
     }
 
@@ -70,42 +71,51 @@ public class InputInformationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        User currUser = inputInformationViewModel.getCurrUser();
+        et_phoneNumber.setText(currUser.getPhoneNumber());
 
-        et_phoneNumber.setText(inputInformationViewModel.returnPhoneNumber());
+        ActivityResultLauncher<Intent> launchGallery = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>()
+                {
+                    @Override
+                    public void onActivityResult(ActivityResult result)
+                    {
+                        if(result.getResultCode() == Activity.RESULT_OK)
+                        {
+                            Uri selectedImage = result.getData().getData();
+                            bt_img.setImageURI(selectedImage);
+                            inputInformationViewModel.setCurrUserBitmap(((BitmapDrawable)bt_img.getDrawable()).getBitmap());
+                            bt_img.invalidate();
+                        }
+                    }
+                });
 
         bt_img.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-
                 //Photo Pick activity 에서 가져온..
-                Intent intent = new Intent(getActivity(), PhotoPick.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-
-
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                launchGallery.launch(intent);
             }
         });
 
-
         bt_complete.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
 
                 String name = et_name.getText().toString();
                 String career = et_career.getText().toString();
 
-                inputInformationViewModel.setUserInformation(name, career);
-                inputInformationViewModel.tryInputted(inputInformationViewModel.getUser());
+                inputInformationViewModel.updateUserInformation(name, career);
             }
         });
 
-        inputInformationViewModel.getInputted().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+        inputInformationViewModel.isUpdateSuccessful().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-
-
                 //navController.navigate(R.id.action_navigation_inputInformation_to_navigation_scanQrCode);
             }
         });

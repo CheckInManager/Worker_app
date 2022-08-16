@@ -25,13 +25,8 @@ public class PhotoPick extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         this.galleryAddPic();
-
-
         finish();
-
-
     }
 
     private void galleryAddPic() {
@@ -51,12 +46,7 @@ public class PhotoPick extends AppCompatActivity {
             if (null != selectedImageUri) {
                 bt_imagePick.setImageURI(selectedImageUri);
             }
-
-
         }
     }
-
-
-
 }
 

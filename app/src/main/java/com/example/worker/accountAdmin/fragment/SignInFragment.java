@@ -90,7 +90,6 @@ public class SignInFragment extends Fragment
             {
                 if(isLoggedIn)
                 {
-                    signInViewModel.getUser();
                     navController.navigate(R.id.action_navigation_signIn_to_navigation_inputInformation);
                 }
                 else

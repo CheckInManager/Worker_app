@@ -1,6 +1,5 @@
 package com.example.worker.accountAdmin.viewModel;
 
-import android.app.PictureInPictureUiState;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -27,32 +26,34 @@ public class SignInViewModel extends ViewModel
             @Override
             public void onComplete(Result<User> result)
             {
-                if(result instanceof Result.Success)
+                if (result instanceof Result.Success)
                 {
-                    User loggedInUser = ((Result.Success<User>)result).getData();
+                    User loggedInUser = ((Result.Success<User>) result).getData();
                     loggedIn.postValue(true);
-                    setUser(loggedInUser);
-                    Log.v("", "" +loggedInUser);
+                    user = loggedInUser;
+                    Log.v("", "" + loggedInUser);
                 }
                 else
                 {
-                    String errorMessage = ((Result.Error)result).getError().getMessage();
+                    String errorMessage = ((Result.Error) result).getError().getMessage();
                 }
             }
         });
     }
-
 
     public LiveData<Boolean> isLoggedIn()
     {
         return loggedIn;
     }
 
-    public void setUser(User user){
-        this.user = user;
-    }
-    public User getUser(){
+    public User getUser()
+    {
         return user;
+    }
+
+    public void setUser(User user)
+    {
+        this.user = user;
     }
 
 }

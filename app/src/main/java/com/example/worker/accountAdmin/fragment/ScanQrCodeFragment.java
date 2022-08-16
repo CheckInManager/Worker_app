@@ -30,7 +30,5 @@ public class ScanQrCodeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-
-
     }
 }

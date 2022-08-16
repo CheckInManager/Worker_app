@@ -6,12 +6,12 @@ public class User
 {
 
     //release 1
-    public String phoneNumber;
-    public String password ;
+    private String phoneNumber;
+    private String password ;
 
     //release 2
-    public String name;
-    public String career;
+    private String name;
+    private String career;
 
     //release 3
     private String memo;
