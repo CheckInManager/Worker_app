@@ -1,15 +1,19 @@
 package com.example.worker.accountAdmin.fragment;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,10 +23,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.worker.R;
+import com.example.worker.PhotoPick;
 import com.example.worker.accountAdmin.viewModel.InputInformationViewModel;
-import com.example.worker.accountAdmin.viewModel.SignInViewModel;
 import com.example.worker.databinding.FragmentInputinformationBinding;
+
+import java.io.File;
 
 public class InputInformationFragment extends Fragment {
 
@@ -68,11 +73,15 @@ public class InputInformationFragment extends Fragment {
 
         et_phoneNumber.setText(inputInformationViewModel.returnPhoneNumber());
 
-        bt_img.setOnClickListener(new View.OnClickListener(){
+        bt_img.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                //galler intent.
+                //Photo Pick activity 에서 가져온..
+                Intent intent = new Intent(getActivity(), PhotoPick.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+
 
             }
         });
@@ -99,5 +108,5 @@ public class InputInformationFragment extends Fragment {
         });
     }
 
-
 }
+

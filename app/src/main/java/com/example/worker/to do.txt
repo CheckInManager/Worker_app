@@ -1,5 +1,5 @@
 
-당장의 목표
+당장의 목표 Gallery intent
 - 1. image button 클릭 후 device에서 image를 받아오고
   2. image 를 url 로 변형시킨 후 firebase에 업로드
   3. image 버튼에 선택한 image 불러오기
