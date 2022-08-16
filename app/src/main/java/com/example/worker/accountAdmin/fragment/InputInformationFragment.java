@@ -77,6 +77,7 @@ public class InputInformationFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
+
                 //Photo Pick activity 에서 가져온..
                 Intent intent = new Intent(getActivity(), PhotoPick.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -103,6 +104,8 @@ public class InputInformationFragment extends Fragment {
         inputInformationViewModel.getInputted().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
+
+
                 //navController.navigate(R.id.action_navigation_inputInformation_to_navigation_scanQrCode);
             }
         });

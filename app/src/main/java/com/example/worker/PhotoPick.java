@@ -1,16 +1,23 @@
 package com.example.worker;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.StorageReference;
 
 
-public class PhotoPick extends Activity {
+public class PhotoPick extends AppCompatActivity {
 
+    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+    String fileName = "tmpUser"+ "tmpPhone" + ".jpg";
 
     private static final int SELECTED_PICTURE = 200;
     private ImageButton bt_imagePick;
@@ -27,28 +34,28 @@ public class PhotoPick extends Activity {
 
     }
 
-    private void galleryAddPic(){
+    private void galleryAddPic() {
         //get gallery image
-        Intent intent = new Intent(Intent.ACTION_PICK);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECTED_PICTURE);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == RESULT_OK && requestCode == SELECTED_PICTURE){
-                Uri selectedImageUri = data.getData();
-                if(null != selectedImageUri){
-                    bt_imagePick.setImageURI(selectedImageUri);
-                }
+        if (requestCode == RESULT_OK && requestCode == SELECTED_PICTURE) {
+            Uri selectedImageUri = data.getData();
+
+            if (null != selectedImageUri) {
+                bt_imagePick.setImageURI(selectedImageUri);
+            }
 
 
         }
     }
+
 
 
 }

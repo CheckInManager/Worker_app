@@ -82,13 +82,21 @@ public class AccountRepository {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
-                            tmpUser.name = user.name;
-                            tmpUser.career = user.career;
                             for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                                User addInformation = documentSnapshot.toObject(User.class);
+                                callback.onComplete(new Result.Success<User>(addInformation));
+
                                 usersRef.document(documentSnapshot.getId()).set(user);
+
+                                tmpUser.name = user.getName();
+                                tmpUser.career = user.getCareer();
                             }
                         }
+                        else{
+                            callback.onComplete(new Result.Error(new Exception("Not registered Account")));
+                        }
                     }
+
                 });
 
     }
@@ -96,5 +104,4 @@ public class AccountRepository {
     public User getUser(){
         return tmpUser;
     }
-
 }

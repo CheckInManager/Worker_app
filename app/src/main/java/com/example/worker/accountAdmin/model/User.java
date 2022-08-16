@@ -11,11 +11,9 @@ public class User
 
     //release 2
     public String name;
-    public String imageUrl;
     public String career;
 
     //release 3
-    private String accidentRecord;
     private String memo;
 
     public User()
@@ -60,16 +58,6 @@ public class User
         this.name = name;
     }
 
-    public String getImageUrl()
-    {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl)
-    {
-        this.imageUrl = imageUrl;
-    }
-
     public String getCareer()
     {
         return career;
@@ -78,16 +66,6 @@ public class User
     public void setCareer(String career)
     {
         this.career = career;
-    }
-
-    public String getAccidentRecord()
-    {
-        return accidentRecord;
-    }
-
-    public void setAccidentRecord(String accidentRecord)
-    {
-        this.accidentRecord = accidentRecord;
     }
 
     public String getMemo()
@@ -108,9 +86,7 @@ public class User
         return "User{ " +
                "phoneNumber=" + phoneNumber + "\"" + "," +
                "name=" + name + "\"" + "," +
-               "imageUrl=" + imageUrl + "\"" + "," +
-               "career=" + career + "\"" + "," +
-               "accidentRecord=" + accidentRecord + "\"" + ","
+               "career=" + career + "\""
                + "}";
 
     }

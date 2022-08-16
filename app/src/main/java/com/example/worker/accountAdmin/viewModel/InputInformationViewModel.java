@@ -41,6 +41,7 @@ public class InputInformationViewModel extends ViewModel {
         return accountRepository.getUser().getPhoneNumber();
     }
 
+
     public void setUserInformation (String name, String career){
         //이거 나중에 빼야함.. ㄱ-
         this.user.phoneNumber = accountRepository.getUser().getPhoneNumber();
@@ -50,6 +51,8 @@ public class InputInformationViewModel extends ViewModel {
         this.user.career = career;
 
     }
+
+
 
 
     public User getUser() {
