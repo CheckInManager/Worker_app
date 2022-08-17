@@ -7,6 +7,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,7 +102,9 @@ public class InputInformationFragment extends Fragment {
         bt_addCareer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                inputInformationViewModel.addCareerList((et_career.getText()).toString());
+                inputInformationViewModel.setCareerListItems();
+                et_career.setText(" ");
             }
         });
 
@@ -113,7 +116,7 @@ public class InputInformationFragment extends Fragment {
                 String name = et_name.getText().toString();
                 String career = et_career.getText().toString();
 
-                inputInformationViewModel.updateUserInformation(name, career);
+                inputInformationViewModel.updateUserInformation(name, inputInformationViewModel.getCareerListItems());
             }
         });
 

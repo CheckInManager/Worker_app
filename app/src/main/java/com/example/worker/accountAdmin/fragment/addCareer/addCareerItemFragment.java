@@ -8,18 +8,28 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.worker.databinding.FragmentAddcareerBinding;
 
-public class addCareerFragment extends Fragment {
+public class addCareerItemFragment extends Fragment {
 
     private FragmentAddcareerBinding binding;
-    private addCareerRecyclerViewAdapter addCareerRecyclerViewAdapter;
+    private addCareerViewModel addCareerViewModel;
+    private addCareerRecycleViewAdapter addCareerRecycleViewAdapter;
 
-    @Nullable
+    private RecyclerView rv_records;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentAddcareerBinding.inflate(inflater, container, false);
+        addCareerViewModel = new ViewModelProvider(this).get(addCareerViewModel.class);
+
+        rv_records = binding.addCareerRvCareerList;
+
+        addCareerRecycleViewAdapter = new addCareerRecycleViewAdapter(addCareerViewModel.getRecord());
 
         return binding.getRoot();
     }
@@ -27,5 +37,11 @@ public class addCareerFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        rv_records.setLayoutManager(new LinearLayoutManager(requireContext()));
+        rv_records.setAdapter(addCareerRecycleViewAdapter);
+
+        addCareerRecycleViewAdapter.notifyDataSetChanged();
+
     }
 }

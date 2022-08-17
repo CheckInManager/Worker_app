@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.worker.accountAdmin.fragment.addCareer.addCareerListItem;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -18,6 +19,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
 public class AccountRepository
 {
@@ -28,9 +32,11 @@ public class AccountRepository
     private CollectionReference usersRef = accountStore.collection("users");
 
     private User currUser;
+    private List<addCareerListItem> careerList;
 
     private AccountRepository()
     {
+        careerList = new ArrayList<>();
     }
 
     public static AccountRepository getInstance()
@@ -167,4 +173,11 @@ public class AccountRepository
         return currUser;
     }
 
+    public void setCareerRecords(List<addCareerListItem> addCareerListItems) {
+        careerList = addCareerListItems;
+    }
+
+    public List<addCareerListItem> getCareerListItems(){
+        return careerList;
+    }
 }
