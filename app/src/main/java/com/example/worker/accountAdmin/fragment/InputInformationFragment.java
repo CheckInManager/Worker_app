@@ -103,7 +103,6 @@ public class InputInformationFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 inputInformationViewModel.addCareerList((et_career.getText()).toString());
-                inputInformationViewModel.setCareerListItems();
                 et_career.setText(" ");
             }
         });

@@ -177,6 +177,7 @@ public class AccountRepository
         careerList = addCareerListItems;
     }
 
+    //recycle view data 넣을 때 이걸로 get
     public List<addCareerListItem> getCareerListItems(){
         return careerList;
     }

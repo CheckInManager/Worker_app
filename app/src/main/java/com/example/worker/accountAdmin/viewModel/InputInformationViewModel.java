@@ -25,18 +25,22 @@ public class InputInformationViewModel extends ViewModel {
     private User user = accountRepository.getCurrUser();
     private Bitmap currUserBitmap;
 
+    addCareerListItem addCareerItem;
+
     private List<addCareerListItem> careerListItems = new ArrayList<>();
 
-
-
     public List<addCareerListItem> addCareerList(String career) {
-        addCareerListItem addCareerItem = new addCareerListItem(career);
+        addCareerItem = new addCareerListItem(career);
         careerListItems.add(addCareerItem);
+
+        //recycle view 용 item 삽입..
+        setCareerListItems(careerListItems);
+
         return careerListItems;
     }
 
-    public void setCareerListItems(){
-        accountRepository.setCareerRecords(careerListItems);
+    public void setCareerListItems(List<addCareerListItem> item){
+        accountRepository.setCareerRecords(item);
     }
 
     public List<addCareerListItem> getCareerListItems() {

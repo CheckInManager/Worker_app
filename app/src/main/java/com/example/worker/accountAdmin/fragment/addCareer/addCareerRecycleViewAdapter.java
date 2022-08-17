@@ -29,7 +29,6 @@ public class addCareerRecycleViewAdapter extends RecyclerView.Adapter<addCareerR
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-
         addCareerListItem currRecord = recordList.get(position);
 
 
