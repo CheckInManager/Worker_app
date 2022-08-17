@@ -46,7 +46,7 @@
         android:id="@+id/navigation_scanQrCode"
         android:name="com.example.worker.accountAdmin.fragment.ScanQrCodeFragment"
         android:label="scanQrCode"
-        tools:layout="@layout/fragment_scanqrcode" >
+        tools:layout="@layout/fragment_scanqr" >
     </fragment>
 
 

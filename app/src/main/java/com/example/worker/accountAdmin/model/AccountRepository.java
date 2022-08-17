@@ -141,7 +141,7 @@ public class AccountRepository
         });
     }
 
-    //user information add
+
     public void addUserWorkSite(User user, SingleCallback<Result<User>> callback)
     {
         usersRef.document(user.getPhoneNumber()).set(user).addOnCompleteListener(new OnCompleteListener<Void>()

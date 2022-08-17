@@ -44,8 +44,6 @@ public class InputInformationFragment extends Fragment {
 
     private Context context;
 
-    // sign in data 를 못 받아와서 repository 에 user을 만들고나서 로그인 하면 데이터 넣고 여기서 빼옴
-    // 그렇기 때문에.. ㄴrepository - addUserInformation 에서 user문서를 통채로 업데이트를 못하고 유저 하나하나씩에서 빼와서 업데이트 해야함
 
     @Nullable
     @Override
@@ -94,7 +92,6 @@ public class InputInformationFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                //Photo Pick activity 에서 가져온..
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                 launchGallery.launch(intent);
