@@ -97,4 +97,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.068"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/inputInformation_bt_addCareer"
+        android:layout_width="53dp"
+        android:layout_height="46dp"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="@+id/InputInformation_et_career"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/InputInformation_et_career"
+        app:layout_constraintTop_toTopOf="@+id/InputInformation_et_career" />
 </androidx.constraintlayout.widget.ConstraintLayout>

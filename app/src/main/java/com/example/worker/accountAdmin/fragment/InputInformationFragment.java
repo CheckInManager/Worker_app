@@ -41,8 +41,7 @@ public class InputInformationFragment extends Fragment {
     private EditText et_career;
     private ImageButton bt_img;
     private Button bt_complete;
-
-    private Context context;
+    private Button bt_addCareer;
 
 
     @Nullable
@@ -58,8 +57,7 @@ public class InputInformationFragment extends Fragment {
         et_name = binding.InputInformationEtName;
         et_career = binding.InputInformationEtCareer;
         bt_complete = binding.InputInformationBtComplete;
-
-        context = container.getContext();
+        bt_addCareer = binding.inputInformationBtAddCareer;
 
         return binding.getRoot();
     }
@@ -88,6 +86,7 @@ public class InputInformationFragment extends Fragment {
                     }
                 });
 
+        //add picture
         bt_img.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -98,6 +97,15 @@ public class InputInformationFragment extends Fragment {
             }
         });
 
+        //add career
+        bt_addCareer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        //complete
         bt_complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
