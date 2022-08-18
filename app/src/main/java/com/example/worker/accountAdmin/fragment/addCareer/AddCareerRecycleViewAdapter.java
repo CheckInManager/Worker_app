@@ -29,9 +29,17 @@ public class AddCareerRecycleViewAdapter extends RecyclerView.Adapter<AddCareerR
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-   ;
-        AddCareerListItem currRecord = records.get(0);
-        holder.tv_career.setText(currRecord.getCareer());
+
+
+        //add item 하는 대로 recycle view 갱신
+        for(int i =0; i<records.size(); i++) {
+            AddCareerListItem currRecord = records.get(i);
+            holder.tv_career.setText(currRecord.getCareer());
+        }
+
+
+        //AddCareerListItem currRecord = records.get(position);
+        //holder.tv_career.setText(currRecord.getCareer());
 
 
     }

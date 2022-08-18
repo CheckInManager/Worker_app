@@ -47,10 +47,10 @@
         android:text="완료"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/InputInformation_et_career"
-        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintHorizontal_bias="0.407"
         app:layout_constraintStart_toStartOf="@+id/InputInformation_tv_career"
         app:layout_constraintTop_toBottomOf="@+id/InputInformation_et_career"
-        app:layout_constraintVertical_bias="0.156" />
+        app:layout_constraintVertical_bias="0.771" />
 
     <TextView
         android:id="@+id/InputInformation_tv_phoneNumber"
