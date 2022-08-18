@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.worker.databinding.FragmentAddcareerBinding;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class AddCareerListFragment extends Fragment {
 
     private FragmentAddcareerBinding binding;
@@ -21,6 +24,8 @@ public class AddCareerListFragment extends Fragment {
     private AddCareerRecycleViewAdapter addCareerRecycleViewAdapter;
 
     private RecyclerView rv_records;
+    private ArrayList<AddCareerListItem> careerList;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,9 +35,11 @@ public class AddCareerListFragment extends Fragment {
 
         rv_records = binding.addCareerRvCareerList;
 
-        if(addCareerRecycleViewAdapter == null){
-            addCareerRecycleViewAdapter = new AddCareerRecycleViewAdapter(addCareerViewModel.getRecordList());
-        }
+        careerList = (ArrayList<AddCareerListItem>)addCareerViewModel.getRecordList();
+        addCareerRecycleViewAdapter = new AddCareerRecycleViewAdapter(careerList);
+
+        rv_records.setAdapter(addCareerRecycleViewAdapter);
+        rv_records.setLayoutManager(new LinearLayoutManager(requireContext()));
 
 
         return binding.getRoot();
@@ -41,10 +48,6 @@ public class AddCareerListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        rv_records.setLayoutManager(new LinearLayoutManager(requireContext()));
-        rv_records.setAdapter(addCareerRecycleViewAdapter);
-
         addCareerRecycleViewAdapter.notifyDataSetChanged();
 
     }
