@@ -38,8 +38,9 @@ public class AddCareerListFragment extends Fragment {
         careerList = (ArrayList<AddCareerListItem>)addCareerViewModel.getRecordList();
         addCareerRecycleViewAdapter = new AddCareerRecycleViewAdapter(careerList);
 
-        rv_records.setAdapter(addCareerRecycleViewAdapter);
         rv_records.setLayoutManager(new LinearLayoutManager(requireContext()));
+        rv_records.setAdapter(addCareerRecycleViewAdapter);
+
 
 
         return binding.getRoot();
@@ -51,4 +52,5 @@ public class AddCareerListFragment extends Fragment {
         addCareerRecycleViewAdapter.notifyDataSetChanged();
 
     }
+
 }
