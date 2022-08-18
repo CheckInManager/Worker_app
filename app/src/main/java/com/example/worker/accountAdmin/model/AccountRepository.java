@@ -31,6 +31,7 @@ public class AccountRepository
     private FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
     private CollectionReference usersRef = accountStore.collection("users");
 
+
     private User currUser;
     private List<AddCareerListItem> careerList;
 
@@ -173,8 +174,8 @@ public class AccountRepository
         return currUser;
     }
 
-    public void setCareerRecords(List<AddCareerListItem> addCareerListItems) {
-        careerList = addCareerListItems;
+    public void setCareerRecords(AddCareerListItem item) {
+        careerList.add(item);
     }
 
     //recycle view data 넣을 때 이걸로 get

@@ -34,12 +34,12 @@ public class InputInformationViewModel extends ViewModel {
         careerListItems.add(addCareerItem);
 
         //recycle view 용 item 삽입..
-        setCareerListItems(careerListItems);
+        setCareerListItems(addCareerItem);
 
         return careerListItems;
     }
 
-    public void setCareerListItems(List<AddCareerListItem> item){
+    public void setCareerListItems(AddCareerListItem item){
         accountRepository.setCareerRecords(item);
     }
 
