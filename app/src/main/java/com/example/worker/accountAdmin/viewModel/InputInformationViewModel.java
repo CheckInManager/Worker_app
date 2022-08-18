@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.worker.accountAdmin.fragment.addCareer.addCareerListItem;
+import com.example.worker.accountAdmin.fragment.addCareer.AddCareerListItem;
 import com.example.worker.accountAdmin.model.AccountRepository;
 import com.example.worker.accountAdmin.model.Result;
 import com.example.worker.accountAdmin.model.SingleCallback;
@@ -25,12 +25,12 @@ public class InputInformationViewModel extends ViewModel {
     private User user = accountRepository.getCurrUser();
     private Bitmap currUserBitmap;
 
-    addCareerListItem addCareerItem;
+    AddCareerListItem addCareerItem;
 
-    private List<addCareerListItem> careerListItems = new ArrayList<>();
+    private List<AddCareerListItem> careerListItems = new ArrayList<>();
 
-    public List<addCareerListItem> addCareerList(String career) {
-        addCareerItem = new addCareerListItem(career);
+    public List<AddCareerListItem> addCareerList(String career) {
+        addCareerItem = new AddCareerListItem(career);
         careerListItems.add(addCareerItem);
 
         //recycle view 용 item 삽입..
@@ -39,16 +39,16 @@ public class InputInformationViewModel extends ViewModel {
         return careerListItems;
     }
 
-    public void setCareerListItems(List<addCareerListItem> item){
+    public void setCareerListItems(List<AddCareerListItem> item){
         accountRepository.setCareerRecords(item);
     }
 
-    public List<addCareerListItem> getCareerListItems() {
+    public List<AddCareerListItem> getCareerListItems() {
         return careerListItems;
     }
 
     //user information 입력
-    public void updateUserInformation(String name, List<addCareerListItem> addCareerListItems) {
+    public void updateUserInformation(String name, List<AddCareerListItem> addCareerListItems) {
 
         String[] array = new String[addCareerListItems.size()];
         String tmpCareer ="";
@@ -57,12 +57,11 @@ public class InputInformationViewModel extends ViewModel {
         }
 
         for(int i =0; i < array.length; i++){
-            Log.v("", "" + array[i]);
             if(i == array.length-1){
-                tmpCareer += array[i];
+                tmpCareer += array[i].trim();
             }
             else{
-                tmpCareer += (array[i]+", ");
+                tmpCareer += (array[i].trim()+", ");
             }
 
         }

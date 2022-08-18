@@ -12,12 +12,12 @@ import com.example.worker.databinding.FragmentAddcareeritemBinding;
 
 import java.util.List;
 
-public class addCareerRecycleViewAdapter extends RecyclerView.Adapter<addCareerRecycleViewAdapter.ViewHolder> {
+public class AddCareerRecycleViewAdapter extends RecyclerView.Adapter<AddCareerRecycleViewAdapter.ViewHolder> {
 
-    private  List<addCareerListItem> recordList;
+    private  List<AddCareerListItem> records;
 
-    public addCareerRecycleViewAdapter(List<addCareerListItem> items) {
-        this.recordList = items;
+    public AddCareerRecycleViewAdapter(List<AddCareerListItem> items) {
+        this.records = items;
     }
 
     @Override
@@ -29,14 +29,16 @@ public class addCareerRecycleViewAdapter extends RecyclerView.Adapter<addCareerR
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        addCareerListItem currRecord = recordList.get(position);
+   ;
+        AddCareerListItem currRecord = records.get(0);
+        holder.tv_career.setText(currRecord.getCareer());
 
 
     }
 
     @Override
     public int getItemCount() {
-        return recordList.size();
+        return records.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -48,7 +50,7 @@ public class addCareerRecycleViewAdapter extends RecyclerView.Adapter<addCareerR
         }
 
 
-        protected void onBind(addCareerListItem items){
+        protected void onBind(AddCareerListItem items){
             tv_career.setText(items.getCareer().toString());
         }
 

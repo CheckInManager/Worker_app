@@ -22,11 +22,14 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.worker.R;
+import com.example.worker.accountAdmin.fragment.addCareer.AddCareerListFragment;
 import com.example.worker.accountAdmin.model.User;
 import com.example.worker.accountAdmin.viewModel.InputInformationViewModel;
 import com.example.worker.databinding.FragmentInputinformationBinding;
@@ -104,6 +107,10 @@ public class InputInformationFragment extends Fragment {
             public void onClick(View v) {
                 inputInformationViewModel.addCareerList((et_career.getText()).toString());
                 et_career.setText(" ");
+
+                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                AddCareerListFragment addCareerListFragment = new AddCareerListFragment();
+                fragmentTransaction.replace(R.id.inputInformation_frameLayout, addCareerListFragment).commit();
             }
         });
 
@@ -116,6 +123,7 @@ public class InputInformationFragment extends Fragment {
                 String career = et_career.getText().toString();
 
                 inputInformationViewModel.updateUserInformation(name, inputInformationViewModel.getCareerListItems());
+
             }
         });
 

@@ -5,7 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.worker.accountAdmin.fragment.addCareer.addCareerListItem;
+import com.example.worker.accountAdmin.fragment.addCareer.AddCareerListItem;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,7 +32,7 @@ public class AccountRepository
     private CollectionReference usersRef = accountStore.collection("users");
 
     private User currUser;
-    private List<addCareerListItem> careerList;
+    private List<AddCareerListItem> careerList;
 
     private AccountRepository()
     {
@@ -173,12 +173,12 @@ public class AccountRepository
         return currUser;
     }
 
-    public void setCareerRecords(List<addCareerListItem> addCareerListItems) {
+    public void setCareerRecords(List<AddCareerListItem> addCareerListItems) {
         careerList = addCareerListItems;
     }
 
     //recycle view data 넣을 때 이걸로 get
-    public List<addCareerListItem> getCareerListItems(){
+    public List<AddCareerListItem> getCareerListItems(){
         return careerList;
     }
 }

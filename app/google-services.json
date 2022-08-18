@@ -1,9 +1,9 @@
 {
   "project_info": {
     "project_number": "177719631278",
-    "firebase_url" : "https://checkinmanager-b0690-default-rtdb.firebaseio.com/",
+    "firebase_url": "https://checkinmanager-b0690-default-rtdb.firebaseio.com",
     "project_id": "checkinmanager-b0690",
-    "storage_bucket": " 1checkinmanager-b0690.appspot.com"
+    "storage_bucket": "checkinmanager-b0690.appspot.com"
   },
   "client": [
     {
@@ -14,14 +14,6 @@
         }
       },
       "oauth_client": [
-        {
-          "client_id": "177719631278-rdt0t4h15e8f5tbbrtu84usel84mrtat.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.worker",
-            "certificate_hash": "bc991454815fd42ccd3abdf5a3b28611a0af3f8c"
-          }
-        },
         {
           "client_id": "177719631278-55e975a9itlhr094gv7ol870vcphj3v1.apps.googleusercontent.com",
           "client_type": 3

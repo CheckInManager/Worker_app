@@ -1,9 +1,9 @@
 package com.example.worker.accountAdmin.fragment.addCareer;
 
-public class addCareerListItem {
+public class AddCareerListItem {
     private String career;
 
-    public addCareerListItem(String career){
+    public AddCareerListItem(String career){
         this.career = career;
     }
 

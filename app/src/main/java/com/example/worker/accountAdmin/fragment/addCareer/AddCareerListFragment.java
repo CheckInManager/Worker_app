@@ -14,22 +14,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.worker.databinding.FragmentAddcareerBinding;
 
-public class addCareerItemFragment extends Fragment {
+public class AddCareerListFragment extends Fragment {
 
     private FragmentAddcareerBinding binding;
-    private addCareerViewModel addCareerViewModel;
-    private addCareerRecycleViewAdapter addCareerRecycleViewAdapter;
+    private AddCareerViewModel addCareerViewModel;
+    private AddCareerRecycleViewAdapter addCareerRecycleViewAdapter;
 
     private RecyclerView rv_records;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         binding = FragmentAddcareerBinding.inflate(inflater, container, false);
-        addCareerViewModel = new ViewModelProvider(this).get(addCareerViewModel.class);
+        addCareerViewModel = new ViewModelProvider(this).get(AddCareerViewModel.class);
 
         rv_records = binding.addCareerRvCareerList;
 
-        addCareerRecycleViewAdapter = new addCareerRecycleViewAdapter(addCareerViewModel.getRecord());
+        if(addCareerRecycleViewAdapter == null){
+            addCareerRecycleViewAdapter = new AddCareerRecycleViewAdapter(addCareerViewModel.getRecordList());
+        }
+
 
         return binding.getRoot();
     }
