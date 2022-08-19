@@ -1,7 +1,6 @@
 package com.example.worker.accountAdmin.fragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -22,24 +21,27 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.worker.R;
-import com.example.worker.accountAdmin.fragment.addCareer.AddCareerListFragment;
-import com.example.worker.accountAdmin.fragment.addCareer.AddCareerViewModel;
 import com.example.worker.accountAdmin.model.User;
+import com.example.worker.accountAdmin.viewModel.AddCareerListItem;
 import com.example.worker.accountAdmin.viewModel.InputInformationViewModel;
 import com.example.worker.databinding.FragmentInputinformationBinding;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class InputInformationFragment extends Fragment {
 
     private FragmentInputinformationBinding binding;
     private InputInformationViewModel inputInformationViewModel;
     private NavController navController;
+    private AddCareerRecycleViewAdapter addCareerRecycleViewAdapter;
 
     private EditText et_phoneNumber;
     private EditText et_name;
@@ -47,15 +49,22 @@ public class InputInformationFragment extends Fragment {
     private ImageButton bt_img;
     private Button bt_complete;
     private Button bt_addCareer;
+    private RecyclerView rv_careerRecordView;
 
 
-    private AddCareerViewModel addCareerViewModel;
+    //test
+    private AddCareerListItem item = new AddCareerListItem("11");
+    private AddCareerListItem item2 = new AddCareerListItem("22");
+    private AddCareerListItem item3 = new AddCareerListItem("33");
+
+
+    private ArrayList<AddCareerListItem> careerList = new ArrayList<>();
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         inputInformationViewModel = new ViewModelProvider(this).get(InputInformationViewModel.class);
-        addCareerViewModel = new ViewModelProvider(this).get(AddCareerViewModel.class);
 
         binding = FragmentInputinformationBinding.inflate(inflater, container, false);
         navController = NavHostFragment.findNavController(InputInformationFragment.this);
@@ -66,6 +75,15 @@ public class InputInformationFragment extends Fragment {
         et_career = binding.InputInformationEtCareer;
         bt_complete = binding.InputInformationBtComplete;
         bt_addCareer = binding.inputInformationBtAddCareer;
+        rv_careerRecordView = binding.informationRvCareerRecord;
+
+        careerList.add(item);
+        careerList.add(item2);
+        careerList.add(item3);
+
+        //careerList = (ArrayList<AddCareerListItem>) inputInformationViewModel.getCareerListItems();
+        addCareerRecycleViewAdapter = new AddCareerRecycleViewAdapter(careerList);
+
 
         return binding.getRoot();
     }
@@ -76,6 +94,10 @@ public class InputInformationFragment extends Fragment {
 
         User currUser = inputInformationViewModel.getCurrUser();
         et_phoneNumber.setText(currUser.getPhoneNumber());
+
+        rv_careerRecordView.setAdapter(addCareerRecycleViewAdapter);
+        rv_careerRecordView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        addCareerRecycleViewAdapter.notifyDataSetChanged();
 
         ActivityResultLauncher<Intent> launchGallery = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -112,11 +134,11 @@ public class InputInformationFragment extends Fragment {
                 inputInformationViewModel.addCareerList((et_career.getText()).toString());
                 et_career.setText(" ");
 
-                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-                AddCareerListFragment addCareerListFragment = new AddCareerListFragment();
-                fragmentTransaction.replace(R.id.inputInformation_frameLayout, addCareerListFragment).commit();
+                //careerList = (ArrayList<AddCareerListItem>) inputInformationViewModel.getCareerListItems();
+                //addCareerRecycleViewAdapter = new AddCareerRecycleViewAdapter(careerList);
 
-                addCareerViewModel.getData();
+                addCareerRecycleViewAdapter.notifyDataSetChanged();
+
             }
         });
 

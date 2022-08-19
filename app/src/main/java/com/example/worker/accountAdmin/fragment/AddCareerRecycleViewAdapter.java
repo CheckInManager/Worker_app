@@ -1,21 +1,21 @@
-package com.example.worker.accountAdmin.fragment.addCareer;
+package com.example.worker.accountAdmin.fragment;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.worker.accountAdmin.viewModel.AddCareerListItem;
 import com.example.worker.databinding.FragmentAddcareeritemBinding;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class AddCareerRecycleViewAdapter extends RecyclerView.Adapter<AddCareerRecycleViewAdapter.ViewHolder> {
+public class AddCareerRecycleViewAdapter extends Adapter<AddCareerRecycleViewAdapter.ViewHolder> {
 
     private  ArrayList<AddCareerListItem> records;
 
@@ -34,12 +34,10 @@ public class AddCareerRecycleViewAdapter extends RecyclerView.Adapter<AddCareerR
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
         AddCareerListItem addCareerListItem = records.get(position);
+        //holder.tv_career.setText(addCareerListItem.getCareer());
 
-        Log.v("", "" + addCareerListItem.getCareer());
-
-        holder.tv_career.setText(addCareerListItem.getCareer());
-
-
+        holder.tv_career.setText("11");
+        Log.v("", "" + records.get(2).getCareer());
 
        /*
        for(int i =0; i<records.size(); i++) {
