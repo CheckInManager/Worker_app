@@ -30,6 +30,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.worker.R;
 import com.example.worker.accountAdmin.fragment.addCareer.AddCareerListFragment;
+import com.example.worker.accountAdmin.fragment.addCareer.AddCareerViewModel;
 import com.example.worker.accountAdmin.model.User;
 import com.example.worker.accountAdmin.viewModel.InputInformationViewModel;
 import com.example.worker.databinding.FragmentInputinformationBinding;
@@ -48,10 +49,13 @@ public class InputInformationFragment extends Fragment {
     private Button bt_addCareer;
 
 
+    private AddCareerViewModel addCareerViewModel;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         inputInformationViewModel = new ViewModelProvider(this).get(InputInformationViewModel.class);
+        addCareerViewModel = new ViewModelProvider(this).get(AddCareerViewModel.class);
 
         binding = FragmentInputinformationBinding.inflate(inflater, container, false);
         navController = NavHostFragment.findNavController(InputInformationFragment.this);
@@ -111,6 +115,8 @@ public class InputInformationFragment extends Fragment {
                 FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                 AddCareerListFragment addCareerListFragment = new AddCareerListFragment();
                 fragmentTransaction.replace(R.id.inputInformation_frameLayout, addCareerListFragment).commit();
+
+                addCareerViewModel.getData();
             }
         });
 

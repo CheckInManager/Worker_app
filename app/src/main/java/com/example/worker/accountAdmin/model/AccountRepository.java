@@ -179,7 +179,7 @@ public class AccountRepository
         careerList.add(item);
     }
 
-    //recycle view data 넣을 때 이걸로 get item
+    //recycle view data 넣을 때 이걸로 get
     public List<AddCareerListItem> getCareerListItems(SingleCallback<Result<AddCareerListItem>> singleCallback){
         return careerList;
     }

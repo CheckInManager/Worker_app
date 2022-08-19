@@ -19,6 +19,7 @@ public class AddCareerRecycleViewAdapter extends RecyclerView.Adapter<AddCareerR
 
     private  ArrayList<AddCareerListItem> records;
 
+
     public AddCareerRecycleViewAdapter(ArrayList<AddCareerListItem> items) {
         this.records = items;
     }
@@ -33,7 +34,12 @@ public class AddCareerRecycleViewAdapter extends RecyclerView.Adapter<AddCareerR
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
         AddCareerListItem addCareerListItem = records.get(position);
+
+        Log.v("", "" + addCareerListItem.getCareer());
+
         holder.tv_career.setText(addCareerListItem.getCareer());
+
+
 
        /*
        for(int i =0; i<records.size(); i++) {
@@ -56,7 +62,6 @@ public class AddCareerRecycleViewAdapter extends RecyclerView.Adapter<AddCareerR
             super(binding.getRoot());
             tv_career = binding.addCareerTvCareer;
         }
-
 
         @Override
         public String toString() {
