@@ -5,28 +5,27 @@ import androidx.annotation.NonNull;
 public class User
 {
 
-    //release 1
+
     private String phoneNumber;
     private String password ;
-
-    //release 2
     private String name;
     private String career;
-
-    //release 3
     private String worksite;
+    private String accidentHistory;
+    private boolean userCheck =false;
 
     public User()
     {
     }
 
-    public User(String phoneNumber, String password, String name, String career, String worksite)
+    public User(String phoneNumber, String password, String name, String career, String worksite, String accidentHistory)
     {
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.name = name;
         this.career = career;
         this.worksite = worksite;
+        this.accidentHistory = accidentHistory;
     }
 
     public String getPhoneNumber()
@@ -79,6 +78,17 @@ public class User
         this.worksite = worksite;
     }
 
+    public String getAccidentHistory() {
+        return accidentHistory;
+    }
+
+    public void setAccidentHistory(String accidentHistory) {
+        this.accidentHistory = accidentHistory;
+    }
+
+    public boolean isUserCheck() {return userCheck;}
+
+    public void setUserCheck(boolean userCheck) {this.userCheck = userCheck;}
 
     @NonNull
     @Override

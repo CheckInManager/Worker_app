@@ -21,7 +21,6 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 public class AccountRepository
 {
@@ -174,12 +173,18 @@ public class AccountRepository
         return currUser;
     }
 
+    
+    //recycle view 에서 뽑을 item을 careerList에 넣음
     public void setCareerRecords(AddCareerListItem item) {
         careerList.add(item);
     }
 
-    //recycle view data 넣을 때 이걸로 get
-    public List<AddCareerListItem> getCareerListItems(){
+    //recycle view data 넣을 때 이걸로 get item
+    public List<AddCareerListItem> getCareerListItems(SingleCallback<Result<AddCareerListItem>> singleCallback){
+        return careerList;
+    }
+
+    public List<AddCareerListItem> getTest(){
         return careerList;
     }
 }

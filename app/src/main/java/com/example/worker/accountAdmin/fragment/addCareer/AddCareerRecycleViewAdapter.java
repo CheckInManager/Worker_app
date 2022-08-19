@@ -58,10 +58,6 @@ public class AddCareerRecycleViewAdapter extends RecyclerView.Adapter<AddCareerR
         }
 
 
-        protected void onBind(AddCareerListItem items){
-            tv_career.setText(items.getCareer().toString());
-        }
-
         @Override
         public String toString() {
             return super.toString() + " '" + tv_career.getText() + "'";

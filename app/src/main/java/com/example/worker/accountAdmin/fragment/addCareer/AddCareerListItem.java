@@ -7,6 +7,10 @@ public class AddCareerListItem {
         this.career = career;
     }
 
+    public AddCareerListItem() {
+
+    }
+
     public String getCareer() {
         return career;
     }
