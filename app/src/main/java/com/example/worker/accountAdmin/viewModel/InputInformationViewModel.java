@@ -105,20 +105,6 @@ public class InputInformationViewModel extends ViewModel {
         return careerListItems;
     }
 
-    public void getTmpCareerItem(){
-        accountRepository.getCareerListItems(new SingleCallback<Result<AddCareerListItem>>() {
-            @Override
-            public void onComplete(Result<AddCareerListItem> result) {
-
-                    if(result instanceof Result.Success){
-                        AddCareerListItem addCareerListItem = ((Result.Success<AddCareerListItem>)result).getData();
-                        updateTmpCareer.postValue(true);
-
-                    }
-            }
-        });
-    }
-
 
 
 

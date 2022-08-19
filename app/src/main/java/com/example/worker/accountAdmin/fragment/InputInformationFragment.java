@@ -21,6 +21,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -28,6 +29,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.worker.R;
 import com.example.worker.accountAdmin.model.User;
 import com.example.worker.accountAdmin.viewModel.AddCareerListItem;
 import com.example.worker.accountAdmin.viewModel.InputInformationViewModel;
@@ -49,13 +51,7 @@ public class InputInformationFragment extends Fragment {
     private ImageButton bt_img;
     private Button bt_complete;
     private Button bt_addCareer;
-    private RecyclerView rv_careerRecordView;
 
-
-    //test
-    private AddCareerListItem item = new AddCareerListItem("11");
-    private AddCareerListItem item2 = new AddCareerListItem("22");
-    private AddCareerListItem item3 = new AddCareerListItem("33");
 
 
     private ArrayList<AddCareerListItem> careerList = new ArrayList<>();
@@ -75,14 +71,7 @@ public class InputInformationFragment extends Fragment {
         et_career = binding.InputInformationEtCareer;
         bt_complete = binding.InputInformationBtComplete;
         bt_addCareer = binding.inputInformationBtAddCareer;
-        rv_careerRecordView = binding.informationRvCareerRecord;
 
-        careerList.add(item);
-        careerList.add(item2);
-        careerList.add(item3);
-
-        //careerList = (ArrayList<AddCareerListItem>) inputInformationViewModel.getCareerListItems();
-        addCareerRecycleViewAdapter = new AddCareerRecycleViewAdapter(careerList);
 
 
         return binding.getRoot();
@@ -95,9 +84,6 @@ public class InputInformationFragment extends Fragment {
         User currUser = inputInformationViewModel.getCurrUser();
         et_phoneNumber.setText(currUser.getPhoneNumber());
 
-        rv_careerRecordView.setAdapter(addCareerRecycleViewAdapter);
-        rv_careerRecordView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        addCareerRecycleViewAdapter.notifyDataSetChanged();
 
         ActivityResultLauncher<Intent> launchGallery = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -134,11 +120,9 @@ public class InputInformationFragment extends Fragment {
                 inputInformationViewModel.addCareerList((et_career.getText()).toString());
                 et_career.setText(" ");
 
-                //careerList = (ArrayList<AddCareerListItem>) inputInformationViewModel.getCareerListItems();
-                //addCareerRecycleViewAdapter = new AddCareerRecycleViewAdapter(careerList);
-
-                addCareerRecycleViewAdapter.notifyDataSetChanged();
-
+                FragmentTransaction fragmentTransaction =  getChildFragmentManager().beginTransaction();
+                AddCareerFragment addCareerFragment = new AddCareerFragment();
+                fragmentTransaction.replace(R.id.inputInformation_frameLayout , addCareerFragment).commit();
             }
         });
 
