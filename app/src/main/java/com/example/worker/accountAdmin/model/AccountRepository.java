@@ -123,6 +123,7 @@ public class AccountRepository
         });
     }
 
+
     //user image add
     public void uploadUserImage(String phoneNumber, Bitmap currUserBitmap)
     {
@@ -132,6 +133,7 @@ public class AccountRepository
 
         StorageReference uploadRef = firebaseStorage.getReference().child("userImages/user_" + phoneNumber);
         UploadTask uploadTask = uploadRef.putBytes(data);
+        currUser.setPicture(true);
         uploadTask.addOnFailureListener(new OnFailureListener()
         {
             @Override
@@ -143,7 +145,7 @@ public class AccountRepository
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
             {
-                currUser.setPicture(true);
+
             }
         });
     }

@@ -84,6 +84,11 @@ public class InputInformationFragment extends Fragment {
         User currUser = inputInformationViewModel.getCurrUser();
         et_phoneNumber.setText(currUser.getPhoneNumber());
 
+        if(currUser.getName() != null){
+            et_name.setText(currUser.getName());
+        }
+
+
 
         ActivityResultLauncher<Intent> launchGallery = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -117,8 +122,10 @@ public class InputInformationFragment extends Fragment {
         bt_addCareer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inputInformationViewModel.addCareerList((et_career.getText()).toString());
-                et_career.setText(" ");
+                //add career
+                String career = et_career.getText().toString();
+                inputInformationViewModel.addCareerList(career);
+                et_career.setText("");
 
                 FragmentTransaction fragmentTransaction =  getChildFragmentManager().beginTransaction();
                 AddCareerFragment addCareerFragment = new AddCareerFragment();
@@ -132,10 +139,11 @@ public class InputInformationFragment extends Fragment {
             public void onClick(View view) {
 
                 String name = et_name.getText().toString();
-                String career = et_career.getText().toString();
 
-                inputInformationViewModel.updateUserInformation(name, inputInformationViewModel.getCareerListItems());
-                navController.navigate(R.id.action_navigation_inputInformation_to_navigation_scanQrCode);
+                if(name != null){
+                    inputInformationViewModel.updateUserInformation(name, inputInformationViewModel.getCareerListItems());
+                    navController.navigate(R.id.action_navigation_inputInformation_to_navigation_scanQrCode);
+                }
             }
         });
 

@@ -81,12 +81,13 @@ public class SignInFragment extends Fragment {
             @Override
             public void onChanged(Boolean isLoggedIn) {
                 if (isLoggedIn) {
-                    Log.v("sign in fragment", "name" + signInViewModel.getUser().getName());
-                    Log.v("sign in fragment", "phonenumber" + signInViewModel.getUser().getPhoneNumber());
+
+                    //information inputted null 값 정보 확인
                     if(signInViewModel.getCurrentUser().getName() == null || !signInViewModel.getCurrentUser().getPicture()){
                         navController.navigate(R.id.action_navigation_signIn_to_navigation_inputInformation);
                     }
                     else{
+
                         navController.navigate(R.id.action_navigation_signIn_to_navigation_scanQrCode);
                     }
 

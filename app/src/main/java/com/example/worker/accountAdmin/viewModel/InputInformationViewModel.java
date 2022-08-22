@@ -105,4 +105,6 @@ public class InputInformationViewModel extends ViewModel {
         return careerListItems;
     }
 
+
+
 }
