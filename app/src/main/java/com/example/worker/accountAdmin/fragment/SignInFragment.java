@@ -74,14 +74,16 @@ public class SignInFragment extends Fragment {
                 String phoneNumber = et_phoneNumber.getText().toString();
                 String password = et_password.getText().toString();
                 signInViewModel.trySignIn(phoneNumber, password);
-            }
+                }
         });
 
         signInViewModel.isLoggedIn().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean isLoggedIn) {
                 if (isLoggedIn) {
-                    if(signInViewModel.getUser().getName() == null){
+                    Log.v("sign in fragment", "name" + signInViewModel.getUser().getName());
+                    Log.v("sign in fragment", "phonenumber" + signInViewModel.getUser().getPhoneNumber());
+                    if(signInViewModel.getCurrentUser().getName() == null || !signInViewModel.getCurrentUser().getPicture()){
                         navController.navigate(R.id.action_navigation_signIn_to_navigation_inputInformation);
                     }
                     else{

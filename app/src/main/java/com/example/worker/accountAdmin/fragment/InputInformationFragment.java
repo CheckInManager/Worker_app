@@ -135,14 +135,14 @@ public class InputInformationFragment extends Fragment {
                 String career = et_career.getText().toString();
 
                 inputInformationViewModel.updateUserInformation(name, inputInformationViewModel.getCareerListItems());
-
+                navController.navigate(R.id.action_navigation_inputInformation_to_navigation_scanQrCode);
             }
         });
 
         inputInformationViewModel.isUpdateSuccessful().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                navController.navigate(R.id.action_navigation_inputInformation_to_navigation_scanQrCode);
+
             }
         });
     }
