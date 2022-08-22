@@ -1,6 +1,7 @@
 package com.example.worker.accountAdmin.model;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -150,6 +151,24 @@ public class AccountRepository
         });
     }
 
+    //저장된 이미지 가져오기
+    public void downloadUserImage(String phoneNumber){
+        StorageReference loadRef = firebaseStorage.getReference();
+        loadRef.child("userImages/user_" + phoneNumber).
+                getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Log.d("repository image", String.valueOf(uri));
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+    }
 
     public void addUserWorkSite(User user, SingleCallback<Result<User>> callback)
     {

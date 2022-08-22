@@ -105,6 +105,10 @@ public class InputInformationViewModel extends ViewModel {
         return careerListItems;
     }
 
+    public void getUserImage(){
+        accountRepository.downloadUserImage(getCurrUser().getPhoneNumber());
+    }
+
 
 
 }

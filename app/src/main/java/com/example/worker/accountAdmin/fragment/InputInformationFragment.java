@@ -73,7 +73,6 @@ public class InputInformationFragment extends Fragment {
         bt_addCareer = binding.inputInformationBtAddCareer;
 
 
-
         return binding.getRoot();
     }
 
@@ -86,6 +85,9 @@ public class InputInformationFragment extends Fragment {
 
         if(currUser.getName() != null){
             et_name.setText(currUser.getName());
+        }
+        if(currUser.getPicture()){
+            inputInformationViewModel.getUserImage();
         }
 
 
