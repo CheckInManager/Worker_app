@@ -143,6 +143,7 @@ public class AccountRepository
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
             {
+                currUser.setPicture(true);
             }
         });
     }

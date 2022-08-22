@@ -2,6 +2,7 @@ package com.example.worker.accountAdmin.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +23,7 @@ import com.example.worker.accountAdmin.viewModel.InputInformationViewModel;
 import com.example.worker.accountAdmin.viewModel.SignInViewModel;
 import com.example.worker.databinding.FragmentSigninBinding;
 
-public class SignInFragment extends Fragment
-{
+public class SignInFragment extends Fragment {
 
     private FragmentSigninBinding binding;
     private NavController navController;
@@ -39,8 +39,7 @@ public class SignInFragment extends Fragment
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
-    {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         signInViewModel = new ViewModelProvider(this).get(SignInViewModel.class);
         binding = FragmentSigninBinding.inflate(inflater, container, false);
         navController = NavHostFragment.findNavController(SignInFragment.this);
@@ -59,42 +58,39 @@ public class SignInFragment extends Fragment
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
-    {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //sign up
-        bt_signUp.setOnClickListener(new View.OnClickListener()
-        {
+        bt_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 navController.navigate(R.id.action_navigation_signIn_to_navigation_signUp);
             }
         });
 
         //sign in
-        bt_signIn.setOnClickListener(new View.OnClickListener()
-        {
+        bt_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 String phoneNumber = et_phoneNumber.getText().toString();
                 String password = et_password.getText().toString();
                 signInViewModel.trySignIn(phoneNumber, password);
             }
         });
 
-        signInViewModel.isLoggedIn().observe(getViewLifecycleOwner(), new Observer<Boolean>()
-        {
+        signInViewModel.isLoggedIn().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
-            public void onChanged(Boolean isLoggedIn)
-            {
-                if(isLoggedIn)
-                {
-                    navController.navigate(R.id.action_navigation_signIn_to_navigation_inputInformation);
-                }
-                else
-                {
-                    Toast.makeText(context, "전화번호가 등록되어 있지 않거나 비밀번호가 맞지 않습니다.", Toast.LENGTH_SHORT).show();
+            public void onChanged(Boolean isLoggedIn) {
+                if (isLoggedIn) {
+                    if(signInViewModel.getUser().getName() == null){
+                        navController.navigate(R.id.action_navigation_signIn_to_navigation_inputInformation);
+                    }
+                    else{
+                        navController.navigate(R.id.action_navigation_signIn_to_navigation_scanQrCode);
+                    }
+
+
+                } else {
+                    //로그인 안 됨
                 }
             }
         });

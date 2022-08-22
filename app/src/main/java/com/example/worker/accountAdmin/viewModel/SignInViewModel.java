@@ -29,6 +29,8 @@ public class SignInViewModel extends ViewModel
                 if (result instanceof Result.Success)
                 {
                     User loggedInUser = ((Result.Success<User>) result).getData();
+
+
                     loggedIn.postValue(true);
                     user = loggedInUser;
                     Log.v("", "" + loggedInUser);
@@ -56,4 +58,7 @@ public class SignInViewModel extends ViewModel
         this.user = user;
     }
 
+    public User getCurrentUser(){
+        return accountRepository.getCurrUser();
+    }
 }

@@ -47,6 +47,19 @@
         android:name="com.example.worker.accountAdmin.fragment.ScanQrFragment"
         android:label="scanQrCode"
         tools:layout="@layout/fragment_scanqr" >
+        <action
+            android:id="@+id/action_navigation_scanQrCode_to_navigation_scannedDeviceDetails"
+            app:destination="@id/navigation_scannedDeviceDetails" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_scannedDeviceDetails"
+        android:name="com.example.worker.accountAdmin.fragment.ScannedDeviceDetailsFragment"
+        android:label="scannedDeviceDetails"
+        tools:layout="@layout/fragment_scanneddevicedetails" >
+        <action
+            android:id="@+id/action_navigation_scannedDeviceDetails_to_navigation_inputInformation"
+            app:destination="@id/navigation_inputInformation" />
     </fragment>
 
 

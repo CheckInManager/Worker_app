@@ -36,5 +36,6 @@ public class ScanQrViewModel extends ViewModel {
     public LiveData<Boolean> isRegisteredWorksite() { return registeredWorksite; }
 
     public void setCurrDevice(String deviceNum) {
+        user.setworksite(deviceNum);
     }
 }

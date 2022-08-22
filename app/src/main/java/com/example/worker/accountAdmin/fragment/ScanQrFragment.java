@@ -3,6 +3,7 @@ package com.example.worker.accountAdmin.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.worker.R;
 import com.example.worker.accountAdmin.viewModel.ScanQrViewModel;
@@ -74,7 +76,8 @@ public class ScanQrFragment extends Fragment
                             String[] num = content.split("_");
                             String deviceNum = num[1];
                             scanQrViewModel.setCurrDevice(deviceNum);
-                            //NavHostFragment.findNavController(ScanQrFragment.this).navigate(R.id.action_scanQr_to_scannedDeviceDetails);
+                            scanQrViewModel.registerWorksite(deviceNum);
+                            NavHostFragment.findNavController(ScanQrFragment.this).navigate(R.id.action_navigation_scanQrCode_to_navigation_scannedDeviceDetails);
                         }
                     }
                 });
