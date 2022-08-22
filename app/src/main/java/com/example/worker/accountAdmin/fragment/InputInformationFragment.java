@@ -146,6 +146,6 @@ public class InputInformationFragment extends Fragment {
             }
         });
     }
-
+//
 }
 
