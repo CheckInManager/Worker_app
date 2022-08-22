@@ -33,11 +33,8 @@ public class AddCareerRecycleViewAdapter extends Adapter<AddCareerRecycleViewAda
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
-        AddCareerListItem addCareerListItem = records.get(position);
-        //holder.tv_career.setText(addCareerListItem.getCareer());
-
-        holder.tv_career.setText("11");
-        Log.v("", "" + records.get(2).getCareer());
+        String career = records.get(position).getCareer();
+        holder.tv_career.setText(career);
 
        /*
        for(int i =0; i<records.size(); i++) {

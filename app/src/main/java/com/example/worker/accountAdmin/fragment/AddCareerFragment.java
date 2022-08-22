@@ -26,13 +26,6 @@ public class AddCareerFragment extends Fragment {
     private AddCareerRecycleViewAdapter addCareerRecycleViewAdapter;
     private RecyclerView rv_careerRecordView;
 
-    //test
-    private AddCareerListItem item = new AddCareerListItem("11");
-    private AddCareerListItem item2 = new AddCareerListItem("22");
-    private AddCareerListItem item3 = new AddCareerListItem("33");
-
-    private ArrayList<AddCareerListItem> careerList = new ArrayList<>();
-
 
     @Nullable
     @Override
@@ -42,12 +35,8 @@ public class AddCareerFragment extends Fragment {
         binding = FragmentAddcareerBinding.inflate(inflater, container, false);
         rv_careerRecordView = binding.addCareerRvCareerList;
 
-        //test
-        careerList.add(item);
-        careerList.add(item2);
-        careerList.add(item3);
 
-        addCareerRecycleViewAdapter = new AddCareerRecycleViewAdapter(careerList);
+        addCareerRecycleViewAdapter = new AddCareerRecycleViewAdapter((ArrayList<AddCareerListItem>) addCareerViewModel.getCareerList());
 
         return binding.getRoot();
     }

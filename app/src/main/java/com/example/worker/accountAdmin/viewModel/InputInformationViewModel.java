@@ -105,11 +105,4 @@ public class InputInformationViewModel extends ViewModel {
         return careerListItems;
     }
 
-
-
-
-    public LiveData<Boolean> addTmpCareerSuccessful(){
-        return updateTmpCareer;
-    }
-
 }
