@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_navigation_signIn_to_navigation_scanQrCode"
             app:destination="@id/navigation_scanQrCode" />
+        <action
+            android:id="@+id/action_navigation_signIn_to_navigation_findPassword"
+            app:destination="@id/navigation_findPassword" />
     </fragment>
 
     <fragment
@@ -31,6 +34,18 @@
             android:id="@+id/action_navigation_signUp_to_navigation_signIn"
             app:destination="@id/navigation_signIn" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_findPassword"
+        android:name="com.example.worker.accountAdmin.fragment.FindPasswordFragment"
+        android:label="find a password"
+        tools:layout="@layout/fragment_findpassword" >
+        <action
+            android:id="@+id/action_navigation_findPassword_to_navigation_signIn"
+            app:destination="@id/navigation_signIn" />
+    </fragment>
+
+
 
     <fragment
         android:id="@+id/navigation_inputInformation"

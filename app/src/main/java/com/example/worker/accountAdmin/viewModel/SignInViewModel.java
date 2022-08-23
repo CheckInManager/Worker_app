@@ -17,7 +17,9 @@ public class SignInViewModel extends ViewModel
 
     private MutableLiveData<Boolean> loggedIn = new MutableLiveData<>(false);
 
+
     private User user = new User();
+    String errorMessage = "";
 
     public void trySignIn(String phoneNumber, String password)
     {
@@ -30,18 +32,18 @@ public class SignInViewModel extends ViewModel
                 {
                     User loggedInUser = ((Result.Success<User>) result).getData();
 
-
                     loggedIn.postValue(true);
                     user = loggedInUser;
                     Log.v("", "" + loggedInUser);
                 }
                 else
                 {
-                    String errorMessage = ((Result.Error) result).getError().getMessage();
+                    errorMessage = ((Result.Error) result).getError().getMessage();
                 }
             }
         });
     }
+
 
     public LiveData<Boolean> isLoggedIn()
     {
@@ -54,11 +56,10 @@ public class SignInViewModel extends ViewModel
     }
 
     public void setUser(User user)
-    {
-        this.user = user;
-    }
+    {this.user = user;}
 
     public User getCurrentUser(){
         return accountRepository.getCurrUser();
     }
-}
+
+    public String getErrorMessage(){return errorMessage;}}

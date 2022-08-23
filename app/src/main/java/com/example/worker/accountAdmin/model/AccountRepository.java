@@ -44,21 +44,6 @@ public class AccountRepository {
     }
 
 
-    //find a phoneNumber Overlap
-    public void checkPhoneNumber(User user, SingleCallback<Result<User>> callback){
-
-        usersRef.whereEqualTo("phoneNumber", user.getPhoneNumber())
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            callback.onComplete(new Result.Success<User>(user));
-                        }
-                    }
-                });
-    }
-
-
     //sign up
     public void trySignUp(User user, SingleCallback<Result<User>> callback) {
 
@@ -104,6 +89,29 @@ public class AccountRepository {
                         }
                     }
                 });
+    }
+
+    public void findPassword(String phoneNumber, SingleCallback<Result<User>> callback){
+        usersRef.whereEqualTo("phoneNumber",  phoneNumber)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                User foundUser = documentSnapshot.toObject(User.class);
+                                if(foundUser.getPhoneNumber().equals(phoneNumber)){
+                                    callback.onComplete(new Result.Success<User>(foundUser));
+                                }
+                            }
+
+                        }
+                        else{
+                            callback.onComplete(new Result.Error(new Exception("failed find a password")));
+                        }
+                    }
+                });
+
     }
 
     //user information add

@@ -38,7 +38,6 @@ public class SignInFragment extends Fragment {
 
     private Button bt_findPassword;
 
-    private Context context;
 
     @Nullable
     @Override
@@ -57,7 +56,6 @@ public class SignInFragment extends Fragment {
 
         tv_alarmText = binding.signInTvAlarmText;
 
-        context = container.getContext();
 
         return binding.getRoot();
     }
@@ -72,10 +70,18 @@ public class SignInFragment extends Fragment {
             }
         });
 
+        bt_findPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_navigation_signIn_to_navigation_findPassword);
+            }
+        });
+
         //sign in
         bt_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String phoneNumber = et_phoneNumber.getText().toString();
                 String password = et_password.getText().toString();
 
@@ -90,9 +96,7 @@ public class SignInFragment extends Fragment {
                 }
                 else{
                     signInViewModel.trySignIn(phoneNumber, password);
-                }
-
-
+                    }
                 }
         });
 
@@ -100,19 +104,17 @@ public class SignInFragment extends Fragment {
             @Override
             public void onChanged(Boolean isLoggedIn) {
                 if (isLoggedIn) {
-
                     //information inputted null 값 정보 확인 후 scan fragment 이동
                     if(signInViewModel.getCurrentUser().getName() == null || !signInViewModel.getCurrentUser().getPicture()){
                         navController.navigate(R.id.action_navigation_signIn_to_navigation_inputInformation);
                     }
                     else{
-
                         navController.navigate(R.id.action_navigation_signIn_to_navigation_scanQrCode);
                     }
 
 
                 } else {
-                    //tv_alarmText.setText("전화번호가 등록되지 않았거나 비밀번호가 일치하지 않습니다.");
+                    tv_alarmText.setText(signInViewModel.getErrorMessage());
                 }
             }
         });
