@@ -91,6 +91,7 @@ public class AccountRepository {
                 });
     }
 
+    //db에서 password 찾기
     public void findPassword(String phoneNumber, SingleCallback<Result<User>> callback){
         usersRef.whereEqualTo("phoneNumber",  phoneNumber)
                 .get()
@@ -112,6 +113,20 @@ public class AccountRepository {
                     }
                 });
 
+    }
+
+    public void updatePassword(User user, SingleCallback<Result<User>> callback){
+        usersRef.document(user.getPhoneNumber()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    callback.onComplete(new Result.Success<User>(user));
+                }
+                else{
+                    callback.onComplete(new Result.Error(task.getException()));
+                }
+            }
+        });
     }
 
     //user information add

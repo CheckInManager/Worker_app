@@ -66,7 +66,7 @@ public class InputInformationViewModel extends ViewModel {
                             updateSuccessful.postValue(true);
                         }
                         else{
-                            Log.v("InputInformationViewModel", " : 오류");
+                            String errorMessage = ((Result.Error) result).getError().getMessage();
                         }
                     }
                 }
