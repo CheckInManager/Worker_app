@@ -24,6 +24,20 @@ public class SignUpViewModel extends ViewModel {
         user.setPassword(password);
     }
 
+    public void checkPhoneNumberOverlap(User user){
+        accountRepository.checkPhoneNumber(user, new SingleCallback<Result<User>>() {
+            @Override
+            public void onComplete(Result<User> result) {
+                if (result instanceof Result.Success){
+                    User overlapUser = ((Result.Success<User>)result).getData();
+
+                    Log.v("signViewMode;", ""+ overlapUser.getPhoneNumber());
+                    signUpComplete.postValue(true);
+                }
+            }
+        });
+    }
+
     public void trySignUp(User user) {
         accountRepository.trySignUp(user, new SingleCallback<Result<User>>()
         {
@@ -44,6 +58,10 @@ public class SignUpViewModel extends ViewModel {
     public LiveData<Boolean> getSignUpComplete() {
         return signUpComplete;
     }
+
+    public LiveData<Boolean> getOverlapCheck(){return signUpComplete;}
+
+    public void setInit(){ signUpComplete.postValue(false);}
 
     public User getUser() {
         return user;

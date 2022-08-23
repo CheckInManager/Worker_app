@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,8 @@ public class SignInFragment extends Fragment {
     private EditText et_password;
     private Button bt_signUp;
     private Button bt_signIn;
+    private TextView tv_alarmText;
+
     private Button bt_findPassword;
 
     private Context context;
@@ -51,6 +54,8 @@ public class SignInFragment extends Fragment {
         bt_signUp = binding.signInBtSignUp;
         bt_signIn = binding.SignInBtSignIn;
         bt_findPassword = binding.SignInBtFindPassword;
+
+        tv_alarmText = binding.signInTvAlarmText;
 
         context = container.getContext();
 
@@ -73,7 +78,21 @@ public class SignInFragment extends Fragment {
             public void onClick(View view) {
                 String phoneNumber = et_phoneNumber.getText().toString();
                 String password = et_password.getText().toString();
-                signInViewModel.trySignIn(phoneNumber, password);
+
+                if(phoneNumber.equals("") && password.equals("")){
+                    tv_alarmText.setText("핸드폰 번호와 비밀번호를 입력해주세요.");
+                }
+                else if(phoneNumber.equals("")){
+                    tv_alarmText.setText("핸드폰 번호를 입력해주세요.");
+                }
+                else if(password.equals("")){
+                    tv_alarmText.setText("비밀번호를 입력해주세요.");
+                }
+                else{
+                    signInViewModel.trySignIn(phoneNumber, password);
+                }
+
+
                 }
         });
 
@@ -82,7 +101,7 @@ public class SignInFragment extends Fragment {
             public void onChanged(Boolean isLoggedIn) {
                 if (isLoggedIn) {
 
-                    //information inputted null 값 정보 확인
+                    //information inputted null 값 정보 확인 후 scan fragment 이동
                     if(signInViewModel.getCurrentUser().getName() == null || !signInViewModel.getCurrentUser().getPicture()){
                         navController.navigate(R.id.action_navigation_signIn_to_navigation_inputInformation);
                     }
@@ -93,7 +112,7 @@ public class SignInFragment extends Fragment {
 
 
                 } else {
-                    //로그인 안 됨
+                    //tv_alarmText.setText("전화번호가 등록되지 않았거나 비밀번호가 일치하지 않습니다.");
                 }
             }
         });

@@ -52,9 +52,7 @@ public class AccountRepository {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
-                            for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
-
-                            }
+                            callback.onComplete(new Result.Success<User>(user));
                         }
                     }
                 });

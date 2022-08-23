@@ -69,10 +69,13 @@ public class SignUpFragment extends Fragment {
                 String confirmPassword = et_confirmPassword.getText().toString();
 
 
+
+                //blocking edit text - insert to blank
                 if(!phoneNumber.equals("") && !password.equals("") && !confirmPassword.equals("")){
+
+                    //blocking edit text - not incorrect password & password confirm
                     if (password.equals(confirmPassword)) {
                         signUpViewModel.setUserAccount(phoneNumber, password);
-
                         signUpViewModel.trySignUp(signUpViewModel.getUser());
                     } else {
                         tv_alarmText.setText("비밀번호가 동일하지 않습니다.");
@@ -88,18 +91,18 @@ public class SignUpFragment extends Fragment {
                     tv_alarmText.setText("비밀번호를 다시 입력해주세요.");
                 }
 
-
-
             }
         });
+
 
         signUpViewModel.getSignUpComplete().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean signUp) {
                 if (signUp) {
-                    //navController.navigate(R.id.action_navigation_signUp_to_navigation_signIn);
-                } else {
+                    navController.navigate(R.id.action_navigation_signUp_to_navigation_signIn);
 
+                } else {
+                    
                 }
             }
         });
