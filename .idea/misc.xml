@@ -3,25 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Changmin/AndroidStudioProjects/Worker_app/app/src/main/res/layout/activity_main.xml" value="0.4230072463768116" />
-        <entry key="..\:/Users/Changmin/AndroidStudioProjects/Worker_app/app/src/main/res/layout/fragment_inputinformation.xml" value="0.6666666666666666" />
-        <entry key="..\:/Users/Changmin/AndroidStudioProjects/Worker_app/app/src/main/res/layout/fragment_scanqrcode.xml" value="0.4230072463768116" />
-        <entry key="..\:/Users/Changmin/AndroidStudioProjects/Worker_app/app/src/main/res/layout/fragment_signin.xml" value="0.4466666666666667" />
-        <entry key="..\:/Users/Changmin/AndroidStudioProjects/Worker_app/app/src/main/res/layout/fragment_signup.xml" value="0.4230072463768116" />
-        <entry key="..\:/Users/chois/StudioProjects/Worker_app/app/src/main/res/layout/fragment_inputinformation.xml" value="0.1" />
-        <entry key="..\:/Users/chois/StudioProjects/Worker_app/app/src/main/res/layout/fragment_scanneddevicedetails.xml" value="0.1" />
-        <entry key="..\:/Users/chois/StudioProjects/Worker_app/app/src/main/res/layout/fragment_scanqr.xml" value="0.16" />
-        <entry key="..\:/Users/chois/StudioProjects/Worker_app/app/src/main/res/layout/scanneddevicedetails.xml" value="0.17119565217391305" />
-        <entry key="..\:/Users/lim12/Worker/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/lim12/Worker/app/src/main/res/layout/fragment_addcareer.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/lim12/Worker/app/src/main/res/layout/fragment_addcareeritem.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/lim12/Worker/app/src/main/res/layout/fragment_addcareerlist.xml" value="0.396286231884058" />
-        <entry key="..\:/Users/lim12/Worker/app/src/main/res/layout/fragment_inputinformation.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/lim12/Worker/app/src/main/res/layout/fragment_item.xml" value="0.4453125" />
-        <entry key="..\:/Users/lim12/Worker/app/src/main/res/layout/fragment_item_list.xml" value="0.20947315096251268" />
-        <entry key="..\:/Users/lim12/Worker/app/src/main/res/layout/fragment_login.xml" value="0.2682370820668693" />
-        <entry key="..\:/Users/lim12/Worker/app/src/main/res/layout/fragment_scanqr.xml" value="0.1" />
-        <entry key="..\:/Users/lim12/Worker/app/src/main/res/layout/fragment_scanqrcode.xml" value="0.17983789260385005" />
+        <entry key="..\:/Users/lim12/Worker_app/app/src/main/res/layout/fragment_findpassword.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/lim12/Worker_app/app/src/main/res/layout/fragment_signin.xml" value="0.254981884057971" />
+        <entry key="..\:/Users/lim12/Worker_app/app/src/main/res/layout/fragment_signup.xml" value="0.4466666666666667" />
       </map>
     </option>
   </component>

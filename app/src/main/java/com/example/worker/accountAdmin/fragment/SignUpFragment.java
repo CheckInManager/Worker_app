@@ -8,18 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.worker.R;
-import com.example.worker.accountAdmin.model.User;
 import com.example.worker.accountAdmin.viewModel.SignUpViewModel;
 import com.example.worker.databinding.FragmentSignupBinding;
 
@@ -34,7 +35,8 @@ public class SignUpFragment extends Fragment {
     private EditText et_password;
     private EditText et_confirmPassword;
 
-    public boolean check = false;
+    private TextView tv_alarmText;
+
     private Context context;
 
     @Nullable
@@ -48,6 +50,7 @@ public class SignUpFragment extends Fragment {
         et_phoneNumber = binding.signUpEtTel;
         et_password = binding.signUpEtPasswrod;
         et_confirmPassword = binding.signUpEtConfirmPassword;
+        tv_alarmText = binding.signUpTvAlarmText;
 
         context = container.getContext();
 
@@ -60,30 +63,42 @@ public class SignUpFragment extends Fragment {
         bt_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String phoneNumber = et_phoneNumber.getText().toString();
                 String password = et_password.getText().toString();
                 String confirmPassword = et_confirmPassword.getText().toString();
 
-                if(password.equals(confirmPassword)){
-                    signUpViewModel.setUserAccount(phoneNumber, password);
 
-                    signUpViewModel.trySignUp(signUpViewModel.getUser());
+                if(!phoneNumber.equals("") && !password.equals("") && !confirmPassword.equals("")){
+                    if (password.equals(confirmPassword)) {
+                        signUpViewModel.setUserAccount(phoneNumber, password);
+
+                        signUpViewModel.trySignUp(signUpViewModel.getUser());
+                    } else {
+                        tv_alarmText.setText("비밀번호가 동일하지 않습니다.");
+                    }
                 }
-                else{
-                    Log.v("signup fragment ", "비밀번호가 동일하지 않습니다.");
-                    //Toast.makeText(context, "비밀번호가 동일하지 않습니다. ", Toast.LENGTH_SHORT).show();
+                else if(phoneNumber.equals("")){
+                    tv_alarmText.setText("전화번호를 입력해주세요");
                 }
+                else if(password.equals("")){
+                    tv_alarmText.setText("비밀번호를 입력해주세요.");
+                }
+                else if(confirmPassword.equals("")){
+                    tv_alarmText.setText("비밀번호를 다시 입력해주세요.");
+                }
+
+
+
             }
         });
 
         signUpViewModel.getSignUpComplete().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean signUp) {
-                if(signUp){
-                    navController.navigate(R.id.action_navigation_signUp_to_navigation_signIn);
-                }
-                else
-                {
+                if (signUp) {
+                    //navController.navigate(R.id.action_navigation_signUp_to_navigation_signIn);
+                } else {
 
                 }
             }
