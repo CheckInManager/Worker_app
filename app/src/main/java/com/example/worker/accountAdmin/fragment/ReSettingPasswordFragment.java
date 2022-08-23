@@ -52,6 +52,8 @@ public class ReSettingPasswordFragment extends Fragment {
         reSettingPasswordViewModel.updatePassword(reSettingPasswordViewModel.getCurrUser());
 
         //버튼 클릭시 -> framelayout으로 넣어서 findpasswordfragment에 있는 버튼을 써야함
+
+
         String password = et_password.getText().toString();
         String confirmPassword = et_password.getText().toString();
 
