@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.worker.accountAdmin.viewModel.AddCareerListItem;
-import com.example.worker.databinding.FragmentAddcareeritemBinding;
+import com.example.worker.databinding.ObjectAddcareeritemBinding;
 
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class AddCareerRecycleViewAdapter extends Adapter<AddCareerRecycleViewAda
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(FragmentAddcareeritemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(ObjectAddcareeritemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 
     }
 
@@ -53,7 +53,7 @@ public class AddCareerRecycleViewAdapter extends Adapter<AddCareerRecycleViewAda
     public class ViewHolder extends RecyclerView.ViewHolder {
         protected  TextView tv_career;
 
-        public ViewHolder(@NonNull FragmentAddcareeritemBinding binding) {
+        public ViewHolder(@NonNull ObjectAddcareeritemBinding binding) {
             super(binding.getRoot());
             tv_career = binding.addCareerTvCareer;
         }
