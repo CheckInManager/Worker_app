@@ -36,12 +36,6 @@ public class AddCareerRecycleViewAdapter extends Adapter<AddCareerRecycleViewAda
         String career = records.get(position).getCareer();
         holder.tv_career.setText(career);
 
-       /*
-       for(int i =0; i<records.size(); i++) {
-            AddCareerListItem currRecord = records.get(i);
-            holder.tv_career.setText(currRecord.getCareer());
-        }
-      */
 
     }
 
