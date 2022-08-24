@@ -101,6 +101,7 @@ public class AccountRepository {
                         if(task.isSuccessful()){
                             for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                 User foundUser = documentSnapshot.toObject(User.class);
+                                currUser = foundUser;
                                 if(foundUser.getPhoneNumber().equals(phoneNumber)){
                                     callback.onComplete(new Result.Success<User>(foundUser));
                                 }
