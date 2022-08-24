@@ -24,11 +24,21 @@
         android:id="@+id/ScannedDeviceDetails_tv_notice"
         android:layout_width="103dp"
         android:layout_height="46dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:text="공지 사항"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <FrameLayout
+        android:layout_width="409dp"
+        android:layout_height="396dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ScannedDeviceDetails_tv_notice">
+
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

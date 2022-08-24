@@ -143,7 +143,7 @@ public class InputInformationFragment extends Fragment {
 
                 String name = et_name.getText().toString();
 
-                if(name != null){
+                if(!name.equals("")){
                     inputInformationViewModel.updateUserInformation(name, inputInformationViewModel.getCareerListItems());
                     navController.navigate(R.id.action_navigation_inputInformation_to_navigation_scanQrCode);
                 }
