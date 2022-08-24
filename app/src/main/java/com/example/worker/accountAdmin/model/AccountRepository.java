@@ -115,7 +115,7 @@ public class AccountRepository {
                 });
 
     }
-
+   //find a password -> re setting password
     public void updatePassword(User user, SingleCallback<Result<User>> callback){
         usersRef.document(user.getPhoneNumber()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -165,6 +165,7 @@ public class AccountRepository {
             }
         });
     }
+
 
     //저장된 이미지 가져오기
     public void downloadUserImage(String phoneNumber) {

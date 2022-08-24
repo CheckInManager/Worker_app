@@ -2,6 +2,7 @@ package com.example.worker.accountAdmin.fragment;
 
 import android.os.Bundle;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -47,12 +49,11 @@ public class ReSettingPasswordFragment extends Fragment {
         reSettingPasswordViewModel = new ViewModelProvider(this).get(ReSettingPasswordViewModel.class);
 
 
-        //안됨!! ㅠㅠ
-        View view = inflater.inflate(R.layout.fragment_findpassword, container, true);
-        tv_alarm = binding.test;
+        tv_alarm = binding.reSettingPasswordTvAlarm;
         et_password = binding.reSettingPasswordEtPassword;
         et_confirmPassword = binding.reSettingPasswordEtConfirmpassword;
-        bt_confirm = view.findViewById(R.id.findPassword_bt_confirm);
+        bt_confirm = binding.reSettingPasswordBtConfirm;
+
 
         return binding.getRoot();
     }
@@ -62,22 +63,37 @@ public class ReSettingPasswordFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        reSettingPasswordViewModel.updatePassword(reSettingPasswordViewModel.getCurrUser());
-
-        //버튼 클릭시 -> framelayout으로 넣어서 findpasswordfragment에 있는 버튼을 써야함
-
         bt_confirm.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                tv_alarm.setText("hello world");
-            }
+
+                String password = et_password.getText().toString();
+                String confirmPassword = et_confirmPassword.getText().toString();
+
+                if(password.equals(confirmPassword)){
+                    tv_alarm.setText("");
+                    reSettingPasswordViewModel.updatePassword(reSettingPasswordViewModel.getCurrUser(), password);
+
+                    //changed password
+                    reSettingPasswordViewModel.getPasswordUpdate().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+                        @Override
+                        public void onChanged(Boolean updatePassword) {
+                            if(updatePassword){
+                                navController.navigate(R.id.navigation_signIn);
+                            }
+                            else{
+                                tv_alarm.setText("");
+                            }
+                        }
+                    });
+                }
+               else{
+                    tv_alarm.setText("비밀번호가 일치하지 않습니다.");
+
+                    }
+
+             }
         });
-
-        String password = et_password.getText().toString();
-        String confirmPassword = et_confirmPassword.getText().toString();
-
-
-
-
     }
 }

@@ -19,7 +19,9 @@ public class ReSettingPasswordViewModel extends ViewModel {
 
     private User user = accountRepository.getCurrUser();
 
-    public void updatePassword(User user){
+    public void updatePassword(User user, String password){
+        user.setPassword(password);
+
         accountRepository.updatePassword(user, new SingleCallback<Result<User>>() {
             @Override
             public void onComplete(Result<User> result) {

@@ -45,6 +45,16 @@
             app:destination="@id/navigation_signIn" />
     </fragment>
 
+    <fragment
+        android:id="@+id/navigation_reSettingPassword"
+        android:name="com.example.worker.accountAdmin.fragment.ReSettingPasswordFragment"
+        android:label="re setting password"
+        tools:layout="@layout/fragment_resettingpassword" >
+
+        <action
+            android:id="@+id/action_navigation_reSettingPassword_to_navigation_signIn"
+            app:destination="@id/navigation_signIn" />
+    </fragment>
 
 
     <fragment

@@ -88,6 +88,7 @@ public class InputInformationFragment extends Fragment {
         }
         if(currUser.getPicture()){
             inputInformationViewModel.getUserImage();
+
         }
 
 

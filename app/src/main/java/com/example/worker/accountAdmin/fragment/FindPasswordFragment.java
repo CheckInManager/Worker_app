@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,12 +23,15 @@ import com.example.worker.R;
 import com.example.worker.accountAdmin.viewModel.FindPasswordViewModel;
 import com.example.worker.databinding.FragmentFindpasswordBinding;
 
+import org.w3c.dom.Text;
+
 public class FindPasswordFragment extends Fragment {
 
     private FragmentFindpasswordBinding binding;
     private NavController navController;
     private FindPasswordViewModel findPasswordViewModel;
 
+    private TextView tv_alarm;
     private EditText et_phoneNumber;
     private Button bt_confirm;
     private FrameLayout frameLayout;
@@ -40,6 +44,7 @@ public class FindPasswordFragment extends Fragment {
         binding = FragmentFindpasswordBinding.inflate(inflater, container, false);
         navController = NavHostFragment.findNavController(FindPasswordFragment.this);
 
+        tv_alarm = binding.findPasswordTvAlarm;
         et_phoneNumber = binding.findPasswordEtPhoneNumber;
         bt_confirm = binding.findPasswordBtConfirm;
         frameLayout = binding.findPasswordFrameLayout;
@@ -64,9 +69,13 @@ public class FindPasswordFragment extends Fragment {
                     @Override
                     public void onChanged(Boolean found) {
                         if(found){
+                            tv_alarm.setText("");
                             FragmentTransaction fragmentTransaction =  getChildFragmentManager().beginTransaction();
                             ReSettingPasswordFragment reSettingPasswordFragment = new  ReSettingPasswordFragment();
                             fragmentTransaction.replace(R.id.findPassword_frameLayout , reSettingPasswordFragment).commit();
+                        }
+                        else{
+                            tv_alarm.setText("계정이 존재하지 않습니다.");
                         }
                     }
                 });
