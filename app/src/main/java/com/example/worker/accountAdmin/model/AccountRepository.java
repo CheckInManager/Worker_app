@@ -44,6 +44,13 @@ public class AccountRepository {
         return INSTANCE;
     }
 
+    public void checkOverlapPhoneNumber(String phoneNumber){
+
+        //회원가입 전 전화번호 중복 확인
+
+
+    }
+
 
     //sign up
     public void trySignUp(User user, SingleCallback<Result<User>> callback) {
@@ -116,6 +123,7 @@ public class AccountRepository {
                 });
 
     }
+
    //find a password -> re setting password
     public void updatePassword(User user, SingleCallback<Result<User>> callback){
         usersRef.document(user.getPhoneNumber()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -207,12 +215,10 @@ public class AccountRepository {
         return currUser;
     }
 
-
     //recycle view 에서 뽑을 item을 careerList에 넣음
     public void setCareerRecords(AddCareerListItem item) {
         careerList.add(item);
     }
-
 
     public List<AddCareerListItem> getCareerList() {
         return careerList;
