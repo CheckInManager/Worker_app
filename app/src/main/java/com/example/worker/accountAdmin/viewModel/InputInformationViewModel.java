@@ -1,6 +1,7 @@
 package com.example.worker.accountAdmin.viewModel;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -13,6 +14,7 @@ import com.example.worker.accountAdmin.model.Result;
 import com.example.worker.accountAdmin.model.SingleCallback;
 import com.example.worker.accountAdmin.model.User;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 public class InputInformationViewModel extends ViewModel {
@@ -25,6 +27,7 @@ public class InputInformationViewModel extends ViewModel {
     //user information
     private User user = accountRepository.getCurrUser();
     private Bitmap currUserBitmap;
+    private Uri userImageUri;
 
     //career
     private AddCareerListItem addCareerItem;
@@ -73,6 +76,23 @@ public class InputInformationViewModel extends ViewModel {
         );
     }
 
+    //get image
+    public void getUserImage(){
+        accountRepository.downloadUserImage(getCurrUser().getPhoneNumber(), new SingleCallback<Result<User>>() {
+            @Override
+            public void onComplete(Result<User> result) {
+                if(result instanceof Result.Success){
+                    userImageUri = ((Result.Success<Uri>)result).getData();
+                }
+                else{
+                    //오류
+                }
+            }
+        });
+    }
+
+    public Uri getUserImageUri(){return userImageUri;}
+
     public User getCurrUser() {
         return user;
     }
@@ -105,10 +125,10 @@ public class InputInformationViewModel extends ViewModel {
         return careerListItems;
     }
 
-    public void getUserImage(){
-        accountRepository.downloadUserImage(getCurrUser().getPhoneNumber());
-    }
 
+    public void setPicture(){
+        user.setPicture(true);
+    }
 
 
 }

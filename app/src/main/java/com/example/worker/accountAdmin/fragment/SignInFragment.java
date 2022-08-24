@@ -105,7 +105,7 @@ public class SignInFragment extends Fragment {
             public void onChanged(Boolean isLoggedIn) {
                 if (isLoggedIn) {
                     //information inputted null 값 정보 확인 후 scan fragment 이동
-                    if(signInViewModel.getCurrentUser().getName() == null || !signInViewModel.getCurrentUser().getPicture()){
+                    if(signInViewModel.getCurrentUser().getName() == null && !signInViewModel.getCurrentUser().getPicture()){
                         navController.navigate(R.id.action_navigation_signIn_to_navigation_inputInformation);
                     }
                     else{

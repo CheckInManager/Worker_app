@@ -8,6 +8,8 @@ public class NoticeViewModel extends ViewModel {
     MutableLiveData<Boolean> getDBNotice = new MutableLiveData<>(false);
 
 
+
+
     public LiveData<Boolean> getGetDBNotice() {
         return getDBNotice;
     }

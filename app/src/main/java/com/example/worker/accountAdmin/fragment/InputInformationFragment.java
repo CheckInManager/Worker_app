@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -51,7 +52,7 @@ public class InputInformationFragment extends Fragment {
     private ImageButton bt_img;
     private Button bt_complete;
     private Button bt_addCareer;
-
+    private TextView tv_alarm;
 
 
     private ArrayList<AddCareerListItem> careerList = new ArrayList<>();
@@ -71,7 +72,7 @@ public class InputInformationFragment extends Fragment {
         et_career = binding.InputInformationEtCareer;
         bt_complete = binding.InputInformationBtComplete;
         bt_addCareer = binding.inputInformationBtAddCareer;
-
+        tv_alarm = binding.inputInformaitonTvAlarm;
 
         return binding.getRoot();
     }
@@ -88,7 +89,7 @@ public class InputInformationFragment extends Fragment {
         }
         if(currUser.getPicture()){
             inputInformationViewModel.getUserImage();
-
+            bt_img.setImageURI(inputInformationViewModel.getUserImageUri());
         }
 
 
@@ -118,6 +119,10 @@ public class InputInformationFragment extends Fragment {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                 launchGallery.launch(intent);
+
+                //DB에 들어간 걸 확인하지 않고 true로..? -> 이렇지 않으면 공백 블로킹을 못해.. -> 이미지를 체크하는 새 메소드를 만들어서..?
+                inputInformationViewModel.getCurrUser().setPicture(true);
+
             }
         });
 
@@ -143,9 +148,13 @@ public class InputInformationFragment extends Fragment {
 
                 String name = et_name.getText().toString();
 
-                if(!name.equals("")){
+                //미입력시 화면 이동 정지
+                if(!name.equals("") && inputInformationViewModel.getCurrUser().getPicture()){
                     inputInformationViewModel.updateUserInformation(name, inputInformationViewModel.getCareerListItems());
                     navController.navigate(R.id.action_navigation_inputInformation_to_navigation_scanQrCode);
+                }
+                else{
+                    tv_alarm.setText("사진과 이름을 입력해주세요.");
                 }
             }
         });

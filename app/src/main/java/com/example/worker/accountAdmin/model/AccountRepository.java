@@ -21,6 +21,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -150,10 +151,11 @@ public class AccountRepository {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         currUserBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
-
         StorageReference uploadRef = firebaseStorage.getReference().child("userImages/user_" + phoneNumber);
         UploadTask uploadTask = uploadRef.putBytes(data);
-        currUser.setPicture(true);
+
+        //currUser.setPicture(true);
+
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
@@ -167,14 +169,15 @@ public class AccountRepository {
     }
 
 
-    //저장된 이미지 가져오기
-    public void downloadUserImage(String phoneNumber) {
+    //download user image
+    public void downloadUserImage(String phoneNumber, SingleCallback<Result<User>> callback) {
         StorageReference loadRef = firebaseStorage.getReference();
         loadRef.child("userImages/user_" + phoneNumber).
                 getDownloadUrl()
                 .addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
+                        callback.onComplete(new Result.Success<Uri>(uri));
                         Log.d("repository image", String.valueOf(uri));
 
                     }
