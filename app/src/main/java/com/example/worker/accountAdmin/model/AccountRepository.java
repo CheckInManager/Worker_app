@@ -113,7 +113,10 @@ public class AccountRepository {
                                 } else {
                                     callback.onComplete(new Result.Error(new Exception("Password is incorrect")));
                                 }
-
+                                //사용자 등록 유무 확인
+                                if(foundUser.getPhoneNumber().equals("")){
+                                    callback.onComplete(new Result.Error(new Exception("do not registered user account")));
+                                }
 
                             }
                         } else {

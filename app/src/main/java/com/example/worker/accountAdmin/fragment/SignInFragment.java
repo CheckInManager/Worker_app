@@ -114,7 +114,7 @@ public class SignInFragment extends Fragment {
 
 
                 } else {
-                    tv_alarmText.setText(signInViewModel.getErrorMessage());
+                    //tv_alarmText.setText(signInViewModel.getErrorMessage());
                 }
             }
         });

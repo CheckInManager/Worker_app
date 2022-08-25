@@ -39,6 +39,7 @@ public class SignInViewModel extends ViewModel
                 else
                 {
                     errorMessage = ((Result.Error) result).getError().getMessage();
+                    setErrorMessage(errorMessage);
                 }
             }
         });
@@ -60,6 +61,10 @@ public class SignInViewModel extends ViewModel
 
     public User getCurrentUser(){
         return accountRepository.getCurrUser();
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
     public String getErrorMessage(){return errorMessage;}}
