@@ -7,8 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.worker.accountAdmin.viewModel.AddCareerListItem;
-import com.example.worker.databinding.ObjectAddcareeritemBinding;
+import com.example.worker.accountAdmin.model.Notice;
 import com.example.worker.databinding.ObjectNoticeitemBinding;
 
 import java.util.ArrayList;
@@ -16,10 +15,10 @@ import java.util.ArrayList;
 public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycleViewAdapter.ViewHolder> {
 
 
-    private ArrayList<AddCareerListItem> records;
+    private ArrayList<Notice> records;
 
 
-    public NoticeRecycleViewAdapter(ArrayList<AddCareerListItem> items) {
+    public NoticeRecycleViewAdapter(ArrayList<Notice> items) {
         this.records = items;
     }
 
@@ -32,8 +31,8 @@ public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycle
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        //
-        //
+        String noticeTitle  =records.get(position).getNoticeName();
+        holder.tv_notice.setText(noticeTitle);
 
     }
 

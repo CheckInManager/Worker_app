@@ -17,10 +17,8 @@ public class SignUpViewModel extends ViewModel {
 
     private MutableLiveData<Boolean> signUpComplete = new MutableLiveData<>(false);
 
-    private User user =new User();
+    private User user = new User();
 
-    //전화번호 중복 확인 - 입력한 전화번호
-    String phoneNumber;
 
     public void setUserAccount(String phoneNumber, String password) {
         user.setPhoneNumber(phoneNumber);
@@ -28,37 +26,20 @@ public class SignUpViewModel extends ViewModel {
     }
 
     public void trySignUp(User user) {
-        //전화번호 중복 확인`
-        accountRepository.checkOverlapPhoneNumber(user.getPhoneNumber(), new SingleCallback<Result<String>>() {
+
+        //회원가입
+        accountRepository.trySignUp(user, new SingleCallback<Result<User>>() {
             @Override
-            public void onComplete(Result<String> result) {
-                if (result instanceof  Result.Success){
-                    //회원가입
-                    accountRepository.trySignUp(user, new SingleCallback<Result<User>>()
-                    {
-                        @Override
-                        public void onComplete(Result<User> result) {
-                            if (result instanceof Result.Success)
-                            {
-                                User SignUser = ((Result.Success<User>)result).getData();
-                                signUpComplete.postValue(true);
-                            } else {
-                                String errorMessage = ((Result.Error) result).getError().getMessage();
-                                Log.v("sign up view model: " , "회원가입 실패");
-                            }
-                        }
-                    });
+            public void onComplete(Result<User> result) {
+                if (result instanceof Result.Success) {
+                    User SignUser = ((Result.Success<User>) result).getData();
+                    signUpComplete.postValue(true);
+                } else {
+                    String errorMessage = ((Result.Error) result).getError().getMessage();
+                    Log.v("sign up view model: ", "회원가입 실패");
                 }
-                else{
-                    Log.v("sign up view model: ", "전화번호 중복");
-                }
-
             }
-
-
         });
-
-
 
 
     }
@@ -67,18 +48,12 @@ public class SignUpViewModel extends ViewModel {
         return signUpComplete;
     }
 
-    public LiveData<Boolean> getOverlapCheck(){return signUpComplete;}
+    public LiveData<Boolean> getOverlapCheck() {
+        return signUpComplete;
+    }
 
     public User getUser() {
         return user;
     }
 
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
 }

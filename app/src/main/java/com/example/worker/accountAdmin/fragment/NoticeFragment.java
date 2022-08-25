@@ -12,8 +12,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.worker.accountAdmin.model.Notice;
 import com.example.worker.accountAdmin.viewModel.NoticeViewModel;
 import com.example.worker.databinding.FragmentNoticelistBinding;
+
+import java.util.ArrayList;
 
 public class NoticeFragment extends Fragment {
 
@@ -30,7 +33,8 @@ public class NoticeFragment extends Fragment {
         binding = FragmentNoticelistBinding.inflate(inflater, container, false);
         rv_noticeView = binding.getNoticeListRecycleViewNoticeList;
 
-        //noticeRecycleViewAdapter = new NoticeRecycleViewAdapter();
+        //db 받아오는 과정 필요 (observe)
+        noticeRecycleViewAdapter = new NoticeRecycleViewAdapter(noticeViewModel.getNoticeArrayList());
 
         return binding.getRoot();
     }

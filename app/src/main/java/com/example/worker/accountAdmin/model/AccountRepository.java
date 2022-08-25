@@ -44,7 +44,7 @@ public class AccountRepository {
         return INSTANCE;
     }
 
-    public void checkOverlapPhoneNumber(String phoneNumber, SingleCallback<Result<String>> callback){
+    public void checkOverlapPhoneNumber(String phoneNumber, SingleCallback<Result<String>> callback) {
 
         //회원가입 전 전화번호 중복 확인
         usersRef.whereEqualTo("phoneNumber", phoneNumber)
@@ -52,17 +52,16 @@ public class AccountRepository {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                 User foundUser = documentSnapshot.toObject(User.class);
-                                Log.d("dbphoneNumber" , foundUser.getPhoneNumber());
-                                //db에 같은 phoneNumber가 없다면
-                                if(!foundUser.getPhoneNumber().equals(phoneNumber)){
+
+                                if (!foundUser.getPhoneNumber().equals(phoneNumber)) {
                                     callback.onComplete(new Result.Success<String>(phoneNumber));
                                 }
                             }
-                        }
-                        else{
+
+                        } else {
                             callback.onComplete(new Result.Error(new Exception("Network call failed: checking overlap")));
                         }
                     }
@@ -74,7 +73,7 @@ public class AccountRepository {
     //sign up
     public void trySignUp(User user, SingleCallback<Result<User>> callback) {
 
-
+        //sign up
         usersRef.document(user.getPhoneNumber())
                 .set(user)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -114,7 +113,7 @@ public class AccountRepository {
                                     callback.onComplete(new Result.Error(new Exception("Password is incorrect")));
                                 }
                                 //사용자 등록 유무 확인
-                                if(foundUser.getPhoneNumber().equals("")){
+                                if (foundUser.getPhoneNumber().equals("")) {
                                     callback.onComplete(new Result.Error(new Exception("do not registered user account")));
                                 }
 
@@ -127,23 +126,22 @@ public class AccountRepository {
     }
 
     //db에서 password 찾기
-    public void findPassword(String phoneNumber, SingleCallback<Result<User>> callback){
-        usersRef.whereEqualTo("phoneNumber",  phoneNumber)
+    public void findPassword(String phoneNumber, SingleCallback<Result<User>> callback) {
+        usersRef.whereEqualTo("phoneNumber", phoneNumber)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                 User foundUser = documentSnapshot.toObject(User.class);
                                 currUser = foundUser;
-                                if(foundUser.getPhoneNumber().equals(phoneNumber)){
+                                if (foundUser.getPhoneNumber().equals(phoneNumber)) {
                                     callback.onComplete(new Result.Success<User>(foundUser));
                                 }
                             }
 
-                        }
-                        else{
+                        } else {
                             callback.onComplete(new Result.Error(new Exception("failed find a password")));
                         }
                     }
@@ -151,15 +149,14 @@ public class AccountRepository {
 
     }
 
-   //find a password -> re setting password
-    public void updatePassword(User user, SingleCallback<Result<User>> callback){
+    //find a password -> re setting password
+    public void updatePassword(User user, SingleCallback<Result<User>> callback) {
         usersRef.document(user.getPhoneNumber()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     callback.onComplete(new Result.Success<User>(user));
-                }
-                else{
+                } else {
                     callback.onComplete(new Result.Error(task.getException()));
                 }
             }

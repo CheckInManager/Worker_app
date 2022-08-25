@@ -22,13 +22,14 @@
 
     <TextView
         android:id="@+id/ScannedDeviceDetails_tv_notice"
-        android:layout_width="103dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="110dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="28dp"
         android:text="공지 사항"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 

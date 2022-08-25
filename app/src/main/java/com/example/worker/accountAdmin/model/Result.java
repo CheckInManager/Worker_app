@@ -5,6 +5,8 @@ package com.example.worker.accountAdmin.model;
  */
 public class Result<T>
 {
+    public static Object Success;
+
     // hide the private constructor to limit subclass types (Success, Error)
     private Result()
     {
