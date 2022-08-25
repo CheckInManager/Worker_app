@@ -31,7 +31,7 @@ public class SignUpViewModel extends ViewModel {
             public void onComplete(Result<String> result) {
                 if(result instanceof Result.Success){
 
-                    //회원가입
+                    //회원가입.
                     accountRepository.trySignUp(user, new SingleCallback<Result<User>>() {
                         @Override
                         public void onComplete(Result<User> result) {
