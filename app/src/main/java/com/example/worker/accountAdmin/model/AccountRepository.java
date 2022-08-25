@@ -44,16 +44,36 @@ public class AccountRepository {
         return INSTANCE;
     }
 
-    public void checkOverlapPhoneNumber(String phoneNumber){
+    public void checkOverlapPhoneNumber(String phoneNumber, SingleCallback<Result<String>> callback){
 
         //회원가입 전 전화번호 중복 확인
-
+        usersRef.whereEqualTo("phoneNumber", phoneNumber)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                                User foundUser = documentSnapshot.toObject(User.class);
+                                Log.d("dbphoneNumber" , foundUser.getPhoneNumber());
+                                //db에 같은 phoneNumber가 없다면
+                                if(!foundUser.getPhoneNumber().equals(phoneNumber)){
+                                    callback.onComplete(new Result.Success<String>(phoneNumber));
+                                }
+                            }
+                        }
+                        else{
+                            callback.onComplete(new Result.Error(new Exception("Network call failed: checking overlap")));
+                        }
+                    }
+                });
 
     }
 
 
     //sign up
     public void trySignUp(User user, SingleCallback<Result<User>> callback) {
+
 
         usersRef.document(user.getPhoneNumber())
                 .set(user)
@@ -70,6 +90,8 @@ public class AccountRepository {
 
                     }
                 });
+
+
 
 
     }
@@ -91,6 +113,8 @@ public class AccountRepository {
                                 } else {
                                     callback.onComplete(new Result.Error(new Exception("Password is incorrect")));
                                 }
+
+
                             }
                         } else {
                             callback.onComplete(new Result.Error(new Exception("Network call failed: Sign In")));

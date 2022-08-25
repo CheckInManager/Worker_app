@@ -87,7 +87,7 @@ public class SignUpFragment extends Fragment {
                 else if(password.equals("")){
                     tv_alarmText.setText("비밀번호를 입력해주세요.");
                 }
-                else if(confirmPassword.equals("")){
+                else {
                     tv_alarmText.setText("비밀번호를 다시 입력해주세요.");
                 }
 
