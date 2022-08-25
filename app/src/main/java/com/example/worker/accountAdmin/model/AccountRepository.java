@@ -52,16 +52,28 @@ public class AccountRepository {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        List<User> foundUserList = new ArrayList<>();
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                                User foundUser = documentSnapshot.toObject(User.class);
-
-                                if (!foundUser.getPhoneNumber().equals(phoneNumber)) {
-                                    callback.onComplete(new Result.Success<String>(phoneNumber));
+                            List<DocumentSnapshot> snapshots = task.getResult().getDocuments();
+                            for (DocumentSnapshot documentSnapshot : snapshots) {
+                                if (documentSnapshot.getString("phoneNumber").equals(phoneNumber)) {
+                                    User foundUser = documentSnapshot.toObject(User.class);
+                                    foundUserList.add(foundUser);
                                 }
                             }
 
-                        } else {
+                                if(foundUserList.size()==0){
+                                    callback.onComplete(new Result.Success<String>(phoneNumber));
+                                }
+                                else{
+                                    callback.onComplete(new Result.Error(new Exception("error")));
+                                }
+
+
+
+
+                        }
+                        else {
                             callback.onComplete(new Result.Error(new Exception("Network call failed: checking overlap")));
                         }
                     }
