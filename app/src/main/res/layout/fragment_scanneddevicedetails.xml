@@ -42,6 +42,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ScannedDeviceDetails_tv_notice">
 
-        <include layout="@layout/fragment_noticelist" />
     </FrameLayout>
+
+    <Button
+        android:id="@+id/ScannedDevicedDetails_Btn_test"
+        android:layout_width="43dp"
+        android:layout_height="51dp"
+        android:text="※"
+        app:layout_constraintBottom_toBottomOf="@+id/ScannedDeviceDetails_tv_notice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.412"
+        app:layout_constraintStart_toEndOf="@+id/ScannedDeviceDetails_tv_notice"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

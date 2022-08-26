@@ -31,7 +31,9 @@ public class NoticeFragment extends Fragment {
     private RecyclerView rv_noticeView;
 
 
-    ArrayList<String> test;
+    ArrayList<Notice> test = new ArrayList<>();
+    Notice notice = new Notice();
+
 
     @Nullable
     @Override
@@ -40,9 +42,41 @@ public class NoticeFragment extends Fragment {
         binding = FragmentNoticelistBinding.inflate(inflater, container, false);
         rv_noticeView = binding.getNoticeListRecycleViewNoticeList;
 
+        notice.setNoticeName("qwrqw");
+        notice.setKeyValue("f");
+        notice.setMemo("dsf");
+        notice.setTime("df");
+        notice.setWorksiteName("df");
+        notice.setNoticeName("df");
 
-        test.add("1");
-        test.add("2");
+
+        test.add(notice);
+
+        noticeRecycleViewAdapter = new NoticeRecycleViewAdapter(test);
+
+
+        rv_noticeView.setAdapter(noticeRecycleViewAdapter);
+        rv_noticeView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        noticeRecycleViewAdapter.notifyDataSetChanged();
+
+
+        noticeViewModel.getNotice();
+        noticeViewModel.getGetDBNotice().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean){
+
+                    //noticeRecycleViewAdapter = new NoticeRecycleViewAdapter(noticeViewModel.getNoticeArrayList());
+
+
+
+
+                }
+
+            }
+
+
+        });
 
 
         return binding.getRoot();
@@ -54,30 +88,6 @@ public class NoticeFragment extends Fragment {
 
 
 
-
-        noticeViewModel.getNotice();
-        noticeViewModel.getGetDBNotice().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                if(aBoolean){
-//                    noticeRecycleViewAdapter = new NoticeRecycleViewAdapter(noticeViewModel.getNoticeArrayList());
-//                    rv_noticeView.setAdapter(noticeRecycleViewAdapter);
-//                    rv_noticeView.setLayoutManager(new LinearLayoutManager(requireContext()));
-//                    noticeRecycleViewAdapter.notifyDataSetChanged();
-
-
-                }
-
-            }
-
-
-
-        });
-
-        noticeRecycleViewAdapter = new NoticeRecycleViewAdapter(test);
-        rv_noticeView.setAdapter(noticeRecycleViewAdapter);
-        rv_noticeView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        noticeRecycleViewAdapter.notifyDataSetChanged();
 
 
     }

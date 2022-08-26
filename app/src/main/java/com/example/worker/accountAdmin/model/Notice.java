@@ -7,7 +7,7 @@ public class Notice {
     private String noticeName;
     private String time;
     private String worksiteName;
-
+    private String worksiteKeyValue;
 
     public Notice(){
 
@@ -51,5 +51,13 @@ public class Notice {
 
     public void setWorksiteName(String worksiteName) {
         this.worksiteName = worksiteName;
+    }
+
+    public String getWorksiteKeyValue() {
+        return worksiteKeyValue;
+    }
+
+    public void setWorksiteKeyValue(String worksiteKeyValue) {
+        this.worksiteKeyValue = worksiteKeyValue;
     }
 }

@@ -1,5 +1,7 @@
 package com.example.worker.accountAdmin.model;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,11 +21,13 @@ public class NoticeRepository {
 
     public static NoticeRepository INSTANCE = new NoticeRepository();
 
+
+
     private FirebaseFirestore noticeStore = FirebaseFirestore.getInstance();
     private CollectionReference noticeRef = noticeStore.collection("notice");
 
 
-    private ArrayList<Object> noticeList;
+    private ArrayList<Notice> noticeList;
 
     private NoticeRepository() {
         noticeList = new ArrayList<>();
@@ -33,8 +37,9 @@ public class NoticeRepository {
         return INSTANCE;
     }
 
-    public void getNotice(SingleCallback<Result<ArrayList>> callback) {
-        noticeRef.get()
+    public void getNotice(String worksite, SingleCallback<Result<ArrayList>> callback) {
+        noticeRef.whereEqualTo("worksiteKeyValue", worksite)
+                .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -42,8 +47,9 @@ public class NoticeRepository {
                             for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                 Notice foundNotice = documentSnapshot.toObject(Notice.class);
                                 noticeList.add(foundNotice);
+                                Log.v("dsf", "" + noticeList.get(0).getMemo());
                             }
-                            callback.onComplete(new Result.Success<ArrayList<Object>>(noticeList));
+                            callback.onComplete(new Result.Success<ArrayList<Notice>>(noticeList));
 
                         }
                         else{

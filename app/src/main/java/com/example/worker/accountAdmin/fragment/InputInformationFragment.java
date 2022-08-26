@@ -151,7 +151,14 @@ public class InputInformationFragment extends Fragment {
                 //미입력시 화면 이동 정지
                 if(!name.equals("") && inputInformationViewModel.getCurrUser().getPicture()){
                     inputInformationViewModel.updateUserInformation(name, inputInformationViewModel.getCareerListItems());
-                    navController.navigate(R.id.action_navigation_inputInformation_to_navigation_scanQrCode);
+
+                    inputInformationViewModel.isUpdateSuccessful().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+                        @Override
+                        public void onChanged(Boolean aBoolean) {
+                            navController.navigate(R.id.action_navigation_inputInformation_to_navigation_scanQrCode);
+                        }
+                    });
+
                 }
                 else{
                     tv_alarm.setText("사진과 이름을 입력해주세요.");
@@ -159,12 +166,7 @@ public class InputInformationFragment extends Fragment {
             }
         });
 
-        inputInformationViewModel.isUpdateSuccessful().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
 
-            }
-        });
     }
 ///
 }

@@ -1,5 +1,6 @@
 package com.example.worker.accountAdmin.fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -16,13 +17,9 @@ public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycle
 
 
     //private ArrayList<Notice> records;
-    private ArrayList<String> records;
+    private ArrayList<Notice> records;
 
-//    public NoticeRecycleViewAdapter(ArrayList<Notice> items) {
-//        this.records = items;
-//    }
-
-    public NoticeRecycleViewAdapter(ArrayList<String> items) {
+    public NoticeRecycleViewAdapter(ArrayList<Notice> items) {
         this.records = items;
     }
 
@@ -37,11 +34,9 @@ public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycle
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        //String noticeTitle  =records.get(position).getNoticeName();
+        String noticeTitle  =records.get(position).getNoticeName();
         //String noticeTitle = records.get(position);
-        //holder.tv_notice.setText(noticeTitle);
-
-        holder.tv_notice.setText("234");
+        holder.tv_notice.setText(noticeTitle);
 
 
     }

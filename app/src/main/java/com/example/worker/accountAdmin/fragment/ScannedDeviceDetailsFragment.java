@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -27,9 +28,10 @@ public class ScannedDeviceDetailsFragment extends Fragment {
     private ScannedDeviceDetailsViewModel scannedDeviceDetailsViewModel;
     private NavController navController;
 
-
     private FrameLayout frameLayout;
-    
+    private Button bt_test;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class ScannedDeviceDetailsFragment extends Fragment {
 
      frameLayout = binding.scannedDeviiceDetailsFramelayout;
 
+        bt_test = binding.ScannedDevicedDetailsBtnTest;
 
         return binding.getRoot();
 
@@ -50,6 +53,14 @@ public class ScannedDeviceDetailsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         frameLayout.setVisibility(View.VISIBLE) ;
 
+        bt_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fragmentTransaction =  getChildFragmentManager().beginTransaction();
+                NoticeFragment noticeFragment = new NoticeFragment();
+                fragmentTransaction.replace(R.id.scannedDeviiceDetails_framelayout , noticeFragment).commit();
+            }
+        });
 
     }
 }

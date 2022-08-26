@@ -36,6 +36,8 @@ public class AccountRepository {
     private User currUser;
     private List<AddCareerListItem> careerList;
 
+    private Notice currNotice;
+
     private AccountRepository() {
         careerList = new ArrayList<>();
     }
@@ -240,6 +242,7 @@ public class AccountRepository {
                 if (task.isSuccessful()) {
                     callback.onComplete(new Result.Success<User>(user));
                 } else {
+                    
                     callback.onComplete(new Result.Error(task.getException()));
                 }
             }
