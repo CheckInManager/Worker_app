@@ -38,8 +38,11 @@ public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycle
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         //String noticeTitle  =records.get(position).getNoticeName();
-        String noticeTitle = records.get(position);
-        holder.tv_notice.setText(noticeTitle);
+        //String noticeTitle = records.get(position);
+        //holder.tv_notice.setText(noticeTitle);
+
+        holder.tv_notice.setText("234");
+
 
     }
 

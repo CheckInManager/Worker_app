@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavHostController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.worker.R;
 import com.example.worker.accountAdmin.viewModel.ScannedDeviceDetailsViewModel;
@@ -28,9 +29,7 @@ public class ScannedDeviceDetailsFragment extends Fragment {
 
 
     private FrameLayout frameLayout;
-
-
-
+    
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,9 +37,7 @@ public class ScannedDeviceDetailsFragment extends Fragment {
      binding = FragmentScanneddevicedetailsBinding.inflate(inflater, container, false);
      navController = NavHostFragment.findNavController(ScannedDeviceDetailsFragment.this);
 
-
-
-
+     frameLayout = binding.scannedDeviiceDetailsFramelayout;
 
 
         return binding.getRoot();
@@ -51,6 +48,7 @@ public class ScannedDeviceDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        frameLayout.setVisibility(View.VISIBLE) ;
 
 
     }
