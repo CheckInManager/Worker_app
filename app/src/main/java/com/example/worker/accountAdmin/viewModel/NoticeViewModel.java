@@ -32,12 +32,12 @@ public class NoticeViewModel extends ViewModel {
             public void onComplete(Result<ArrayList> result) {
                 if (result instanceof Result.Success) {
                     noticeArrayList = ((Result.Success<ArrayList<Notice>>) result).getData();
-                    Log.v("viewmodeltest", noticeArrayList.get(0).getMemo());
+                    Log.v("viewmodeltest", "" +  noticeArrayList.size());
 
                     getDBNotice.postValue(true);
                 }
                 else{
-                    //error
+
                 }
             }
         });

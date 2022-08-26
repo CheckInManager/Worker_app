@@ -21,6 +21,7 @@ import com.example.worker.accountAdmin.model.Notice;
 import com.example.worker.accountAdmin.viewModel.NoticeViewModel;
 import com.example.worker.databinding.FragmentNoticelistBinding;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class NoticeFragment extends Fragment {
@@ -33,6 +34,7 @@ public class NoticeFragment extends Fragment {
 
     Notice notice = new Notice();
 
+    private ArrayList<Notice> noticeArrayList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -40,8 +42,6 @@ public class NoticeFragment extends Fragment {
         noticeViewModel = new ViewModelProvider(this).get(NoticeViewModel.class);
         binding = FragmentNoticelistBinding.inflate(inflater, container, false);
         rv_noticeView = binding.getNoticeListRecycleViewNoticeList;
-
-
 
 
         return binding.getRoot();
@@ -53,23 +53,22 @@ public class NoticeFragment extends Fragment {
 
         noticeViewModel.getNotice();
 
-
-
         noticeViewModel.getGetDBNotice().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
 
                     noticeRecycleViewAdapter = new NoticeRecycleViewAdapter(noticeViewModel.getNoticeArrayList());
-
                     rv_noticeView.setAdapter(noticeRecycleViewAdapter);
                     rv_noticeView.setLayoutManager(new LinearLayoutManager(requireContext()));
                     noticeRecycleViewAdapter.notifyDataSetChanged();
+
                 }
 
             }
-
         });
+
+
 
 
     }

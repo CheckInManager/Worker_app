@@ -3,11 +3,13 @@ package com.example.worker.accountAdmin.fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.worker.BuildConfig;
 import com.example.worker.accountAdmin.model.Notice;
 import com.example.worker.databinding.ObjectNoticeitemBinding;
 
@@ -18,6 +20,7 @@ public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycle
 
     //private ArrayList<Notice> records;
     private ArrayList<Notice> records;
+
 
     public NoticeRecycleViewAdapter(ArrayList<Notice> items) {
         this.records = items;
@@ -34,13 +37,12 @@ public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycle
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        String noticeTitle = records.get(position).getNoticeName();
-        String noticeSiteName = records.get(position).getWorksiteKeyValue();
-        String noticeMemo = records.get(position).getMemo();
+        String memo = records.get(position).getMemo();
+        String name = records.get(position).getNoticeName();
+        String time = records.get(position).getTime();
+        String worksiteName = records.get(position).getWorksiteName();
 
-
-        holder.tv_notice.setText("Title: " + noticeTitle + " /workSiteName: " + noticeSiteName + " /Memo: " + noticeMemo);
-//
+        holder.tv_notice.setText(toString(time, worksiteName, name, memo));
 
 
     }
@@ -66,6 +68,8 @@ public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycle
         }
     }
 
-
+    public String toString(String time, String worksiteName, String name, String memo){
+        return name + " : " + memo + "worksiteName: " + worksiteName + " time: " + time + "\n";
+    }
 
 }

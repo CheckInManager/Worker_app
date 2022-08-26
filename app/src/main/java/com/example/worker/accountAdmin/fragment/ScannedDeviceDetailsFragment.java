@@ -29,7 +29,6 @@ public class ScannedDeviceDetailsFragment extends Fragment {
     private NavController navController;
 
     private FrameLayout frameLayout;
-    private Button bt_test;
 
 
     @Nullable
@@ -41,7 +40,6 @@ public class ScannedDeviceDetailsFragment extends Fragment {
 
      frameLayout = binding.scannedDeviiceDetailsFramelayout;
 
-        bt_test = binding.ScannedDevicedDetailsBtnTest;
 
         return binding.getRoot();
 
@@ -53,14 +51,11 @@ public class ScannedDeviceDetailsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         frameLayout.setVisibility(View.VISIBLE) ;
 
-        bt_test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction fragmentTransaction =  getChildFragmentManager().beginTransaction();
-                NoticeFragment noticeFragment = new NoticeFragment();
-                fragmentTransaction.replace(R.id.scannedDeviiceDetails_framelayout , noticeFragment).commit();
-            }
-        });
+
+        FragmentTransaction fragmentTransaction =  getChildFragmentManager().beginTransaction();
+        NoticeFragment noticeFragment = new NoticeFragment();
+        fragmentTransaction.replace(R.id.scannedDeviiceDetails_framelayout , noticeFragment).commit();
+
 
     }
 }
