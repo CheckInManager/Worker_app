@@ -69,7 +69,7 @@ public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycle
     }
 
     public String toString(String time, String worksiteName, String name, String memo){
-        return name + " : " + memo + "worksiteName: " + worksiteName + " time: " + time + "\n";
+        return "Title: " + name + " \n Memo: " + memo + "\n worksiteName: " + worksiteName + "\n time: " + time + "\n";
     }
 
 }
