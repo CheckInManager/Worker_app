@@ -1,6 +1,7 @@
 package com.example.worker.accountAdmin.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +31,6 @@ public class NoticeFragment extends Fragment {
     private NoticeRecycleViewAdapter noticeRecycleViewAdapter;
     private RecyclerView rv_noticeView;
 
-
-    ArrayList<Notice> test = new ArrayList<>();
     Notice notice = new Notice();
 
 
@@ -42,41 +41,7 @@ public class NoticeFragment extends Fragment {
         binding = FragmentNoticelistBinding.inflate(inflater, container, false);
         rv_noticeView = binding.getNoticeListRecycleViewNoticeList;
 
-        notice.setNoticeName("qwrqw");
-        notice.setKeyValue("f");
-        notice.setMemo("dsf");
-        notice.setTime("df");
-        notice.setWorksiteName("df");
-        notice.setNoticeName("df");
 
-
-        test.add(notice);
-
-        noticeRecycleViewAdapter = new NoticeRecycleViewAdapter(test);
-
-
-        rv_noticeView.setAdapter(noticeRecycleViewAdapter);
-        rv_noticeView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        noticeRecycleViewAdapter.notifyDataSetChanged();
-
-
-        noticeViewModel.getNotice();
-        noticeViewModel.getGetDBNotice().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-                if(aBoolean){
-
-                    //noticeRecycleViewAdapter = new NoticeRecycleViewAdapter(noticeViewModel.getNoticeArrayList());
-
-
-
-
-                }
-
-            }
-
-
-        });
 
 
         return binding.getRoot();
@@ -86,8 +51,25 @@ public class NoticeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
 
+        noticeViewModel.getNotice();
 
 
+
+        noticeViewModel.getGetDBNotice().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean) {
+
+                    noticeRecycleViewAdapter = new NoticeRecycleViewAdapter(noticeViewModel.getNoticeArrayList());
+
+                    rv_noticeView.setAdapter(noticeRecycleViewAdapter);
+                    rv_noticeView.setLayoutManager(new LinearLayoutManager(requireContext()));
+                    noticeRecycleViewAdapter.notifyDataSetChanged();
+                }
+
+            }
+
+        });
 
 
     }

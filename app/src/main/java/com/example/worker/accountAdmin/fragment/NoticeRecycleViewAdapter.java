@@ -34,9 +34,13 @@ public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycle
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        String noticeTitle  =records.get(position).getNoticeName();
-        //String noticeTitle = records.get(position);
-        holder.tv_notice.setText(noticeTitle);
+        String noticeTitle = records.get(position).getNoticeName();
+        String noticeSiteName = records.get(position).getWorksiteKeyValue();
+        String noticeMemo = records.get(position).getMemo();
+
+
+        holder.tv_notice.setText("Title: " + noticeTitle + " /workSiteName: " + noticeSiteName + " /Memo: " + noticeMemo);
+
 
 
     }

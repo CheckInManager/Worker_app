@@ -48,7 +48,7 @@
         android:id="@+id/ScannedDevicedDetails_Btn_test"
         android:layout_width="43dp"
         android:layout_height="51dp"
-        android:text="※"
+        android:text="5"
         app:layout_constraintBottom_toBottomOf="@+id/ScannedDeviceDetails_tv_notice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.412"

@@ -47,7 +47,7 @@ public class NoticeRepository {
                             for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                 Notice foundNotice = documentSnapshot.toObject(Notice.class);
                                 noticeList.add(foundNotice);
-                                Log.v("dsf", "" + noticeList.get(0).getMemo());
+                                Log.v("repository test", "" + noticeList.get(0).getMemo());
                             }
                             callback.onComplete(new Result.Success<ArrayList<Notice>>(noticeList));
 
