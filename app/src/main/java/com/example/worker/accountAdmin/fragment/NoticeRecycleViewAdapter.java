@@ -40,7 +40,7 @@ public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycle
 
 
         holder.tv_notice.setText("Title: " + noticeTitle + " /workSiteName: " + noticeSiteName + " /Memo: " + noticeMemo);
-
+//
 
 
     }
