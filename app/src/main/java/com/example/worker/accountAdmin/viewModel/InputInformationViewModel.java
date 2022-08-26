@@ -47,7 +47,9 @@ public class InputInformationViewModel extends ViewModel {
 
         for(int i =0; i < array.length; i++){
             if(i == array.length-1){
-                tmpCareer += array[i].trim();
+                if(!tmpCareer.equals("")){
+                    tmpCareer += array[i].trim();
+                }
             }
             else{
                 tmpCareer += (array[i].trim()+", ");

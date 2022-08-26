@@ -39,12 +39,6 @@ public class NoticeViewModel extends ViewModel {
     }
 
     public ArrayList<Notice> getNoticeArrayList() {
-
-        //test
-        Notice notice = new Notice();
-        notice.setNoticeName("ff");
-
-        noticeArrayList.add(notice);
         return noticeArrayList;
     }
 }

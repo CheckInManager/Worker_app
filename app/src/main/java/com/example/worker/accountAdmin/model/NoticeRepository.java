@@ -20,7 +20,6 @@ public class NoticeRepository {
     public static NoticeRepository INSTANCE = new NoticeRepository();
 
     private FirebaseFirestore noticeStore = FirebaseFirestore.getInstance();
-    private FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
     private CollectionReference noticeRef = noticeStore.collection("notice");
 
 

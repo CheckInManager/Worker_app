@@ -11,6 +11,7 @@ public class User
     private String name;
     private String career;
     private String worksite;
+    private String memo = "";
     private boolean accidentHistory =false;
     private boolean picture = false;
 
@@ -18,13 +19,14 @@ public class User
     {
     }
 
-    public User(String phoneNumber, String password, String name, String career, boolean picture, String worksite, String accidentHistory)
+    public User(String phoneNumber, String password, String name, String career, boolean picture, String worksite, String accidentHistory, String memo)
     {
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.name = name;
         this.career = career;
         this.worksite = worksite;
+        this.memo = memo;
         this.accidentHistory = false;
         this.picture =false;
     }
@@ -95,6 +97,13 @@ public class User
         this.accidentHistory = accidentHistory;
     }
 
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
 
     @NonNull
     @Override
@@ -104,8 +113,9 @@ public class User
                "phoneNumber=" + phoneNumber + "\"" + "," +
                "name=" + name + "\"" + "," +
                "career=" + career + "\""+
-                "worksite=" + worksite
-               + "}";
+                "worksite=" + worksite +
+                 "memo=" + memo + "\""+
+                "}";
 
     }
 }

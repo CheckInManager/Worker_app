@@ -30,7 +30,7 @@ public class AccountRepository {
     private static final AccountRepository INSTANCE = new AccountRepository();
     private FirebaseFirestore accountStore = FirebaseFirestore.getInstance();
     private FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
-    private CollectionReference usersRef = accountStore.collection("users");
+    private CollectionReference usersRef = accountStore.collection("user");
 
 
     private User currUser;
@@ -195,7 +195,7 @@ public class AccountRepository {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         currUserBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
-        StorageReference uploadRef = firebaseStorage.getReference().child("userImages/user_" + phoneNumber);
+        StorageReference uploadRef = firebaseStorage.getReference().child("userImages/user_" + phoneNumber + ".jpg");
         UploadTask uploadTask = uploadRef.putBytes(data);
 
         //currUser.setPicture(true);
