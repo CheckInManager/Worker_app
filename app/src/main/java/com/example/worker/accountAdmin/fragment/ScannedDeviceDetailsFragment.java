@@ -4,17 +4,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavHostController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.worker.R;
 import com.example.worker.accountAdmin.viewModel.ScannedDeviceDetailsViewModel;
 import com.example.worker.databinding.FragmentScanneddevicedetailsBinding;
 
@@ -23,7 +26,9 @@ public class ScannedDeviceDetailsFragment extends Fragment {
     private ScannedDeviceDetailsViewModel scannedDeviceDetailsViewModel;
     private NavController navController;
 
-    private TextView tv_test;
+
+    private FrameLayout frameLayout;
+
 
 
     @Nullable
@@ -33,7 +38,12 @@ public class ScannedDeviceDetailsFragment extends Fragment {
      binding = FragmentScanneddevicedetailsBinding.inflate(inflater, container, false);
      navController = NavHostFragment.findNavController(ScannedDeviceDetailsFragment.this);
 
-     return binding.getRoot();
+
+
+
+
+
+        return binding.getRoot();
 
 
     }

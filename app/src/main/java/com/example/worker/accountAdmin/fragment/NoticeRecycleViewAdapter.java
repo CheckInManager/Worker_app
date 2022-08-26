@@ -15,12 +15,18 @@ import java.util.ArrayList;
 public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycleViewAdapter.ViewHolder> {
 
 
-    private ArrayList<Notice> records;
+    //private ArrayList<Notice> records;
+    private ArrayList<String> records;
 
+//    public NoticeRecycleViewAdapter(ArrayList<Notice> items) {
+//        this.records = items;
+//    }
 
-    public NoticeRecycleViewAdapter(ArrayList<Notice> items) {
+    public NoticeRecycleViewAdapter(ArrayList<String> items) {
         this.records = items;
     }
+
+
 
     @Override
     public NoticeRecycleViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,7 +37,8 @@ public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycle
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        String noticeTitle  =records.get(position).getNoticeName();
+        //String noticeTitle  =records.get(position).getNoticeName();
+        String noticeTitle = records.get(position);
         holder.tv_notice.setText(noticeTitle);
 
     }

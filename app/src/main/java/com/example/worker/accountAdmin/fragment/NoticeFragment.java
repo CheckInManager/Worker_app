@@ -4,15 +4,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.worker.R;
 import com.example.worker.accountAdmin.model.Notice;
 import com.example.worker.accountAdmin.viewModel.NoticeViewModel;
 import com.example.worker.databinding.FragmentNoticelistBinding;
@@ -27,6 +30,9 @@ public class NoticeFragment extends Fragment {
     private NoticeRecycleViewAdapter noticeRecycleViewAdapter;
     private RecyclerView rv_noticeView;
 
+
+    ArrayList<String> test;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,6 +41,9 @@ public class NoticeFragment extends Fragment {
         rv_noticeView = binding.getNoticeListRecycleViewNoticeList;
 
 
+        test.add("1");
+        test.add("2");
+
 
         return binding.getRoot();
     }
@@ -42,21 +51,34 @@ public class NoticeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+
+
+
+
         noticeViewModel.getNotice();
         noticeViewModel.getGetDBNotice().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if(aBoolean){
-                    noticeRecycleViewAdapter = new NoticeRecycleViewAdapter(noticeViewModel.getNoticeArrayList());
+//                    noticeRecycleViewAdapter = new NoticeRecycleViewAdapter(noticeViewModel.getNoticeArrayList());
+//                    rv_noticeView.setAdapter(noticeRecycleViewAdapter);
+//                    rv_noticeView.setLayoutManager(new LinearLayoutManager(requireContext()));
+//                    noticeRecycleViewAdapter.notifyDataSetChanged();
+
+
                 }
 
             }
+
+
+
         });
 
-
+        noticeRecycleViewAdapter = new NoticeRecycleViewAdapter(test);
         rv_noticeView.setAdapter(noticeRecycleViewAdapter);
         rv_noticeView.setLayoutManager(new LinearLayoutManager(requireContext()));
         noticeRecycleViewAdapter.notifyDataSetChanged();
+
 
     }
 }
