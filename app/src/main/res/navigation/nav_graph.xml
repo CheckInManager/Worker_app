@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_signIn"
+    >
+
+    <fragment
+        android:id="@+id/navigation_signIn"
+        android:name="com.example.worker.accountAdmin.fragment.SignInFragment"
+        android:label="signIn"
+        tools:layout="@layout/fragment_signin" >
+        <action
+            android:id="@+id/action_navigation_signIn_to_navigation_signUp"
+            app:destination="@id/navigation_signUp" />
+        <action
+            android:id="@+id/action_navigation_signIn_to_navigation_inputInformation"
+            app:destination="@id/navigation_inputInformation" />
+        <action
+            android:id="@+id/action_navigation_signIn_to_navigation_scanQrCode"
+            app:destination="@id/navigation_scanQrCode" />
+        <action
+            android:id="@+id/action_navigation_signIn_to_navigation_findPassword"
+            app:destination="@id/navigation_findPassword" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_signUp"
+        android:name="com.example.worker.accountAdmin.fragment.SignUpFragment"
+        android:label="signUp"
+        tools:layout="@layout/fragment_signup" >
+        <action
+            android:id="@+id/action_navigation_signUp_to_navigation_signIn"
+            app:destination="@id/navigation_signIn" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_findPassword"
+        android:name="com.example.worker.accountAdmin.fragment.FindPasswordFragment"
+        android:label="find a password"
+        tools:layout="@layout/fragment_findpassword" >
+        <action
+            android:id="@+id/action_navigation_findPassword_to_navigation_signIn"
+            app:destination="@id/navigation_signIn" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_reSettingPassword"
+        android:name="com.example.worker.accountAdmin.fragment.ReSettingPasswordFragment"
+        android:label="re setting password"
+        tools:layout="@layout/fragment_resettingpassword" >
+
+        <action
+            android:id="@+id/action_navigation_reSettingPassword_to_navigation_signIn"
+            app:destination="@id/navigation_signIn" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_inputInformation"
+        android:name="com.example.worker.accountAdmin.fragment.InputInformationFragment"
+        android:label="inputInformation"
+        tools:layout="@layout/fragment_inputinformation" >
+        <action
+            android:id="@+id/action_navigation_inputInformation_to_navigation_scanQrCode"
+            app:destination="@id/navigation_scanQrCode" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_scanQrCode"
+        android:name="com.example.worker.accountAdmin.fragment.ScanQrFragment"
+        android:label="scanQrCode"
+        tools:layout="@layout/fragment_scanqr" >
+        <action
+            android:id="@+id/action_navigation_scanQrCode_to_navigation_scannedDeviceDetails"
+            app:destination="@id/navigation_scannedDeviceDetails" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_scannedDeviceDetails"
+        android:name="com.example.worker.accountAdmin.fragment.ScannedDeviceDetailsFragment"
+        android:label="scannedDeviceDetails"
+        tools:layout="@layout/fragment_scanneddevicedetails" >
+        <action
+            android:id="@+id/action_navigation_scannedDeviceDetails_to_navigation_inputInformation"
+            app:destination="@id/navigation_inputInformation" />
+    </fragment>
+
+
+</navigation>
