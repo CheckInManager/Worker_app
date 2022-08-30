@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.worker.accountAdmin.model.AccountRepository;
+import com.example.worker.accountAdmin.repository.AccountRepository;
 import com.example.worker.accountAdmin.model.Result;
 import com.example.worker.accountAdmin.model.SingleCallback;
 import com.example.worker.accountAdmin.model.User;
@@ -18,22 +18,23 @@ public class ScanQrViewModel extends ViewModel {
 
     private User user = accountRepository.getCurrUser();
 
-    public void registerWorksite(String worksite){
+    public void registerWorksite(String worksite) {
         user.setworksite(worksite);
         accountRepository.addUserWorkSite(user, new SingleCallback<Result<User>>() {
             @Override
             public void onComplete(Result<User> result) {
-                if(result instanceof Result.Success){
+                if (result instanceof Result.Success) {
 
-                }
-                else{
+                } else {
                     Log.v("scanQrCodeViewMode", " 오류");
                 }
             }
         });
     }
 
-    public LiveData<Boolean> isRegisteredWorksite() { return registeredWorksite; }
+    public LiveData<Boolean> isRegisteredWorksite() {
+        return registeredWorksite;
+    }
 
     public void setCurrDevice(String deviceNum) {
         user.setworksite(deviceNum);

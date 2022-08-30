@@ -1,12 +1,10 @@
 package com.example.worker.accountAdmin.viewModel;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.worker.accountAdmin.model.AccountRepository;
+import com.example.worker.accountAdmin.repository.AccountRepository;
 import com.example.worker.accountAdmin.model.Result;
 import com.example.worker.accountAdmin.model.SingleCallback;
 import com.example.worker.accountAdmin.model.User;
@@ -19,27 +17,21 @@ public class ReSettingPasswordViewModel extends ViewModel {
 
     private User user = accountRepository.getCurrUser();
 
-    public void updatePassword(User user, String password){
+    public void updatePassword(User user, String password) {
         user.setPassword(password);
 
         accountRepository.updatePassword(user, new SingleCallback<Result<User>>() {
             @Override
             public void onComplete(Result<User> result) {
-                if(result instanceof Result.Success){
+                if (result instanceof Result.Success) {
+                    passwordUpdate.postValue(true);
 
-                  passwordUpdate.postValue(true);
-
-
-                }
-                else{
-                   String errorMessage = ((Result.Error) result).getError().getMessage();
+                } else {
+                    String errorMessage = ((Result.Error) result).getError().getMessage();
                 }
             }
         });
-
-
     }
-
 
     public LiveData<Boolean> getPasswordUpdate() {
         return passwordUpdate;

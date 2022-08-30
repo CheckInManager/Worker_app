@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.worker.accountAdmin.model.AccountRepository;
+import com.example.worker.accountAdmin.repository.AccountRepository;
 import com.example.worker.accountAdmin.model.Result;
 import com.example.worker.accountAdmin.model.SingleCallback;
 import com.example.worker.accountAdmin.model.User;
@@ -19,7 +19,6 @@ public class SignUpViewModel extends ViewModel {
 
     private User user = new User();
 
-
     public void setUserAccount(String phoneNumber, String password) {
         user.setPhoneNumber(phoneNumber);
         user.setPassword(password);
@@ -29,7 +28,7 @@ public class SignUpViewModel extends ViewModel {
         accountRepository.checkOverlapPhoneNumber(user.getPhoneNumber(), new SingleCallback<Result<String>>() {
             @Override
             public void onComplete(Result<String> result) {
-                if(result instanceof Result.Success){
+                if (result instanceof Result.Success) {
 
                     //회원가입.
                     accountRepository.trySignUp(user, new SingleCallback<Result<User>>() {
@@ -44,13 +43,9 @@ public class SignUpViewModel extends ViewModel {
                             }
                         }
                     });
-
                 }
             }
         });
-
-
-
     }
 
     public LiveData<Boolean> getSignUpComplete() {

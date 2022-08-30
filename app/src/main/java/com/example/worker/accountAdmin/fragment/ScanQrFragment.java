@@ -23,53 +23,33 @@ import com.example.worker.accountAdmin.viewModel.ScanQrViewModel;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-public class ScanQrFragment extends Fragment
-{
+public class ScanQrFragment extends Fragment {
+    private ScanQrViewModel scanQrViewModel;
 
-    ScanQrViewModel scanQrViewModel;
-
-    public ScanQrFragment()
-    {
-        // Required empty public constructor
-    }
-
-    public static ScanQrFragment newInstance()
-    {
-        ScanQrFragment fragment = new ScanQrFragment();
-        Bundle args = new Bundle();
-        return fragment;
+    public ScanQrFragment() {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         scanQrViewModel = new ViewModelProvider(requireActivity()).get(ScanQrViewModel.class);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_w_scanqr, container, false);
+                             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_scanqr, container, false);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
-    {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         ActivityResultLauncher<Intent> launchScanner = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>()
-                {
+                new ActivityResultCallback<ActivityResult>() {
                     @Override
-                    public void onActivityResult(ActivityResult result)
-                    {
-                        if(result.getResultCode() == Activity.RESULT_OK)
-                        {
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
                             IntentResult intentResult = IntentIntegrator.parseActivityResult(result.getResultCode(), result.getData());
                             String content = intentResult.getContents();
                             String format = intentResult.getFormatName();
@@ -87,6 +67,4 @@ public class ScanQrFragment extends Fragment
         Intent i = intentIntegrator.createScanIntent();
         launchScanner.launch(i);
     }
-
-
 }

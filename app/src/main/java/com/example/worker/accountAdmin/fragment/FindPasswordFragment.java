@@ -36,7 +36,6 @@ public class FindPasswordFragment extends Fragment {
     private Button bt_confirm;
     private FrameLayout frameLayout;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,42 +48,33 @@ public class FindPasswordFragment extends Fragment {
         bt_confirm = binding.findPasswordBtConfirm;
         frameLayout = binding.findPasswordFrameLayout;
 
-
         return binding.getRoot();
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        findPasswordViewModel.getConfirm().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean found) {
+                if (found) {
+                    tv_alarm.setText("");
+                    FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+                    ReSettingPasswordFragment reSettingPasswordFragment = new ReSettingPasswordFragment();
+                    fragmentTransaction.replace(R.id.findPassword_frameLayout, reSettingPasswordFragment).commit();
+                } else {
+                    tv_alarm.setText("계정이 존재하지 않습니다.");
+                }
+            }
+        });
+
         bt_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String phoneNumber = et_phoneNumber.getText().toString();
                 findPasswordViewModel.tryFindPhoneNumber(phoneNumber);
-
-
-                findPasswordViewModel.getConfirm().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-                    @Override
-                    public void onChanged(Boolean found) {
-                        if(found){
-                            tv_alarm.setText("");
-                            FragmentTransaction fragmentTransaction =  getChildFragmentManager().beginTransaction();
-                            ReSettingPasswordFragment reSettingPasswordFragment = new  ReSettingPasswordFragment();
-                            fragmentTransaction.replace(R.id.findPassword_frameLayout , reSettingPasswordFragment).commit();
-                        }
-                        else{
-                            tv_alarm.setText("계정이 존재하지 않습니다.");
-                        }
-                    }
-                });
-
             }
         });
-
-
-
     }
-
 }

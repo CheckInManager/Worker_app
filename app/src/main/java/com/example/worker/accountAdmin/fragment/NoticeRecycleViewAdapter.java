@@ -20,21 +20,16 @@ import java.util.List;
 
 public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycleViewAdapter.ViewHolder> {
 
-
     //private ArrayList<Notice> records;
     private List<Notice> records;
-
 
     public NoticeRecycleViewAdapter(List<Notice> items) {
         this.records = items;
     }
 
-
-
     @Override
     public NoticeRecycleViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new NoticeRecycleViewAdapter.ViewHolder(ObjectNoticeitemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
-
     }
 
     @Override
@@ -44,8 +39,6 @@ public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycle
         holder.tv_memo.setText(currNotice.getMemo());
         holder.tv_time.setText(DateFormatter.formatTimestampToDate(currNotice.getTime()));
     }
-
-
 
     @Override
     public int getItemCount() {
@@ -68,7 +61,7 @@ public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycle
 
         @Override
         public String toString() {
-            return super.toString() + "" ;
+            return super.toString() + "";
         }
     }
 

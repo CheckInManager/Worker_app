@@ -1,4 +1,4 @@
-package com.example.worker.accountAdmin.model;
+package com.example.worker.accountAdmin.repository;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -6,6 +6,9 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.worker.accountAdmin.model.Result;
+import com.example.worker.accountAdmin.model.SingleCallback;
+import com.example.worker.accountAdmin.model.User;
 import com.example.worker.accountAdmin.viewModel.AddCareerListItem;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -21,7 +24,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,11 +34,8 @@ public class AccountRepository {
     private FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
     private CollectionReference usersRef = accountStore.collection("user");
 
-
     private User currUser;
     private List<AddCareerListItem> careerList;
-
-    private Notice currNotice;
 
     private AccountRepository() {
         careerList = new ArrayList<>();
@@ -63,31 +62,22 @@ public class AccountRepository {
                                     foundUserList.add(foundUser);
                                 }
                             }
-
-                                if(foundUserList.size()==0){
-                                    callback.onComplete(new Result.Success<String>(phoneNumber));
-                                }
-                                else{
-                                    callback.onComplete(new Result.Error(new Exception("error")));
-                                }
-
-
-
-
-                        }
-                        else {
+                            if (foundUserList.size() == 0) {
+                                callback.onComplete(new Result.Success<String>(phoneNumber));
+                            } else {
+                                callback.onComplete(new Result.Error(new Exception("error")));
+                            }
+                        } else {
                             callback.onComplete(new Result.Error(new Exception("Network call failed: checking overlap")));
                         }
                     }
                 });
-
     }
 
 
     //sign up
     public void trySignUp(User user, SingleCallback<Result<User>> callback) {
 
-        //sign up
         usersRef.document(user.getPhoneNumber())
                 .set(user)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -100,13 +90,8 @@ public class AccountRepository {
                         } else {
                             callback.onComplete(new Result.Error(new Exception("Network call failed: Sign Up")));
                         }
-
                     }
                 });
-
-
-
-
     }
 
     //sign in
@@ -130,7 +115,6 @@ public class AccountRepository {
                                 if (foundUser.getPhoneNumber().equals("")) {
                                     callback.onComplete(new Result.Error(new Exception("do not registered user account")));
                                 }
-
                             }
                         } else {
                             callback.onComplete(new Result.Error(new Exception("Network call failed: Sign In")));
@@ -154,13 +138,11 @@ public class AccountRepository {
                                     callback.onComplete(new Result.Success<User>(foundUser));
                                 }
                             }
-
                         } else {
                             callback.onComplete(new Result.Error(new Exception("failed find a password")));
                         }
                     }
                 });
-
     }
 
     //find a password -> re setting password
@@ -200,8 +182,6 @@ public class AccountRepository {
         StorageReference uploadRef = firebaseStorage.getReference().child("userImages/user_" + phoneNumber + ".jpg");
         UploadTask uploadTask = uploadRef.putBytes(data);
 
-        //currUser.setPicture(true);
-
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
@@ -209,7 +189,6 @@ public class AccountRepository {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
             }
         });
     }
@@ -225,7 +204,6 @@ public class AccountRepository {
                     public void onSuccess(Uri uri) {
                         callback.onComplete(new Result.Success<Uri>(uri));
                         Log.d("repository image", String.valueOf(uri));
-
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -242,13 +220,11 @@ public class AccountRepository {
                 if (task.isSuccessful()) {
                     callback.onComplete(new Result.Success<User>(user));
                 } else {
-                    
                     callback.onComplete(new Result.Error(task.getException()));
                 }
             }
         });
     }
-
 
     public User getCurrUser() {
         return currUser;

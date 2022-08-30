@@ -9,7 +9,7 @@ public class Notice {
     private String worksiteName;
     private String worksiteKeyValue;
 
-    public Notice(){
+    public Notice() {
 
     }
 

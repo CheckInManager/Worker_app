@@ -32,10 +32,6 @@ public class NoticeFragment extends Fragment {
     private NoticeRecycleViewAdapter noticeRecycleViewAdapter;
     private RecyclerView rv_noticeView;
 
-    Notice notice = new Notice();
-
-    private ArrayList<Notice> noticeArrayList = new ArrayList<>();
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,13 +39,11 @@ public class NoticeFragment extends Fragment {
         binding = FragmentNoticelistBinding.inflate(inflater, container, false);
         rv_noticeView = binding.getNoticeListRecycleViewNoticeList;
 
-
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
 
         noticeViewModel.getNotice();
 
@@ -61,14 +55,8 @@ public class NoticeFragment extends Fragment {
                     rv_noticeView.setAdapter(noticeRecycleViewAdapter);
                     rv_noticeView.setLayoutManager(new LinearLayoutManager(requireContext()));
                     noticeRecycleViewAdapter.notifyDataSetChanged();
-
                 }
-
             }
         });
-
-
-
-
     }
 }

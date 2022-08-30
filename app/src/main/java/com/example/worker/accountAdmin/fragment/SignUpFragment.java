@@ -63,15 +63,12 @@ public class SignUpFragment extends Fragment {
         bt_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String phoneNumber = et_phoneNumber.getText().toString();
                 String password = et_password.getText().toString();
                 String confirmPassword = et_confirmPassword.getText().toString();
 
-
-
                 //blocking edit text - insert to blank
-                if(!phoneNumber.equals("") && !password.equals("") && !confirmPassword.equals("")){
+                if (!phoneNumber.equals("") && !password.equals("") && !confirmPassword.equals("")) {
 
                     //blocking edit text - not incorrect password & password confirm
                     if (password.equals(confirmPassword)) {
@@ -80,20 +77,16 @@ public class SignUpFragment extends Fragment {
                     } else {
                         tv_alarmText.setText("비밀번호가 동일하지 않습니다.");
                     }
-                }
-                else if(phoneNumber.equals("")){
+                } else if (phoneNumber.equals("")) {
                     tv_alarmText.setText("전화번호를 입력해주세요");
-                }
-                else if(password.equals("")){
+                } else if (password.equals("")) {
                     tv_alarmText.setText("비밀번호를 입력해주세요.");
-                }
-                else {
+                } else {
                     tv_alarmText.setText("비밀번호를 다시 입력해주세요.");
                 }
 
             }
         });
-
 
         signUpViewModel.getSignUpComplete().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
@@ -102,13 +95,9 @@ public class SignUpFragment extends Fragment {
                     navController.navigate(R.id.action_navigation_signUp_to_navigation_signIn);
 
                 } else {
-                    
+
                 }
             }
         });
-
-
     }
-
-
 }

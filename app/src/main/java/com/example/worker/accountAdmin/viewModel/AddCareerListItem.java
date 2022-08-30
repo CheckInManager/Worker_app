@@ -1,9 +1,9 @@
 package com.example.worker.accountAdmin.viewModel;
 
-public class AddCareerListItem  {
+public class AddCareerListItem {
     private String career;
 
-    public AddCareerListItem(String career){
+    public AddCareerListItem(String career) {
         this.career = career;
     }
 

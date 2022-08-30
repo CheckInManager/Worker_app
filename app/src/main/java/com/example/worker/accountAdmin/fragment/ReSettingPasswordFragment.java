@@ -30,7 +30,6 @@ import java.util.zip.Inflater;
 
 public class ReSettingPasswordFragment extends Fragment {
 
-
     private ReSettingPasswordViewModel reSettingPasswordViewModel;
     private FragmentResettingpasswordBinding binding;
     private NavController navController;
@@ -48,12 +47,10 @@ public class ReSettingPasswordFragment extends Fragment {
         navController = NavHostFragment.findNavController(ReSettingPasswordFragment.this);
         reSettingPasswordViewModel = new ViewModelProvider(this).get(ReSettingPasswordViewModel.class);
 
-
         tv_alarm = binding.reSettingPasswordTvAlarm;
         et_password = binding.reSettingPasswordEtPassword;
         et_confirmPassword = binding.reSettingPasswordEtConfirmpassword;
         bt_confirm = binding.reSettingPasswordBtConfirm;
-
 
         return binding.getRoot();
     }
@@ -62,38 +59,31 @@ public class ReSettingPasswordFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        reSettingPasswordViewModel.getPasswordUpdate().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean updatePassword) {
+                if (updatePassword) {
+                    navController.navigate(R.id.navigation_signIn);
+                } else {
+                    tv_alarm.setText("");
+                }
+            }
+        });
 
         bt_confirm.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-
                 String password = et_password.getText().toString();
                 String confirmPassword = et_confirmPassword.getText().toString();
 
-                if(password.equals(confirmPassword)){
+                if (password.equals(confirmPassword)) {
                     tv_alarm.setText("");
                     reSettingPasswordViewModel.updatePassword(reSettingPasswordViewModel.getCurrUser(), password);
 
-                    //changed password
-                    reSettingPasswordViewModel.getPasswordUpdate().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-                        @Override
-                        public void onChanged(Boolean updatePassword) {
-                            if(updatePassword){
-                                navController.navigate(R.id.navigation_signIn);
-                            }
-                            else{
-                                tv_alarm.setText("");
-                            }
-                        }
-                    });
-                }
-               else{
+                } else {
                     tv_alarm.setText("비밀번호가 일치하지 않습니다.");
-
-                    }
-
-             }
+                }
+            }
         });
     }
 }

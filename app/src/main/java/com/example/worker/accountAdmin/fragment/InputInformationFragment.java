@@ -44,7 +44,6 @@ public class InputInformationFragment extends Fragment {
     private FragmentInputinformationBinding binding;
     private InputInformationViewModel inputInformationViewModel;
     private NavController navController;
-    private AddCareerRecycleViewAdapter addCareerRecycleViewAdapter;
 
     private EditText et_phoneNumber;
     private EditText et_name;
@@ -53,10 +52,6 @@ public class InputInformationFragment extends Fragment {
     private Button bt_complete;
     private Button bt_addCareer;
     private TextView tv_alarm;
-
-
-    private ArrayList<AddCareerListItem> careerList = new ArrayList<>();
-
 
     @Nullable
     @Override
@@ -84,28 +79,23 @@ public class InputInformationFragment extends Fragment {
         User currUser = inputInformationViewModel.getCurrUser();
         et_phoneNumber.setText(currUser.getPhoneNumber());
 
-        if(currUser.getName() != null){
+        if (currUser.getName() != null) {
             et_name.setText(currUser.getName());
         }
-        if(currUser.getPicture()){
+        if (currUser.getPicture()) {
             inputInformationViewModel.getUserImage();
             bt_img.setImageURI(inputInformationViewModel.getUserImageUri());
         }
 
-
-
         ActivityResultLauncher<Intent> launchGallery = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>()
-                {
+                new ActivityResultCallback<ActivityResult>() {
                     @Override
-                    public void onActivityResult(ActivityResult result)
-                    {
-                        if(result.getResultCode() == Activity.RESULT_OK)
-                        {
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
                             Uri selectedImage = result.getData().getData();
                             bt_img.setImageURI(selectedImage);
-                            inputInformationViewModel.setCurrUserBitmap(((BitmapDrawable)bt_img.getDrawable()).getBitmap());
+                            inputInformationViewModel.setCurrUserBitmap(((BitmapDrawable) bt_img.getDrawable()).getBitmap());
                             bt_img.invalidate();
                         }
                     }
@@ -135,9 +125,9 @@ public class InputInformationFragment extends Fragment {
                 inputInformationViewModel.addCareerList(career);
                 et_career.setText("");
 
-                FragmentTransaction fragmentTransaction =  getChildFragmentManager().beginTransaction();
+                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                 AddCareerFragment addCareerFragment = new AddCareerFragment();
-                fragmentTransaction.replace(R.id.inputInformation_frameLayout , addCareerFragment).commit();
+                fragmentTransaction.replace(R.id.inputInformation_frameLayout, addCareerFragment).commit();
             }
         });
 
@@ -149,7 +139,7 @@ public class InputInformationFragment extends Fragment {
                 String name = et_name.getText().toString();
 
                 //미입력시 화면 이동 정지
-                if(!name.equals("") && inputInformationViewModel.getCurrUser().getPicture()){
+                if (!name.equals("") && inputInformationViewModel.getCurrUser().getPicture()) {
                     inputInformationViewModel.updateUserInformation(name, inputInformationViewModel.getCareerListItems());
 
                     inputInformationViewModel.isUpdateSuccessful().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
@@ -158,16 +148,11 @@ public class InputInformationFragment extends Fragment {
                             navController.navigate(R.id.action_navigation_inputInformation_to_navigation_scanQrCode);
                         }
                     });
-
-                }
-                else{
+                } else {
                     tv_alarm.setText("사진과 이름을 입력해주세요.");
                 }
             }
         });
-
-
     }
-///
 }
 

@@ -46,16 +46,12 @@ public class SignInFragment extends Fragment {
         binding = FragmentSigninBinding.inflate(inflater, container, false);
         navController = NavHostFragment.findNavController(SignInFragment.this);
 
-
         et_phoneNumber = binding.SignInEtPhoneNumber;
         et_password = binding.SignInEtPassword;
-
         bt_signUp = binding.signInBtSignUp;
         bt_signIn = binding.SignInBtSignIn;
         bt_findPassword = binding.SignInBtFindPassword;
-
         tv_alarmText = binding.signInTvAlarmText;
-
 
         return binding.getRoot();
     }
@@ -85,19 +81,16 @@ public class SignInFragment extends Fragment {
                 String phoneNumber = et_phoneNumber.getText().toString();
                 String password = et_password.getText().toString();
 
-                if(phoneNumber.equals("") && password.equals("")){
+                if (phoneNumber.equals("") && password.equals("")) {
                     tv_alarmText.setText("핸드폰 번호와 비밀번호를 입력해주세요.");
-                }
-                else if(phoneNumber.equals("")){
+                } else if (phoneNumber.equals("")) {
                     tv_alarmText.setText("핸드폰 번호를 입력해주세요.");
-                }
-                else if(password.equals("")){
+                } else if (password.equals("")) {
                     tv_alarmText.setText("비밀번호를 입력해주세요.");
-                }
-                else{
+                } else {
                     signInViewModel.trySignIn(phoneNumber, password);
-                    }
                 }
+            }
         });
 
         signInViewModel.isLoggedIn().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
@@ -105,14 +98,11 @@ public class SignInFragment extends Fragment {
             public void onChanged(Boolean isLoggedIn) {
                 if (isLoggedIn) {
                     //information inputted null 값 정보 확인 후 scan fragment 이동
-                    if(signInViewModel.getCurrentUser().getName() == null && !signInViewModel.getCurrentUser().getPicture()){
+                    if (signInViewModel.getCurrentUser().getName() == null && !signInViewModel.getCurrentUser().getPicture()) {
                         navController.navigate(R.id.action_navigation_signIn_to_navigation_inputInformation);
-                    }
-                    else{
+                    } else {
                         navController.navigate(R.id.action_navigation_signIn_to_navigation_scanQrCode);
                     }
-
-
                 } else {
                     //tv_alarmText.setText(signInViewModel.getErrorMessage());
                 }

@@ -2,27 +2,25 @@ package com.example.worker.accountAdmin.viewModel;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 
-import com.example.worker.accountAdmin.model.AccountRepository;
+import com.example.worker.accountAdmin.repository.AccountRepository;
 import com.example.worker.accountAdmin.model.Result;
 import com.example.worker.accountAdmin.model.SingleCallback;
 import com.example.worker.accountAdmin.model.User;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+
 public class InputInformationViewModel extends ViewModel {
 
     private AccountRepository accountRepository = AccountRepository.getInstance();
 
     private MutableLiveData<Boolean> updateSuccessful = new MutableLiveData<>(false);
-    private MutableLiveData<Boolean> updateTmpCareer = new MutableLiveData<>(false);
 
     //user information
     private User user = accountRepository.getCurrUser();
@@ -35,24 +33,22 @@ public class InputInformationViewModel extends ViewModel {
     private List<AddCareerListItem> careerListItems = new ArrayList<>();
 
 
-
     //user information input
     public void updateUserInformation(String name, List<AddCareerListItem> addCareerListItems) {
 
         String[] array = new String[addCareerListItems.size()];
-        String tmpCareer ="";
-        for(int i =0; i<addCareerListItems.size(); i++){
+        String tmpCareer = "";
+        for (int i = 0; i < addCareerListItems.size(); i++) {
             array[i] = String.valueOf(addCareerListItems.get(i).getCareer());
         }
 
-        for(int i =0; i < array.length; i++){
-            if(i == array.length-1){
-                if(!tmpCareer.equals("")){
+        for (int i = 0; i < array.length; i++) {
+            if (i == array.length - 1) {
+                if (!tmpCareer.equals("")) {
                     tmpCareer += array[i].trim();
                 }
-            }
-            else{
-                tmpCareer += (array[i].trim()+", ");
+            } else {
+                tmpCareer += (array[i].trim() + ", ");
             }
 
         }
@@ -62,15 +58,13 @@ public class InputInformationViewModel extends ViewModel {
         accountRepository.addUserInformation(user, new SingleCallback<Result<User>>() {
                     @Override
                     public void onComplete(Result<User> result) {
-                        if(result instanceof Result.Success){
-                            if(currUserBitmap != null)
-                            {
+                        if (result instanceof Result.Success) {
+                            if (currUserBitmap != null) {
                                 accountRepository.uploadUserImage(user.getPhoneNumber(), currUserBitmap);
                             }
-                            user = ((Result.Success<User>)result).getData();
+                            user = ((Result.Success<User>) result).getData();
                             updateSuccessful.postValue(true);
-                        }
-                        else{
+                        } else {
                             String errorMessage = ((Result.Error) result).getError().getMessage();
                         }
                     }
@@ -79,28 +73,28 @@ public class InputInformationViewModel extends ViewModel {
     }
 
     //get image
-    public void getUserImage(){
+    public void getUserImage() {
         accountRepository.downloadUserImage(getCurrUser().getPhoneNumber(), new SingleCallback<Result<User>>() {
             @Override
             public void onComplete(Result<User> result) {
-                if(result instanceof Result.Success){
-                    userImageUri = ((Result.Success<Uri>)result).getData();
-                }
-                else{
+                if (result instanceof Result.Success) {
+                    userImageUri = ((Result.Success<Uri>) result).getData();
+                } else {
                     //오류
                 }
             }
         });
     }
 
-    public Uri getUserImageUri(){return userImageUri;}
+    public Uri getUserImageUri() {
+        return userImageUri;
+    }
 
     public User getCurrUser() {
         return user;
     }
 
-    public void setCurrUserBitmap(Bitmap bm)
-    {
+    public void setCurrUserBitmap(Bitmap bm) {
         currUserBitmap = bm;
     }
 
@@ -119,7 +113,7 @@ public class InputInformationViewModel extends ViewModel {
         return careerListItems;
     }
 
-    public void setCareerListItems(AddCareerListItem item){
+    public void setCareerListItems(AddCareerListItem item) {
         accountRepository.setCareerRecords(item);
     }
 
@@ -128,7 +122,7 @@ public class InputInformationViewModel extends ViewModel {
     }
 
 
-    public void setPicture(){
+    public void setPicture() {
         user.setPicture(true);
     }
 

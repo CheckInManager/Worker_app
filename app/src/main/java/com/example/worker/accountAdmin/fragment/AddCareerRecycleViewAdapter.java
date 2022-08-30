@@ -17,8 +17,7 @@ import java.util.ArrayList;
 
 public class AddCareerRecycleViewAdapter extends Adapter<AddCareerRecycleViewAdapter.ViewHolder> {
 
-    private  ArrayList<AddCareerListItem> records;
-
+    private ArrayList<AddCareerListItem> records;
 
     public AddCareerRecycleViewAdapter(ArrayList<AddCareerListItem> items) {
         this.records = items;
@@ -27,16 +26,12 @@ public class AddCareerRecycleViewAdapter extends Adapter<AddCareerRecycleViewAda
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(ObjectAddcareeritemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
-
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-
         String career = records.get(position).getCareer();
         holder.tv_career.setText(career);
-
-
     }
 
     @Override
@@ -45,7 +40,7 @@ public class AddCareerRecycleViewAdapter extends Adapter<AddCareerRecycleViewAda
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        protected  TextView tv_career;
+        protected TextView tv_career;
 
         public ViewHolder(@NonNull ObjectAddcareeritemBinding binding) {
             super(binding.getRoot());
