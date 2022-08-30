@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Worker</string>
+    <string name="tv_loginLabel">Login</string>
 </resources>

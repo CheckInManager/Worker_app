@@ -18,6 +18,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class NoticeRepository {
 
@@ -40,36 +41,51 @@ public class NoticeRepository {
     }
 
     public void getNotice(String worksite, SingleCallback<Result<ArrayList>> callback) {
-        noticeRef.whereEqualTo("worksiteKeyValue", worksite)
-                .get()
+        noticeRef.get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            ArrayList<Notice> tmpNotice = new ArrayList<>();
+                        if(task.isSuccessful()){
+                            List<Notice> tmpNotice = new ArrayList<>();
+                            for(DocumentSnapshot documentSnapshot : task.getResult()){
+                                Map<String, String> worksiteMap = new HashMap<>();
+                                if(worksiteMap.get("id").equals(worksite)){
 
-                            //여기서 중복 저장 됨
-                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                                Notice foundNotice = documentSnapshot.toObject(Notice.class);
-
-                                tmpNotice.add(foundNotice);
+                                }
                             }
-
-                            noticeList = tmpNotice ;
-                            callback.onComplete(new Result.Success<ArrayList<Notice>>(noticeList));
-
-                        }
-                        else{
-                            callback.onComplete(new Result.Error(new Exception("Network call failed: get notice")));
                         }
                     }
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                    }
-                });
+//        noticeRef.whereEqualTo("worksite", worksite)
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            ArrayList<Notice> tmpNotice = new ArrayList<>();
+//
+//                            //여기서 중복 저장 됨
+//                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+//                                Notice foundNotice = documentSnapshot.toObject(Notice.class);
+//
+//                                tmpNotice.add(foundNotice);
+//                            }
+//
+//                            noticeList = tmpNotice ;
+//                            callback.onComplete(new Result.Success<ArrayList<Notice>>(noticeList));
+//
+//                        }
+//                        else{
+//                            callback.onComplete(new Result.Error(new Exception("Network call failed: get notice")));
+//                        }
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//
+//                    }
+//                });
     }
 
 
