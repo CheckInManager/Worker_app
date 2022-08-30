@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.worker.BuildConfig;
@@ -14,15 +15,16 @@ import com.example.worker.accountAdmin.model.Notice;
 import com.example.worker.databinding.ObjectNoticeitemBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycleViewAdapter.ViewHolder> {
 
 
     //private ArrayList<Notice> records;
-    private ArrayList<Notice> records;
+    private List<Notice> records;
 
 
-    public NoticeRecycleViewAdapter(ArrayList<Notice> items) {
+    public NoticeRecycleViewAdapter(List<Notice> items) {
         this.records = items;
     }
 
@@ -36,15 +38,10 @@ public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycle
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        String memo = records.get(position).getMemo();
-        String name = records.get(position).getNoticeName();
-        String time = records.get(position).getTime();
-        String worksiteName = records.get(position).getWorksiteName();
-
-        holder.tv_notice.setText(toString(time, worksiteName, name, memo));
-
-
+        Notice currNotice = records.get(position);
+        holder.tv_noticeName.setText(currNotice.getNoticeName());
+        holder.tv_memo.setText(currNotice.getMemo());
+        holder.tv_time.setText(currNotice.getTime());
     }
 
 
@@ -55,21 +52,23 @@ public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycle
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        protected TextView tv_notice;
+        public final CardView cv_card;
+        public final TextView tv_noticeName;
+        public final TextView tv_memo;
+        public final TextView tv_time;
 
         public ViewHolder(@NonNull ObjectNoticeitemBinding binding) {
             super(binding.getRoot());
-            tv_notice = binding.ObjectNoticeItemTvTitle;
+            cv_card = binding.objNoticeCard;
+            tv_noticeName = binding.objNoticeTvNoticeName;
+            tv_memo = binding.objNoticeTvMemo;
+            tv_time = binding.objNoticeTvTime;
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + tv_notice.getText() + "'";
+            return super.toString() + "" ;
         }
-    }
-
-    public String toString(String time, String worksiteName, String name, String memo){
-        return "Title: " + name + " \n Memo: " + memo + "\n worksiteName: " + worksiteName + "\n time: " + time + "\n";
     }
 
 }

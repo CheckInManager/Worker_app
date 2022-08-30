@@ -40,23 +40,29 @@ public class NoticeRepository {
         return INSTANCE;
     }
 
-    public void getNotice(String worksite, SingleCallback<Result<ArrayList>> callback) {
-        noticeRef.get()
+    public void getNotice(String worksite, SingleCallback<Result<List<Map<String, Object>>>> callback) {
+        noticeRef.whereEqualTo("worksiteId",Long.valueOf(worksite))
+                .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        List<Map<String, Object>> noticeMapList = new ArrayList<>();
+                        Map<String, Object> noticeMap = new HashMap<>();
                         if(task.isSuccessful()){
-                            List<Notice> tmpNotice = new ArrayList<>();
-                            for(DocumentSnapshot documentSnapshot : task.getResult()){
-                                Map<String, String> worksiteMap = new HashMap<>();
-                                if(worksiteMap.get("id").equals(worksite)){
-
-                                }
+                            List<DocumentSnapshot> snaps = task.getResult().getDocuments();
+                            for(DocumentSnapshot snap: snaps){
+                                noticeMap.put("content", snap.getString("content"));
+                                noticeMap.put("id", snap.getLong("id"));
+                                noticeMap.put("timestamp", snap.getLong("timestamp"));
+                                noticeMap.put("title", snap.getString("title"));
+                                noticeMapList.add(noticeMap);
                             }
+                            callback.onComplete(new Result.Success<List<Map<String,Object>>>(noticeMapList));
                         }
                     }
-                })
-//        noticeRef.whereEqualTo("worksite", worksite)
+                });
+
+//        noticeRef.whereEqualTo("worksite.id", worksite)
 //                .get()
 //                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
 //                    @Override

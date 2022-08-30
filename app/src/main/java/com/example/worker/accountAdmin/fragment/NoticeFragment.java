@@ -57,7 +57,6 @@ public class NoticeFragment extends Fragment {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
-
                     noticeRecycleViewAdapter = new NoticeRecycleViewAdapter(noticeViewModel.getNoticeArrayList());
                     rv_noticeView.setAdapter(noticeRecycleViewAdapter);
                     rv_noticeView.setLayoutManager(new LinearLayoutManager(requireContext()));
