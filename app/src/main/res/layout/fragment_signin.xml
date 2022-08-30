@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:background="@android:color/transparent"
-            android:text="회원가입"
+            android:text="@string/bt_signup"
             android:textColor="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/SignIn_bt_SignIn"
             app:layout_constraintHorizontal_bias="0.321"
@@ -40,7 +40,7 @@
             android:id="@+id/SignIn_et_phoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="40dp"
             android:ems="10"
             android:inputType="phone"
@@ -76,8 +76,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="비밀번호"
-            app:layout_constraintStart_toStartOf="@+id/SignIn_tv_tel"
+            android:text="@string/tv_passwordLabel"
+            app:layout_constraintEnd_toEndOf="@+id/SignIn_tv_tel"
             app:layout_constraintTop_toBottomOf="@+id/SignIn_tv_tel" />
 
         <TextView
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
             android:layout_marginEnd="60dp"
-            android:text="전화번호"
+            android:text="@string/tv_phoneNumberLabel"
             app:layout_constraintEnd_toStartOf="@+id/signIn_tv_signInLabel"
             app:layout_constraintTop_toBottomOf="@+id/signIn_tv_signInLabel" />
 
@@ -96,10 +96,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@android:color/transparent"
-            android:text="비밀번호 찾기"
+            android:text="@string/tv_findPasswordLabel"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/signIn_bt_signUp"
             app:layout_constraintEnd_toEndOf="@+id/SignIn_et_password"
+            app:layout_constraintHorizontal_bias="0.186"
             app:layout_constraintStart_toEndOf="@+id/SignIn_tv_slash" />
 
         <Button
@@ -107,9 +108,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="로그인"
-            app:layout_constraintEnd_toEndOf="@+id/SignIn_et_password"
-            app:layout_constraintStart_toStartOf="@+id/SignIn_et_password"
+            android:text="@string/bt_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/SignIn_et_password" />
 
         <TextView

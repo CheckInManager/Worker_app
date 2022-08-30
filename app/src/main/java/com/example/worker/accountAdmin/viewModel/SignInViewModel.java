@@ -26,10 +26,8 @@ public class SignInViewModel extends ViewModel {
             public void onComplete(Result<User> result) {
                 if (result instanceof Result.Success) {
                     User loggedInUser = ((Result.Success<User>) result).getData();
-
                     loggedIn.postValue(true);
                     user = loggedInUser;
-                    Log.v("", "" + loggedInUser);
                 } else {
                     errorMessage = ((Result.Error) result).getError().getMessage();
                     setErrorMessage(errorMessage);

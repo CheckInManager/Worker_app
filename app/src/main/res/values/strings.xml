@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">Worker</string>
     <string name="tv_loginLabel">Login</string>
+    <string name="tv_phoneNumberLabel">PhoneNumber</string>
+    <string name="tv_findPasswordLabel">Find Password</string>
+    <string name="tv_careersLabel">Careers</string>
+    <string name="bt_finish">Finish</string>
+    <string name="tv_nameLabel">Name</string>
+    <string name="tv_passwordCheckLabel">Password Check</string>
+    <string name="tv_passwordLabel">password</string>
+    <string name="tv_noticeLabel">notice</string>
+    <string name="tb_qrScanFragment">QR Scan Fragment</string>
+    <string name="bt_signup">Signup</string>
+    <string name="bt_login">Login</string>
+    <string name="tv_signupLabel">Signup</string>
 </resources>

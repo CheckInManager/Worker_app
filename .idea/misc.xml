@@ -15,12 +15,14 @@
         <entry key="..\:/Users/lim12/Worker_app/app/src/main/res/layout/fragment_signin.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/lim12/Worker_app/app/src/main/res/layout/fragment_signup.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/lim12/Worker_app/app/src/main/res/layout/object_noticeitem.xml" value="0.31521739130434784" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.26875" />
         <entry key="app/src/main/res/layout/fragment_addcareer.xml" value="0.5635416666666667" />
         <entry key="app/src/main/res/layout/fragment_findpassword.xml" value="0.4125905797101449" />
         <entry key="app/src/main/res/layout/fragment_inputinformation.xml" value="0.5635416666666667" />
         <entry key="app/src/main/res/layout/fragment_noticelist.xml" value="0.4125905797101449" />
         <entry key="app/src/main/res/layout/fragment_resettingpassword.xml" value="0.4125905797101449" />
         <entry key="app/src/main/res/layout/fragment_scanneddevicedetails.xml" value="0.4125905797101449" />
+        <entry key="app/src/main/res/layout/fragment_scannedworksite.xml" value="0.26875" />
         <entry key="app/src/main/res/layout/fragment_scanqr.xml" value="0.5635416666666667" />
         <entry key="app/src/main/res/layout/fragment_signin.xml" value="0.5635416666666667" />
         <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.4125905797101449" />

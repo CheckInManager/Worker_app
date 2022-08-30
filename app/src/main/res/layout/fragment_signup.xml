@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="비밀번호 확인"
+            android:text="@string/tv_passwordCheckLabel"
             app:layout_constraintEnd_toEndOf="@+id/signUp_tv_password"
             app:layout_constraintTop_toBottomOf="@+id/signUp_tv_password" />
 
@@ -23,7 +23,7 @@
             android:id="@+id/signUp_tv_signUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="회원가입"
+            android:text="@string/tv_signupLabel"
             android:textSize="34sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
             android:layout_marginTop="56dp"
-            android:text="회원가입"
+            android:text="@string/bt_signup"
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="@+id/signUp_et_confirmPassword"
             app:layout_constraintTop_toBottomOf="@+id/signUp_et_confirmPassword" />
@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="비밀번호"
+            android:text="@string/tv_passwordLabel"
             app:layout_constraintEnd_toEndOf="@+id/signUp_tv_tel"
             app:layout_constraintTop_toBottomOf="@+id/signUp_tv_tel" />
 
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
             android:layout_marginEnd="40dp"
-            android:text="전화번호"
+            android:text="@string/tv_phoneNumberLabel"
             app:layout_constraintEnd_toStartOf="@+id/signUp_tv_signUp"
             app:layout_constraintTop_toBottomOf="@+id/signUp_tv_signUp" />
 

@@ -24,10 +24,10 @@
 
         <TextView
             android:id="@+id/ScannedDeviceDetails_tv_notice"
-            android:layout_width="110dp"
-            android:layout_height="37dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
-            android:text="공지 사항"
+            android:text="@string/tv_noticeLabel"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
