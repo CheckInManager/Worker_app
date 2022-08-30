@@ -5,7 +5,7 @@ public class Notice {
     private String keyValue;
     private String memo;
     private String noticeName;
-    private String time;
+    private long time;
     private String worksiteName;
     private String worksiteKeyValue;
 
@@ -37,11 +37,11 @@ public class Notice {
         this.noticeName = noticeName;
     }
 
-    public String getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(long time) {
         this.time = time;
     }
 

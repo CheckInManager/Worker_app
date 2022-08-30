@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.worker.BuildConfig;
 import com.example.worker.accountAdmin.model.Notice;
+import com.example.worker.accountAdmin.util.DateFormatter;
 import com.example.worker.databinding.ObjectNoticeitemBinding;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class NoticeRecycleViewAdapter extends RecyclerView.Adapter<NoticeRecycle
         Notice currNotice = records.get(position);
         holder.tv_noticeName.setText(currNotice.getNoticeName());
         holder.tv_memo.setText(currNotice.getMemo());
-        holder.tv_time.setText(currNotice.getTime());
+        holder.tv_time.setText(DateFormatter.formatTimestampToDate(currNotice.getTime()));
     }
 
 

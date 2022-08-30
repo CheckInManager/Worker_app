@@ -39,9 +39,10 @@ public class NoticeViewModel extends ViewModel {
                     noticeMapList = ((Result.Success<List<Map<String, Object>>>)result).getData();
                     for(int i=0;i<noticeMapList.size();i++){
                         Notice newNotice = new Notice();
+                        String time = String.valueOf(noticeMapList.get(i).get("timestamp"));
                         newNotice.setMemo(String.valueOf(noticeMapList.get(i).get("content")));
                         newNotice.setKeyValue(String.valueOf(noticeMapList.get(i).get("id")));
-                        newNotice.setTime(String.valueOf(noticeMapList.get(i).get("timeStamp")));
+                        newNotice.setTime(Long.parseLong(time));
                         newNotice.setNoticeName(String.valueOf(noticeMapList.get(i).get("title")));
                         noticeArrayList.add(newNotice);
                     }
